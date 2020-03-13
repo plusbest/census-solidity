@@ -58,6 +58,8 @@ contract Census {
 
 
 
+
+# Below is used as a learning example template
 pragma solidity >=0.4.22 <0.6.0;
 
 /// @title Voting with delegation.
