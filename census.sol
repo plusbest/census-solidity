@@ -27,6 +27,7 @@ contract Census {
         uint residentsAmt;
         uint additionalAmt;
         string houseType; // House, Apartment, Mobile Home
+        bool registered;
     }
 
     // Person struct
@@ -63,10 +64,10 @@ contract Census {
 
 
     function addHouse(uint _residentsamt, uint _additionalamt, string memory _housetype) public {
-        // TODO: Check if house already exists
+        require(houses[msg.sender].registered == false, "This address has already registered a house.");
 
         // Create new house struct
-        House memory newhouse = House(_residentsamt, _additionalamt, _housetype);
+        House memory newhouse = House(_residentsamt, _additionalamt, _housetype, true);
         // uint[] memory resis = residents;
         houses[msg.sender] = newhouse;
 
@@ -78,6 +79,8 @@ contract Census {
 
 
     function addPerson(bool _ismale, bool _ishispanic, uint _age, uint _birthdate, string memory _race) public {
+        // TODO: Ensure house exists for msg.sender
+
         Person memory newguy =  Person(personCount, msg.sender, _ismale, _ishispanic, _age, _birthdate, _race);
         people[personCount] = newguy;
         
