@@ -50,6 +50,7 @@ contract Census {
 
     // array of Persons
     Person[] public residents;
+    House[] public allHouses;
     
 
     // Initialized at contract creation
@@ -62,8 +63,16 @@ contract Census {
 
 
     function addHouse(uint _residentsamt, uint _additionalamt, string memory _housetype) public {
+        // TODO: Check if house already exists
+
+        // Create new house struct
+        House memory newhouse = House(_residentsamt, _additionalamt, _housetype);
         // uint[] memory resis = residents;
-        houses[msg.sender] = House(_residentsamt, _additionalamt, _housetype);
+        houses[msg.sender] = newhouse;
+
+        // Add house to global house list
+        allHouses.push(newhouse);
+
         houseCount++;
     }
 
@@ -88,6 +97,10 @@ contract Census {
     function getResident(uint _index) public view returns (Person memory ppls) {
         // require (msg.sender != 0x0000000000000000000000000000000000000000);
         return residents[_index];
+    }
+
+    function getHouse(uint _index) public view returns (House memory hizzy) {
+        return allHouses[_index];
     }
     
     // Return total residents
