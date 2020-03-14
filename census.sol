@@ -86,13 +86,17 @@ contract Census {
         // Ensure house for address exists before adding
         require(houses[msg.sender].registered == true, "There is no house registered for this address.");
         
-        // TODO: Require house of address to have person count within range
+        // TODO: Require house of address to have resident count within range
+        require(houses[msg.sender].residentCount < houses[msg.sender].residentsAmt, "Max registered people.");
 
         Person memory newguy =  Person(personCount, msg.sender, _ismale, _ishispanic, _age, _birthdate, _race);
         people[personCount] = newguy;
         
         // Add personId to list of residents in house
         residents.push(newguy);
+
+        // Increase user home resident count
+        houses[msg.sender].residentCount++;
         
         // Increase global personId
         personCount++;
