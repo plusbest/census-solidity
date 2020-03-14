@@ -28,6 +28,7 @@ contract Census {
         uint additionalAmt;
         string houseType; // House, Apartment, Mobile Home
         bool registered;
+        uint residentCount; // Limit addition of people to house resident limit
     }
 
     // Person struct
@@ -64,10 +65,12 @@ contract Census {
 
 
     function addHouse(uint _residentsamt, uint _additionalamt, string memory _housetype) public {
+        
+        // Ensure house is not already registered for address
         require(houses[msg.sender].registered == false, "This address has already registered a house.");
 
         // Create new house struct
-        House memory newhouse = House(_residentsamt, _additionalamt, _housetype, true);
+        House memory newhouse = House(_residentsamt, _additionalamt, _housetype, true, 0);
         // uint[] memory resis = residents;
         houses[msg.sender] = newhouse;
 
@@ -79,7 +82,11 @@ contract Census {
 
 
     function addPerson(bool _ismale, bool _ishispanic, uint _age, uint _birthdate, string memory _race) public {
-        // TODO: Ensure house exists for msg.sender
+
+        // Ensure house for address exists before adding
+        require(houses[msg.sender].registered == true, "There is no house registered for this address.");
+        
+        // TODO: Require house of address to have person count within range
 
         Person memory newguy =  Person(personCount, msg.sender, _ismale, _ishispanic, _age, _birthdate, _race);
         people[personCount] = newguy;
