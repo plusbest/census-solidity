@@ -60,6 +60,11 @@ contract Census {
     }
 
 
+
+    function verifyTokenOracle(bytes32 _key) private returns (bool) {
+        
+    }
+
     function addHouse(uint _maxResidents, uint _extraResidents, string memory _housetype) public {
         
         // Ensure house is not already registered for address
@@ -105,4 +110,23 @@ contract Census {
     function getHouse() public view returns (House memory hizzy) {
         return houses[msg.sender];
     }
+
+    // // DEBUG TEST STUFF
+    // function returnBool(uint number) public view returns (bool) {
+    //     if (number > 9000) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
+
+    // function returnOver9000(uint number) public view returns (bool) {
+    //     if (returnBool(number) == true) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
 }
