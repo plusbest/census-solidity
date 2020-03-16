@@ -24,15 +24,16 @@ contract Census {
 
     // House struct
     struct House {
-        uint residentsAmt;
-        uint additionalAmt;
-        string houseType; // House, Apartment, Mobile Home
         bool registered;
-        uint residentCount; // Limit addition of people to house resident limit
+        uint maxResidents;
+        uint extraResidents;
+        string houseType; // House, Apartment, Mobile Home
+        uint[] residentList;
     }
 
     // Person struct
     struct Person {
+        bool registered;
         uint id; // peopleCount
         address home; // msg.sender NECESSARY? (home can be assumed from address of transaction)
         bool isMale;
@@ -50,11 +51,6 @@ contract Census {
     mapping(uint => Person) public people;
 
 
-    // array of Persons
-    Person[] public residents;
-    House[] public allHouses;
-    
-
     // Initialized at contract creation
     constructor() public {
         // Contract owner
@@ -64,65 +60,49 @@ contract Census {
     }
 
 
-    function addHouse(uint _residentsamt, uint _additionalamt, string memory _housetype) public {
+    function addHouse(uint _maxResidents, uint _extraResidents, string memory _housetype) public {
         
         // Ensure house is not already registered for address
         require(houses[msg.sender].registered == false, "This address has already registered a house.");
 
+        // Initialize empty residentList array
+        uint[] memory emptyList = new uint[](0);
+        
         // Create new house struct
-        House memory newhouse = House(_residentsamt, _additionalamt, _housetype, true, 0);
-        // uint[] memory resis = residents;
+        House memory newhouse = House(true, _maxResidents, _extraResidents, _housetype, emptyList);
+
         houses[msg.sender] = newhouse;
 
-        // Add house to global house list
-        allHouses.push(newhouse);
-
+        // Increase global house count
         houseCount++;
     }
 
 
     function addPerson(bool _ismale, bool _ishispanic, uint _age, uint _birthdate, string memory _race) public {
 
+        House storage currentHouse = houses[msg.sender];
+
         // Ensure house for address exists before adding
-        require(houses[msg.sender].registered == true, "There is no house registered for this address.");
+        require(currentHouse.registered == true, "There is no house registered for this address.");
         
-        // TODO: Require house of address to have resident count within range
-        require(houses[msg.sender].residentCount < houses[msg.sender].residentsAmt, "Max registered people.");
+        // Require house of address to have resident count within range
+        require(currentHouse.residentList.length < currentHouse.maxResidents, "Max registered people for this House.");
 
-        Person memory newguy =  Person(personCount, msg.sender, _ismale, _ishispanic, _age, _birthdate, _race);
-        people[personCount] = newguy;
-        
-        // Add personId to list of residents in house
-        residents.push(newguy);
+        Person memory newPerson =  Person(true, personCount, msg.sender, _ismale, _ishispanic, _age, _birthdate, _race);
+        people[personCount] = newPerson;
 
-        // Increase user home resident count
-        houses[msg.sender].residentCount++;
+        // Add person ID to house residentList
+        houses[msg.sender].residentList.push(personCount);
         
-        // Increase global personId
+        // Increase global person count (iD)
         personCount++;
-    }
-
-
-    // Return total residents
-    function getResidentLength() public view returns (uint residentLen) {
-        return residents.length;
     }
     
     function getResident(uint _index) public view returns (Person memory ppls) {
-        // require (msg.sender != 0x0000000000000000000000000000000000000000);
-        return residents[_index];
+        return people[_index];
     }
 
-    function getHouse(uint _index) public view returns (House memory hizzy) {
-        return allHouses[_index];
+    function getHouse() public view returns (House memory hizzy) {
+        return houses[msg.sender];
     }
-    
-    // Return total residents
-    // function getHouseResidentLength() public view returns (uint residentLen) {
-    //     return houses[msg.sender].houseResidents.length;
-    // }
-
-    // function getPerson(uint _index) view public returns (Person memory pp) {
-    //     return people[_index];
-    // }
 }
