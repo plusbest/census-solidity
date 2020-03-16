@@ -18,24 +18,33 @@
 
 
 
-// Generate sha3 serial
+// Oracle to verify tokens
 pragma solidity ^0.5.0;
 
 contract Random {
 
-uint public totalKeys;
+    uint public totalKeys;
+    
+    // Nonce to provide added RNG
+    uint private nonce = 0;
 
-uint private nonce = 0;
+    struct Key {
+    	bool valid;
+    	uint id;
+    }
 
-struct Key {
-	bool valid;
-}
+    mapping(address => Key) keys;
 
-mapping(address => Key) keys;
-
-
+    // Generates random number using nonce
     function random() public returns(uint) {
         nonce += 1;
         return uint(keccak256(abi.encodePacked(nonce)));
+    }
+
+    // Generates address using random number as param
+    function getSha256(uint _randomNumber) public pure returns (bytes32) {
+        bytes32 hash = sha256(abi.encodePacked(_randomNumber));
+
+    return hash;
     }
 }
