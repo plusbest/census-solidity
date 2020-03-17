@@ -131,6 +131,26 @@ App = {
     });
   },
 
+  addPerson: function() {
+
+    var isMale = $('#maleTrue').is(':checked');
+    var isHispanic = $('#hispanicTrue').is(':checked');
+    var personAge = $('#personAge').val();
+    var personBirthDate = $('#personBirthDate').val();
+    var personRace = $('#personRace').val();
+
+    // var birthDate = $('#houseType option:selected').val();
+
+    App.contracts.Census.deployed().then(function(instance) {
+      return instance.addPerson(isMale, isHispanic, personAge, personBirthDate, personRace, { from: App.account });
+    }).then(function(result) {
+      $("#content").hide();
+      $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
 };
 
 $(function() {

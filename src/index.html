@@ -45,6 +45,10 @@
                   <p id="registeredPara"olo><b>HOUSE NOT YET REGISTERED!</b></p>
                 </div>
 
+
+                <br>
+
+                <!-- ADD HOUSE FORM -->
                 <div id="addHouseForm">
                 <form onSubmit="App.addHouse(); return false">
                   <div class="form-row">
@@ -62,9 +66,74 @@
                       </select>
                     </div>                  
                   </div>
-                  <button type="submit" class="btn btn-primary btn-sm">Register House</button>
+                  <button type="submit" class="btn btn-info btn-sm">Register House</button>
                 </form>
                 </div>
+                <!-- END HOUSE FORM -->
+
+                <br>
+                <br>
+
+                <!-- APP PERSON FORM -->
+                <div id="addPersonForm">
+                <form onSubmit="App.addPerson(); return false">
+
+                  <div id="ismaleradio">
+                    <label for="ismaleradio">are they Male?</label>
+                    <!-- Group of material radios - option 1 -->
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
+                      <label class="form-check-label" for="maletrue">true</label>
+                    </div>
+                    <!-- Group of material radios - option 2 -->
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
+                      <label class="form-check-label" for="malefalse">false</label>
+                    </div>
+                  </div>
+
+                  <br>
+
+                  <div id="isHispanicRadio">
+                    <label for="isHispanicRadio">are they Hispanic at the Disco!!</label>
+                    <!-- Group of material radios - option 1 -->
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
+                      <label class="form-check-label" for="hispanictrue">true</label>
+                    </div>
+                    <!-- Group of material radios - option 2 -->
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
+                      <label class="form-check-label" for="hispanicfalse">false</label>
+                    </div>
+                  </div>
+
+                  <br>
+
+                  <div class="form-row">
+                    <div class="col-7">
+                      <input type="text" class="form-control" id="personAge" placeholder="Age">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" id="personBirthDate" placeholder="Birth date">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" id="personRace" placeholder="Race">
+                    </div>
+<!--                     <div class="col">
+                      <select class="form-control" id="houseType" placeholder="Race">
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Mobile">Mobile</option>
+                      </select>
+                    </div>  -->                 
+                  </div>
+
+                  <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+                </form>
+                </div>
+
+                <!-- END PERSON FORM -->
 
               </tbody>
             </table>
@@ -93,3 +162,32 @@
     <script src="js/app.js"></script>
   </body>
 </html>
+
+
+
+
+
+
+<!--         <div class="form-group">
+        <label for="happy" class="col-sm-4 col-md-4 control-label text-right">Are you happy ?</label>
+        <div class="col-sm-7 col-md-7">
+          <div class="input-group">
+            <div id="radioBtn" class="btn-group">
+              <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
+              <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+            </div>
+            <input type="hidden" name="happy" id="happy">
+          </div>
+        </div>
+      </div>
+
+<script>
+  $('#radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('#'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
+</script> -->
