@@ -112,8 +112,9 @@ contract Census {
         return people[_index];
     }
 
-    function getHouse() public view returns (House memory hizzy) {
-        return houses[msg.sender];
+    function getHouse() public view returns (uint, uint, string memory) {
+        House storage thisHouse = houses[msg.sender];
+        return (thisHouse.maxResidents, thisHouse.extraResidents, thisHouse.houseType);
     }
 
     // // DEBUG TEST STUFF

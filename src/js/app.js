@@ -58,13 +58,17 @@ App = {
 
     App.contracts.Census.deployed().then(function(instance) {
       CensusInstance = instance;
-      return CensusInstance.houseCount();
+      return CensusInstance.getHouse();
     }).then(function(houseCount) {
       var candidatesResults = $("#candidatesResults");
       candidatesResults.empty();
 
       var candidatesSelect = $('#candidatesSelect');
       candidatesSelect.empty();
+
+      console.log(houseCount);
+
+      // $("#myHouseInfo").html(houseCount.s);
 
       // for (var i = 1; i <= houseCount; i++) {
       //   CensusInstance.candidates(i).then(function(candidate) {
