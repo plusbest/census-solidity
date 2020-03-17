@@ -50,6 +50,11 @@ contract Census {
     // stores a 'Person' struct as index id
     mapping(uint => Person) public people;
 
+    event houseAddedEvent (
+    uint indexed _maxResidents,
+    uint indexed _extraResidents,
+    string indexed _housetype
+    );
 
     // Initialized at contract creation
     constructor() public {
@@ -58,8 +63,6 @@ contract Census {
         personCount = 0;
         houseCount = 0;
     }
-
-
 
     function verifyTokenOracle(bytes32 _key) private returns (bool) {
         
@@ -80,6 +83,8 @@ contract Census {
 
         // Increase global house count
         houseCount++;
+
+        emit houseAddedEvent(_maxResidents, _extraResidents, _housetype);
     }
 
 
