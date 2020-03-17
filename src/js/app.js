@@ -120,7 +120,7 @@ App = {
   addHouse: function() {
     var maxResidents = $('#maxResidents').val();
     var extraResidents = $('#extraResidents').val();
-    var houseType = $('#houseType').val();
+    var houseType = $('#houseType option:selected').val();
     App.contracts.Census.deployed().then(function(instance) {
       return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
     }).then(function(result) {
