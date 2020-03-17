@@ -3,6 +3,7 @@ App = {
   contracts: {},
   account: '0x0',
   hasVoted: false,
+  houseRegistered: false,
 
   init: function() {
     return App.initWeb3();
@@ -63,19 +64,22 @@ App = {
       // return CensusInstance.houseCount();
       return CensusInstance.houses(App.account);
 
-    }).then(function(houseCount) {
+    }).then(function(myHouse) {
       var candidatesResults = $("#candidatesResults");
       candidatesResults.empty();
 
       var candidatesSelect = $('#candidatesSelect');
       candidatesSelect.empty();
 
-      // $("#myHouseInf").html(houseCount.c[0]);
 
-      // // Returns housecount
+      // Return current user House object
+      console.log(myHouse);
+      $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
+      $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
+      $("#houseType").html("House type:" + myHouse[3]);
+
       // console.log(houseCount.c[0]);
 
-      console.log(houseCount)
 
       // var newtest = CensusInstance.houseCount();
       // console.log(newtest);
