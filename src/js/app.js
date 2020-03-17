@@ -57,8 +57,12 @@ App = {
     });
 
     App.contracts.Census.deployed().then(function(instance) {
+
       CensusInstance = instance;
-      return CensusInstance.getHouse();
+
+      // return CensusInstance.houseCount();
+      return CensusInstance.houses(App.account);
+
     }).then(function(houseCount) {
       var candidatesResults = $("#candidatesResults");
       candidatesResults.empty();
@@ -66,9 +70,15 @@ App = {
       var candidatesSelect = $('#candidatesSelect');
       candidatesSelect.empty();
 
-      console.log(houseCount);
+      // $("#myHouseInf").html(houseCount.c[0]);
 
-      // $("#myHouseInfo").html(houseCount.s);
+      // // Returns housecount
+      // console.log(houseCount.c[0]);
+
+      console.log(houseCount)
+
+      // var newtest = CensusInstance.houseCount();
+      // console.log(newtest);
 
       // for (var i = 1; i <= houseCount; i++) {
       //   CensusInstance.candidates(i).then(function(candidate) {

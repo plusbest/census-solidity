@@ -21,7 +21,6 @@ contract Census {
     // Global counter for House count
     uint public houseCount;
 
-
     // House struct
     struct House {
         bool registered;
@@ -112,9 +111,19 @@ contract Census {
         return people[_index];
     }
 
-    function getHouse() public view returns (uint, uint, string memory) {
+    function getHouse() public view returns (uint x, uint y, uint[] memory z) {
+        
         House storage thisHouse = houses[msg.sender];
-        return (thisHouse.maxResidents, thisHouse.extraResidents, thisHouse.houseType);
+
+        uint resiNum = thisHouse.maxResidents;
+        uint resiAdd = thisHouse.maxResidents;          
+        uint[] memory resiList = thisHouse.residentList;
+
+        return (resiNum, resiAdd, resiList);
+    }
+
+    function getHouseCount() public view returns(uint x) {
+        return (houseCount);
     }
 
     // // DEBUG TEST STUFF
