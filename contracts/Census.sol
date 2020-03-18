@@ -112,9 +112,9 @@ contract Census {
         return people[_index];
     }
 
-    function getResidentList() public view returns (uint memory num) {
+    function getResidentList() public view returns (uint[] memory resList) {
         
-        return houses[msg.sender].residentList[1];
+        return houses[msg.sender].residentList;
     }
 
     // / / DEBUG TEST STUFF

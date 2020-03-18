@@ -66,15 +66,10 @@ App = {
 
 
     }).then(function(myHouse) {
-      var candidatesResults = $("#candidatesResults");
-      candidatesResults.empty();
 
-      var candidatesSelect = $('#candidatesSelect');
-      candidatesSelect.empty();
-
+      console.log(myHouse);
 
       // Return current user House object
-      console.log(myHouse);
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);
