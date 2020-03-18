@@ -64,6 +64,7 @@ App = {
       // return CensusInstance.houseCount();
       return CensusInstance.houses(App.account);
 
+
     }).then(function(myHouse) {
       var candidatesResults = $("#candidatesResults");
       candidatesResults.empty();
