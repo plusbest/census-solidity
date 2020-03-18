@@ -11,7 +11,8 @@ contract Census {
     // complete Census.
     // Number of tokens generated will coincide with total
     // verified address and token cannot be traced to address
-    
+
+    int[5] myArray;
     
     // Initialize contract owner
     address public owner;
@@ -62,6 +63,7 @@ contract Census {
         owner = msg.sender;
         personCount = 0;
         houseCount = 0;
+        myArray = [int(0),1,2,3,4];
     }
 
     function verifyTokenOracle(bytes32 _key) private returns (bool) {
@@ -112,11 +114,9 @@ contract Census {
         return people[_index];
     }
 
-    function getResidentList() public view returns (uint[] memory resList) {
-        
-        return houses[msg.sender].residentList;
+    function getMyArray() public view returns(int[5] memory){
+        return myArray;
     }
-
     // / / DEBUG TEST STUFF
     // function returnBool(uint number) public view returns (bool) {
     //     if (number > 9000) {
