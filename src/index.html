@@ -39,29 +39,33 @@
               <tbody id="candidatesResults">
 
                 <div id="houseInfo">
-                  <p id="myHouseInf"olo>EEFEFE</p>
+                  <h3>YOUR HOUSE INFO</h3>
+                  <h6 id="maxResidents"></h6>
+                  <h6 id="extraResidents"></h6>
+                  <h4 id="houseType"></h4>
                 </div>
                 <div id="isMyHouseRegistered">
                   <p id="registeredPara"olo><b>HOUSE NOT YET REGISTERED!</b></p>
                 </div>
 
 
+                <br>
 
                 <!-- ADD HOUSE FORM -->
                 <div id="addHouseForm">
                 <form onSubmit="App.addHouse(); return false">
                   <div class="form-row">
                     <div class="col-7">
-                      <input type="text" class="form-control" id="maxResidents" placeholder="# of Residents">
+                      <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" id="extraResidents" placeholder="# additional Residents">
+                      <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
                     </div>
                     <div class="col">
-                      <select class="form-control" id="houseType" placeholder="house type">
+                      <select class="form-control" id="houseSelect" placeholder="house type">
                         <option value="House">House</option>
                         <option value="Apartment">Apartment</option>
-                        <option value="Mobile">Mobile</option>
+                        <option value="Mobile Home">Mobile</option>
                       </select>
                     </div>                  
                   </div>
@@ -70,6 +74,8 @@
                 </div>
                 <!-- END HOUSE FORM -->
 
+                <br>
+                <br>
 
                 <!-- APP PERSON FORM -->
                 <div id="addPersonForm">
@@ -177,7 +183,6 @@
           </div>
         </div>
       </div>
-
 <script>
   $('#radioBtn a').on('click', function(){
     var sel = $(this).data('title');

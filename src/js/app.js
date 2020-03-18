@@ -3,6 +3,7 @@ App = {
   contracts: {},
   account: '0x0',
   hasVoted: false,
+  houseRegistered: false,
 
   init: function() {
     return App.initWeb3();
@@ -67,12 +68,17 @@ App = {
       var candidatesResults = $("#candidatesResults");
       candidatesResults.empty();
 
-      console.log(myHouse);
+      var candidatesSelect = $('#candidatesSelect');
+      candidatesSelect.empty();
+
 
       // Return current user House object
+      console.log(myHouse);
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
-      $("#houseType").html(myHouse[3]);
+      $("#houseType").html("House type:" + myHouse[3]);
+
+      // console.log(houseCount.c[0]);
 
 
       // var newtest = CensusInstance.houseCount();
@@ -92,7 +98,6 @@ App = {
       //   });
       // }
       return CensusInstance.houses(App.account);
-      
     }).then(function(hasVoted) {
       if (hasVoted) {
         $('form').hide();
@@ -117,9 +122,9 @@ App = {
   },
 
   addHouse: function() {
-    var maxResidents = $('#maxResidents').val();
-    var extraResidents = $('#extraResidents').val();
-    var houseType = $('#houseType option:selected').text();
+    var maxResidents = $('#maxResi').val();
+    var extraResidents = $('#extraResi').val();
+    var houseType = $('#houseSelect option:selected').val();
     App.contracts.Census.deployed().then(function(instance) {
       return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
     }).then(function(result) {
