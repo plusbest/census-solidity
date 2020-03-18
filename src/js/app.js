@@ -61,23 +61,27 @@ App = {
 
       CensusInstance = instance;
 
-      return CensusInstance.houses(App.account);
+      return CensusInstance.getHouse.call();
+
     }).then(function(myHouse) {
 
-      // console.log(myHouse);
+      console.log(myHouse);
 
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);
+      $("#resiListArray").html("IDs:" + myHouse[4]);
 
       return CensusInstance.getHouse.call();
+
     }).then(function(residentsList) {
 
+      console.log(residentsList);
       // TODO: MAKE THIS SHOW ON WEBPAGE
-      var residentArray = residentsList[2];
-      for (i = 0; i < residentArray.length; i++) {
-        console.log("array #:" + i);
-      }
+      // var residentArray = residentsList[2];
+      // for (i = 0; i < residentArray.length; i++) {
+      //   console.log("array #:" + i);
+      // }
 
     }).then(function(hasVoted) {
       if (hasVoted) {

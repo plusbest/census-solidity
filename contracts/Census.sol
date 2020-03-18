@@ -110,15 +110,17 @@ contract Census {
         return people[_index];
     }
 
-    function getHouse() public view returns (uint x, uint y, uint[] memory z) {
+    function getHouse() public view returns (bool a, uint b, uint c, string memory d, uint[] memory e) {
         
         House storage thisHouse = houses[msg.sender];
 
+        bool resiValid = thisHouse.registered;
         uint resiNum = thisHouse.maxResidents;
-        uint resiAdd = thisHouse.maxResidents;          
+        uint resiAdd = thisHouse.maxResidents;
+        string storage houseType = thisHouse.houseType;
         uint[] memory resiList = thisHouse.residentList;
 
-        return (resiNum, resiAdd, resiList);
+        return (resiValid, resiNum, resiAdd, houseType, resiList);
     }
 
     function getHouseCount() public view returns(uint x) {
