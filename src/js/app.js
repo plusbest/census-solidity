@@ -63,6 +63,7 @@ App = {
 
       return CensusInstance.getHouse.call();
 
+    // Add user House information to page
     }).then(function(myHouse) {
 
       console.log(myHouse);
@@ -72,11 +73,31 @@ App = {
       $("#houseType").html("House type:" + myHouse[3]);
       $("#resiListArray").html("IDs:" + myHouse[4]);
 
-      return CensusInstance.getHouse.call();
+      // Array of Structs for house residents
+      // var allPeoples = [];
 
-    }).then(function(residentsList) {
+      // for (i = 0; i < myHouse[4].length; i++) {
+      //   var personStruct = CensusInstance.getPerson.call(myHouse[4][i]);
+      //   allPeoples.push(personStruct);
+      // };
 
-      console.log(residentsList);
+      return CensusInstance.getPeople.call(myHouse[4]);
+
+    // Add House residents info to page
+    }).then(function(peopleList) {
+
+      console.log(peopleList);
+
+      // for (i = 0; i < peopleList.length; i++) {
+      //   var personStruct = CensusInstance.getPerson.call(peopleList[i]);
+      //   allPeoples.push(personStruct);
+      // };
+
+
+    }).then(function(test) {
+
+      // console.log(test[1]);
+
       // TODO: MAKE THIS SHOW ON WEBPAGE
       // var residentArray = residentsList[2];
       // for (i = 0; i < residentArray.length; i++) {
