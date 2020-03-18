@@ -61,43 +61,24 @@ App = {
 
       CensusInstance = instance;
 
-      // return CensusInstance.houseCount();
       return CensusInstance.houses(App.account);
-
     }).then(function(myHouse) {
-      var candidatesResults = $("#candidatesResults");
-      candidatesResults.empty();
 
-      var candidatesSelect = $('#candidatesSelect');
-      candidatesSelect.empty();
+      // console.log(myHouse);
 
-
-      // Return current user House object
-      console.log(myHouse);
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);
 
-      // console.log(houseCount.c[0]);
+      return CensusInstance.getHouse.call();
+    }).then(function(residentsList) {
 
+      // TODO: MAKE THIS SHOW ON WEBPAGE
+      var residentArray = residentsList[2];
+      for (i = 0; i < residentArray.length; i++) {
+        console.log("array #:" + i);
+      }
 
-      // var newtest = CensusInstance.houseCount();
-      // console.log(newtest);
-
-      // for (var i = 1; i <= houseCount; i++) {
-      //   CensusInstance.candidates(i).then(function(candidate) {
-      //     var id = candidate[0];
-      //     var name = candidate[1];
-      //     var voteCount = candidate[2];
-
-      //     var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
-      //     candidatesResults.append(candidateTemplate);
-
-      //     var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-      //     candidatesSelect.append(candidateOption);
-      //   });
-      // }
-      return CensusInstance.houses(App.account);
     }).then(function(hasVoted) {
       if (hasVoted) {
         $('form').hide();
@@ -136,15 +117,11 @@ App = {
   },
 
   addPerson: function() {
-
     var isMale = $('#maleTrue').is(':checked');
     var isHispanic = $('#hispanicTrue').is(':checked');
     var personAge = $('#personAge').val();
     var personBirthDate = $('#personBirthDate').val();
     var personRace = $('#personRace').val();
-
-    // var birthDate = $('#houseType option:selected').val();
-
     App.contracts.Census.deployed().then(function(instance) {
       return instance.addPerson(isMale, isHispanic, personAge, personBirthDate, personRace, { from: App.account });
     }).then(function(result) {

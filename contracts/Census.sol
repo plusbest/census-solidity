@@ -51,8 +51,7 @@ contract Census {
 
     event houseAddedEvent (
     uint indexed _maxResidents,
-    uint indexed _extraResidents,
-    string indexed _housetype
+    uint indexed _extraResidents
     );
 
     // Initialized at contract creation
@@ -63,9 +62,9 @@ contract Census {
         houseCount = 0;
     }
 
-    function verifyTokenOracle(bytes32 _key) private returns (bool) {
+    // function verifyTokenOracle(bytes32 _key) private returns (bool) {
         
-    }
+    // }
 
     function addHouse(uint _maxResidents, uint _extraResidents, string memory _housetype) public {
         
@@ -83,7 +82,7 @@ contract Census {
         // Increase global house count
         houseCount++;
 
-        emit houseAddedEvent(_maxResidents, _extraResidents, _housetype);
+        emit houseAddedEvent(_maxResidents, _extraResidents);
     }
 
 
@@ -124,6 +123,10 @@ contract Census {
 
     function getHouseCount() public view returns(uint x) {
         return (houseCount);
+    }
+
+    function getArr() public view returns(House memory h) {
+        return houses[msg.sender];
     }
 
     // // DEBUG TEST STUFF
