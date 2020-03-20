@@ -73,42 +73,44 @@ App = {
       return CensusInstance.getPeople.call(myHouse[4]);
     }).then(function(peopleList) {
 
+      console.log(peopleList);
+
       let tbody = document.querySelector('#resiTableBody');
 
       // TODO: Generate Boostrap Table with this
       // Table row blah blah
-      console.log(peopleList);
 
       var paramNum = 6;
 
-      // Iterate through param arrays
+      // Iterate through house residents
       for (i = 0; i < peopleList[0].length; i++) {
         document.querySelector('#residentTable');
         const tr = document.createElement('tr');
 
+        // Creates table data for each parameter of resident
         for (j = 0; j < paramNum; j++) {
           const td = document.createElement('td');
 
+          // Catches age and birthdate object type
+          // as other params are arrays at index 0
           if (typeof(peopleList[j][i]) === "object") {
             td.innerHTML = `${peopleList[j][i].c[0]}`
             console.log("bool detected");
           }
+          // Catch race param for bytes32 to string conversion
+          // as web3 nested arrays return blank strings
+          else if (j == 5) {
+            var str = peopleList[j][i];
+            var conversion = web3.toAscii(str);
+            td.innerHTML = `${conversion}`;
+          }
           else {
             td.innerHTML = `${peopleList[j][0]}`
           }
-          // console.log()
           tr.append(td);
         }
         tbody.append(tr);
       };
-
-
-
-
-
-
-
-
 
     }).then(function(hasVoted) {
       if (hasVoted) {

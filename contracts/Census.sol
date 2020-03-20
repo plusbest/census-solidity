@@ -39,7 +39,7 @@ contract Census {
         bool isHispanic;
         uint32 age;
         uint32 birthDate; // MMDDYYYY
-        string race;
+        bytes32 race;
     }
     
 
@@ -86,7 +86,7 @@ contract Census {
     }
 
 
-    function addPerson(bool _ismale, bool _ishispanic, uint32 _age, uint32 _birthdate, string memory _race) public {
+    function addPerson(bool _ismale, bool _ishispanic, uint32 _age, uint32 _birthdate, bytes32 _race) public {
 
         House storage currentHouse = houses[msg.sender];
 
@@ -127,7 +127,7 @@ contract Census {
                                                          bool,
                                                          uint32,
                                                          uint32,
-                                                         string memory) {
+                                                         bytes32) {
         Person storage thisPerson = people[index];
 
         bool registered = thisPerson.registered;
@@ -136,13 +136,13 @@ contract Census {
         bool isHispanic = thisPerson.isHispanic;
         uint32 age = thisPerson.age;
         uint32 birthDate = thisPerson.birthDate;
-        string memory race = thisPerson.race;
+        bytes32 race = thisPerson.race;
 
         return (registered, home, isMale, isHispanic, age, birthDate, race);
     }
 
         // TEST FUNCTION
-      function getPeople(uint[] memory resiNums) public view returns (bool[] memory, bool[] memory, bool[] memory, uint[] memory, uint[] memory, string[] memory){
+      function getPeople(uint[] memory resiNums) public view returns (bool[] memory, bool[] memory, bool[] memory, uint[] memory, uint[] memory, bytes32[] memory){
 
           for (uint i = 0; i < resiNums.length; i++) {
             require(people[resiNums[i]].registered == true, "Invalid person ID requested.");
@@ -153,7 +153,7 @@ contract Census {
           bool[] memory isHispanic = new bool[](resiNums.length);
           uint[] memory age = new uint[](resiNums.length);
           uint[] memory birthDate = new uint[](resiNums.length);
-          string[] memory race = new string[](resiNums.length);
+          bytes32[] memory race = new bytes32[](resiNums.length);
 
           for (uint i = 0; i < resiNums.length; i++) {
             
