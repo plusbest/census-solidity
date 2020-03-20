@@ -168,24 +168,4 @@ contract Census {
           return (registered, isMale, isHispanic, age, birthDate, race);
 
     }
-
-
-    // // DEBUG TEST STUFF
-    // function returnBool(uint number) public view returns (bool) {
-    //     if (number > 9000) {
-    //         return true;
-    //     }
-    //     else {
-    //         return false;
-    //     }
-    // }
-
-    // function returnOver9000(uint number) public view returns (bool) {
-    //     if (returnBool(number) == true) {
-    //         return true;
-    //     }
-    //     else {
-    //         return false;
-    //     }
-    // }
 }

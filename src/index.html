@@ -28,27 +28,42 @@
             <p class="text-center">Loading...</p>
           </div>
           <div id="content" style="display: none;">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Votes</th>
-                </tr>
-              </thead>
-              <tbody id="candidatesResults">
 
-                <div id="houseInfo">
+
+          <div clas="container">
+            <div class="col-md-6" id="houseInfo">
                   <h3>YOUR HOUSE INFO</h3>
                   <h6 id="maxResidents"></h6>
                   <h6 id="extraResidents"></h6>
                   <h4 id="houseType"></h4>
                   <h2 id="resiListArray"></h2>
-                </div>
+            </div>
+                <div class="col-md-6">
                 <div id="isMyHouseRegistered">
                   <p id="registeredPara"olo><b>HOUSE NOT YET REGISTERED!</b></p>
+                <div id="residentTable">
+                  <h5>something</h6>
                 </div>
+                </div>
+                </div>
+          </div>
 
+                  <div class="residentSection">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">registered?</th>
+                          <th scope="col">is male</th>
+                          <th scope="col">is hispanic</th>
+                          <th scope="col">age</th>
+                          <th scope="col">birthdate</th>
+                          <th scope="col">race</th>
+                        </tr>
+                      </thead>
+                      <tbody id="resiTableBody">
+                      </tbody>
+                    </table>
+                  </div>
 
                 <br>
 
@@ -139,8 +154,7 @@
 
                 <!-- END PERSON FORM -->
 
-              </tbody>
-            </table>
+
             <hr/>
 <!--             <form onSubmit="App.castVote(); return false;">
               <div class="form-group">

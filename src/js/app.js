@@ -37,7 +37,6 @@ App = {
         toBlock: 'latest'
       }).watch(function(error, event) {
         console.log("event triggered", event);
-        App.render();
       });
     });
   },
@@ -66,43 +65,50 @@ App = {
     // Add user House information to page
     }).then(function(myHouse) {
 
-      console.log(myHouse);
-
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);
       $("#resiListArray").html("IDs:" + myHouse[4]);
 
-      // Array of Structs for house residents
-      // var allPeoples = [];
-
-      // for (i = 0; i < myHouse[4].length; i++) {
-      //   var personStruct = CensusInstance.getPerson.call(myHouse[4][i]);
-      //   allPeoples.push(personStruct);
-      // };
-
       return CensusInstance.getPeople.call(myHouse[4]);
-
-    // Add House residents info to page
     }).then(function(peopleList) {
 
+      let tbody = document.querySelector('#resiTableBody');
+
+      // TODO: Generate Boostrap Table with this
+      // Table row blah blah
       console.log(peopleList);
 
-      // for (i = 0; i < peopleList.length; i++) {
-      //   var personStruct = CensusInstance.getPerson.call(peopleList[i]);
-      //   allPeoples.push(personStruct);
-      // };
+      var paramNum = 6;
+
+      // Iterate through param arrays
+      for (i = 0; i < peopleList[0].length; i++) {
+        document.querySelector('#residentTable');
+        const tr = document.createElement('tr');
+
+        for (j = 0; j < paramNum; j++) {
+          const td = document.createElement('td');
+
+          if (typeof(peopleList[j][i]) === "object") {
+            td.innerHTML = `${peopleList[j][i].c[0]}`
+            console.log("bool detected");
+          }
+          else {
+            td.innerHTML = `${peopleList[j][0]}`
+          }
+          // console.log()
+          tr.append(td);
+        }
+        tbody.append(tr);
+      };
 
 
-    }).then(function(test) {
 
-      // console.log(test[1]);
 
-      // TODO: MAKE THIS SHOW ON WEBPAGE
-      // var residentArray = residentsList[2];
-      // for (i = 0; i < residentArray.length; i++) {
-      //   console.log("array #:" + i);
-      // }
+
+
+
+
 
     }).then(function(hasVoted) {
       if (hasVoted) {
