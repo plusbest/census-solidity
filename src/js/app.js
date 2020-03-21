@@ -112,6 +112,7 @@ App = {
         tbody.append(tr);
       };
 
+    // TODO: Clean this up to work for addHouse and addPerson forms
     }).then(function(hasVoted) {
       if (hasVoted) {
         $('form').hide();
