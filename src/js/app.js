@@ -65,6 +65,8 @@ App = {
     // Add user House information to page
     }).then(function(myHouse) {
 
+      console.log(myHouse);
+      
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);

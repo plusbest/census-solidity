@@ -113,7 +113,7 @@ contract Census {
 
         bool resiValid = thisHouse.registered;
         uint resiNum = thisHouse.maxResidents;
-        uint resiAdd = thisHouse.maxResidents;
+        uint resiAdd = thisHouse.extraResidents;
         string storage houseType = thisHouse.houseType;
         uint[] memory resiList = thisHouse.residentList;
 
