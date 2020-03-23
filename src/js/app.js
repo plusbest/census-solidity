@@ -16,17 +16,34 @@ App = {
     } else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
+
+      // web3OracleProvider = new Web3.providers.HttpProvider('http://localhost:8000');
+      // web3Oracle = new Web3(web3OracleProvider);
     }
     return App.initContract();
   },
 
-  initContract: function() {
-    $.getJSON("Census.json", function(Census) {
-      App.contracts.Census = TruffleContract(Census);
-      App.contracts.Census.setProvider(App.web3Provider);
-      App.listenForEvents();
 
-      return App.render();
+  // TODO: Add separate providers to each contract init
+  initContract: function() {
+    $.getJSON("Oracle.json", function(Oracle) {
+      console.log(Oracle);
+      App.contracts.Oracle = TruffleContract(Oracle);
+      App.contracts.Oracle.setProvider(App.web3Provider);
+      // App.listenForEvents();
+
+      // return App.render();
+    // Second contract called within same initContract
+    // as calling it again will only return latest instance
+    }).then (function() {
+      $.getJSON("Census.json", function(Census) {
+        console.log(Census);
+        App.contracts.Census = TruffleContract(Census);
+        App.contracts.Census.setProvider(App.web3Provider);
+        App.listenForEvents();
+
+        return App.render();
+      })
     });
   },
 
@@ -56,10 +73,18 @@ App = {
       }
     });
 
+    // Creates separate instance for Oracle contract
+    App.contracts.Oracle.deployed().then(function(instanceOracle) {
+      OracleInstance = instanceOracle;
+      return OracleInstance.getHash.call();
+
+    // TESTing function call and return
+    }).then(function(hashkey) {
+      alert(hashkey);
+    });
+
     App.contracts.Census.deployed().then(function(instance) {
-
       CensusInstance = instance;
-
       return CensusInstance.getHouse.call();
 
     // Add user House information to page
