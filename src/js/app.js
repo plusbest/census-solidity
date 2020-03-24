@@ -73,25 +73,20 @@ App = {
       }
     });
 
-    // Creates separate instance for Oracle contract
+    // Initialize Oracle instance
     App.contracts.Oracle.deployed().then(function(instanceOracle) {
       OracleInstance = instanceOracle;
-      return OracleInstance.getHash.call();
+      return App.contracts.Census.deployed();
 
-    // TESTing function call and return
-    }).then(function(hashkey) {
-      alert(hashkey);
-    });
-
-    App.contracts.Census.deployed().then(function(instance) {
+    // Initialize Census instance
+    }).then(function(instance) {
       CensusInstance = instance;
       return CensusInstance.getHouse.call();
 
     // Add user House information to page
     }).then(function(myHouse) {
-
       console.log(myHouse);
-      
+
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);
