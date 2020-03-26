@@ -145,11 +145,12 @@ App = {
   // WIP: Generate Key
   generateKey: function () {
     var hashed = document.querySelector('#generatedHash');
-    alert(web3.version);
-    // Signs with current metamask account
-    web3.eth.sign(App.account, "KNWKefwfewwefwefwewefwfNFWE", function(res) {
-      alert(res);
-    
+
+    // Sign and return hashed signature
+    web3.personal.sign('data to sign', App.account, 'password', function(err, res){
+            console.log("error: " + err);
+            console.log("res: " + res);
+            hashed.innerHTML = res;
     });
 
     web3.eth.getAccounts(function(err, res){
