@@ -13942,12 +13942,13 @@
         }
       },
       "links": {},
-      "address": "0x4FC80143Cb974dfe7E9e260b48b6618B7aAA720e",
-      "transactionHash": "0x1cd4fb2fe0f0ba9348d27557c1189fecd0d304673c63a84e05b9b9877258df08"
+      "address": "0x0C1b053136dA503ECD2FE28961B52C72910d1087",
+      "transactionHash": "0x9f98baa22c02620e1d56cbbe0c6c2526f495b03fa839e212dcfb478a895d69f2"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-03-22T19:57:03.701Z",
+  "updatedAt": "2020-03-26T18:27:25.267Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

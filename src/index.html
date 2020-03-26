@@ -31,23 +31,33 @@
 
 
           <div clas="container">
-            <div class="col-md-6" id="houseInfo">
-                  <h3>YOUR HOUSE INFO</h3>
-                  <h6 id="maxResidents"></h6>
-                  <h6 id="extraResidents"></h6>
-                  <h4 id="houseType"></h4>
-                  <h2 id="resiListArray"></h2>
+            <div class="row">
+              <div class="col-md-6" id="houseInfo">
+                    <h4>Your House Info</h4>
+                    <h6 id="maxResidents"></h6>
+                    <h6 id="extraResidents"></h6>
+                    <h6 id="houseType"></h6>
+                    <h6 id="resiListArray"></h6>
+              </div>
+              <div class="col-md-6" id="serialInfo">
+                <h4>Serial Generator</h4>
+                  <div id="serialList">
+                    <input type="text" class="form-control" id="serialPassword" placeholder="secure password">
+                    <h6 id="generatedAddress">address</h6>
+                    <h6 id="generatedHash">hash</h6>
+                  </div>
+                  <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
+              </div>
             </div>
-                <div class="col-md-6">
-                <div id="isMyHouseRegistered">
-                  <p id="registeredPara"olo><b>HOUSE NOT YET REGISTERED!</b></p>
+            <br>
+            <div class="row">
+              <div class="row" id="residentsRow">
                 <div id="residentTable">
-                  <h5>something</h6>
                 </div>
-                </div>
-                </div>
+              </div>  
+            </div>
           </div>
-
+          </div>
                   <div class="residentSection">
                     <table class="table table-sm">
                       <thead>
@@ -181,6 +191,8 @@
   </body>
 </html>
 
+<script src="bundle.js"></script>
+</script>
 
 
 

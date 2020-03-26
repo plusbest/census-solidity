@@ -3,7 +3,6 @@ App = {
   contracts: {},
   account: '0x0',
   hasVoted: false,
-  houseRegistered: false,
 
   init: function() {
     return App.initWeb3();
@@ -16,15 +15,10 @@ App = {
     } else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
-
-      // web3OracleProvider = new Web3.providers.HttpProvider('http://localhost:8000');
-      // web3Oracle = new Web3(web3OracleProvider);
     }
     return App.initContract();
   },
 
-
-  // TODO: Add separate providers to each contract init
   initContract: function() {
     $.getJSON("Oracle.json", function(Oracle) {
       console.log(Oracle);
@@ -33,8 +27,6 @@ App = {
       // App.listenForEvents();
 
       // return App.render();
-    // Second contract called within same initContract
-    // as calling it again will only return latest instance
     }).then (function() {
       $.getJSON("Census.json", function(Census) {
         console.log(Census);
@@ -62,7 +54,6 @@ App = {
     var CensusInstance;
     var loader = $("#loader");
     var content = $("#content");
-
     loader.show();
     content.hide();
 
@@ -72,6 +63,12 @@ App = {
         $("#accountAddress").html("Your Account: " + account);
       }
     });
+
+    // TODO:
+    // Use PW as private key
+    // Address is public
+    // Sign transaction with web3.eth.personal.sign()
+    // Return has is what is to be verified.
 
     // Initialize Oracle instance
     App.contracts.Oracle.deployed().then(function(instanceOracle) {
@@ -90,11 +87,10 @@ App = {
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
       $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
       $("#houseType").html("House type:" + myHouse[3]);
-      $("#resiListArray").html("IDs:" + myHouse[4]);
+      $("#resiListArray").html("resident IDs : " + myHouse[4]);
 
       return CensusInstance.getPeople.call(myHouse[4]);
     }).then(function(peopleList) {
-
       console.log(peopleList);
 
       let tbody = document.querySelector('#resiTableBody');
@@ -146,6 +142,29 @@ App = {
     });
   },
 
+  // WIP: Generate Key
+  generateKey: function () {
+    var hashed = document.querySelector('#generatedHash');
+    alert(web3.version);
+    // Signs with current metamask account
+    web3.eth.sign(App.account, "KNWKefwfewwefwefwewefwfNFWE", function(res) {
+      alert(res);
+    
+    });
+
+    web3.eth.getAccounts(function(err, res){
+            console.log("er: " + err);
+            console.log("res: " + res);
+    });
+
+    // Create new account from web3
+    web3.personal.newAccount('wefwfewf', function(err, res){
+            console.log("error: " + err);
+            console.log("res: " + res);
+            console.log(web3.eth.accounts[0]);
+    });
+  },
+    
   castVote: function() {
     var candidateId = $('#candidatesSelect').val();
     App.contracts.Census.deployed().then(function(instance) {
