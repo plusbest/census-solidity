@@ -48,6 +48,16 @@
                     <h6 id="generatedAddress">address</h6>
                     <h6 id="generatedHash">hash</h6>
               </div>
+
+              <div class="col-md-6" id="verifyInfo">
+                <h4>Verify Serial</h4>
+                  <div id="verifyList">
+                    <input type="text" class="form-control" id="keyIdentity" placeholder="Serial address">
+                  </div>
+                  <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
+                    <h6 id="serialBool">true/false</h6>
+              </div>
+
             </div>
             <br>
             <div class="row">

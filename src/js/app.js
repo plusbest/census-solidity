@@ -158,16 +158,18 @@ App = {
               console.log("error: " + err);
               console.log("res: " + outputHash);
               hashed.innerHTML = `hash: ${outputHash}`;
+              console.log(web3);
 
          App.contracts.Oracle.deployed().then(function(instance) {
-          return instance.random();
+          // var hashToHex = web3.fromAscii(outputHash);
+          return instance.keyGen(accountString, outputHash);
          }).then(function(randomNum) {
             console.log(randomNum);
-         })
+         });
       });
 
     });
-
+    // web3.toAscii(str); <-- turns bytes32 from contract into string
     // TODO:
     // Generate new address.
     // Use address as data to be signed
@@ -184,17 +186,15 @@ App = {
             console.log("er: " + err);
             console.log("currentaccount: " + res);
     });
+
   },
-    
-  castVote: function() {
-    var candidateId = $('#candidatesSelect').val();
-    App.contracts.Census.deployed().then(function(instance) {
-      return instance.vote(candidateId, { from: App.account });
-    }).then(function(result) {
-      $("#content").hide();
-      $("#loader").show();
-    }).catch(function(err) {
-      console.error(err);
+
+  getKeyValidity: function() {
+    var keyAddress = $('#keyIdentity').val();
+    App.contracts.Oracle.deployed().then(function(instance) {
+      return instance.getKeyValidity(keyAddress).then(function(boolResult) {
+        alert(boolResult);
+      });
     });
   },
 
