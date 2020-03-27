@@ -145,24 +145,44 @@ App = {
   // WIP: Generate Key
   generateKey: function () {
     var hashed = document.querySelector('#generatedHash');
+    var serialPassword = $('#serialPassword').val();
 
-    // Sign and return hashed signature
-    web3.personal.sign('data to sign', App.account, 'password', function(err, res){
+    // Creates a new account
+    web3.personal.newAccount('sprinkle_of_entropy', function(err, accountString){ //web3.eth.accounts[0]
             console.log("error: " + err);
-            console.log("res: " + res);
-            hashed.innerHTML = res;
+            console.log("newaccount: " + accountString);
+
+      // Signs and returns hashed signature whilst using
+      // previously created account as a unique random string
+      web3.personal.sign(accountString, App.account, serialPassword, function(err, outputHash){
+              console.log("error: " + err);
+              console.log("res: " + outputHash);
+              hashed.innerHTML = `hash: ${outputHash}`;
+
+         App.contracts.Oracle.deployed().then(function(instance) {
+          return instance.random();
+         }).then(function(randomNum) {
+            console.log(randomNum);
+         })
+      });
+
     });
+
+    // TODO:
+    // Generate new address.
+    // Use address as data to be signed
+    // User keeps password
+    // Signing address and generated hash are stored on chain.
+
+    // Create check function that:
+      // Gets hash from mapped address identifier
+      // Runs signing function and compares hash to signed hash output
+      // Proceed to Census forms.
+
 
     web3.eth.getAccounts(function(err, res){
             console.log("er: " + err);
-            console.log("res: " + res);
-    });
-
-    // Create new account from web3
-    web3.personal.newAccount('wefwfewf', function(err, res){
-            console.log("error: " + err);
-            console.log("res: " + res);
-            console.log(web3.eth.accounts[0]);
+            console.log("currentaccount: " + res);
     });
   },
     
