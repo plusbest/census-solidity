@@ -152,19 +152,28 @@ App = {
             console.log("error: " + err);
             console.log("newaccount: " + accountString);
 
+      // TODO: Clean up variable names for trimmedHash, tempInstance etc.
       // Signs and returns hashed signature whilst using
       // previously created account as a unique random string
       web3.personal.sign(accountString, App.account, serialPassword, function(err, outputHash){
               console.log("error: " + err);
               console.log("res: " + outputHash);
-              hashed.innerHTML = `hash: ${outputHash}`;
+              var trimmedHash = outputHash.substring(0, 66);
+              hashed.innerHTML = `hash: ${trimmedHash}`; // trimmed for bytes32
               console.log(web3);
 
          App.contracts.Oracle.deployed().then(function(instance) {
-          // var hashToHex = web3.fromAscii(outputHash);
-          return instance.keyGen(accountString, outputHash);
-         }).then(function(randomNum) {
-            console.log(randomNum);
+          tempInstance = instance;
+          return tempInstance.keyGen(accountString, trimmedHash);
+         }).then(function(oldhash) {
+          console.log("accountstring: " + accountString);
+          return tempInstance.getKeyHash(accountString);
+         }).then(function(returnHash) {
+          if (trimmedHash == returnHash) {
+            alert("We have a match!");
+          }
+          console.log("original hash:" + trimmedHash);
+          console.log("returned hash:" + returnHash);
          });
       });
 
@@ -181,7 +190,6 @@ App = {
       // Runs signing function and compares hash to signed hash output
       // Proceed to Census forms.
 
-
     web3.eth.getAccounts(function(err, res){
             console.log("er: " + err);
             console.log("currentaccount: " + res);
@@ -194,6 +202,15 @@ App = {
     App.contracts.Oracle.deployed().then(function(instance) {
       return instance.getKeyValidity(keyAddress).then(function(boolResult) {
         alert(boolResult);
+      });
+    });
+  },
+
+  getKeyHash: function() {
+    var keyAddress = $('#keyIdentity').val();
+    App.contracts.Oracle.deployed().then(function(instance) {
+      return instance.getKeyHash(keyAddress).then(function(hashresult) {
+        console.log(hashresult);
       });
     });
   },

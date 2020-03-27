@@ -52,9 +52,10 @@
               <div class="col-md-6" id="verifyInfo">
                 <h4>Verify Serial</h4>
                   <div id="verifyList">
-                    <input type="text" class="form-control" id="keyIdentity" placeholder="Serial address">
+                    <input type="text" class="form-control" id="keyIdentity" placeholder="Address">
                   </div>
                   <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
+                  <button type="button" onclick="App.getKeyHash(); return false" id="getSerial" class="btn btn-warning btn-sm">get serial</button>
                     <h6 id="serialBool">true/false</h6>
               </div>
 
