@@ -156,7 +156,7 @@ App = {
     // Creates a new random account string serving as a private key
     web3.personal.newAccount('dash_of_entropy', function(err, privateKey){ //web3.eth.accounts[0]
             console.log("error: " + err);
-            console.log("newaccount: " + privateKey);
+            console.log("private key: " + privateKey);
             generatedPassword.innerHTML = `private key: ${privateKey}`;
 
       // var trimmedHash = outputHash.substring(0, 66); 
@@ -167,12 +167,14 @@ App = {
               console.log("first hash: " + firstHash);
               // Format for eth address consistency
               var refactoredHash = firstHash.substring(0, 42);
+              console.log("refactored hash: " + refactoredHash);
 
         web3.personal.sign(refactoredHash, App.account, "barPassword", function(err, secondHash) {
               console.log("error: " + err);
-              console.log("final hash: " + finalHash);
+              console.log("second hash: " + secondHash);
               // Format for solidity arg bytes32
               var finalHash = secondHash.substring(0, 66);
+              console.log("final hash: " + finalHash);
               generatedHash.innerHTML = `final hash to write on chain: ${finalHash}`;
 
               // Create Oracle instance
@@ -207,9 +209,9 @@ App = {
   },
 
   getKeyValidity: function() {
-    var keyAddress = $('#keyAddress').val();
+    var privateKey = $('#privateKey').val();
     App.contracts.Oracle.deployed().then(function(instance) {
-      return instance.getKeyValidity(keyAddress).then(function(boolResult) {
+      return instance.getKeyValidity(privateKey).then(function(boolResult) {
         if (boolResult === true) {
           alert("Valid key");
         }
@@ -221,9 +223,9 @@ App = {
   },
 
   getKeyHash: function() {
-    var keyAddress = $('#keyAddress').val();
+    var privateKey = $('#privateKey').val();
     App.contracts.Oracle.deployed().then(function(instance) {
-      return instance.getKeyHash(keyAddress).then(function(hashresult) {
+      return instance.getKeyHash(privateKey).then(function(hashresult) {
         console.log(hashresult);
       });
     });
@@ -233,40 +235,47 @@ App = {
     var maxResidents = $('#maxResi').val();
     var extraResidents = $('#extraResi').val();
     var houseType = $('#houseSelect option:selected').val();
-    var keyAddress = $('#keyAddress').val();
+    var privateKey = $('#privateKey').val();
 
     // Sign address string with password to generate hash
-    web3.personal.sign(keyAddress, App.account, "foobarPassword", function(err, outputHash){
+    web3.personal.sign(privateKey, App.account, "fooPassword", function(err, firstHash){
+      // Format for eth address consistency
+      var refactoredHash = firstHash.substring(0, 42);
+      console.log(refactoredHash);
 
-      // Trim hash to match bytes32
-      var trimmedHash = outputHash.substring(0, 66);
+    web3.personal.sign(refactoredHash, App.account, "barPassword", function(err, secondHash) {
+      // Format for solidity arg bytes32
+      var finalHash = secondHash.substring(0, 66);
+      console.log(finalHash);
 
-      // Create Oracle instance
-      App.contracts.Oracle.deployed().then(function(instance) {
-        tempInstance = instance;
-        // Return hash of 
-        return tempInstance.getKeyHash(keyAddress);
+        // Create Oracle instance
+        App.contracts.Oracle.deployed().then(function(instance) {
+          tempInstance = instance;
+          // Return hash of 
+          return tempInstance.getKeyHash(refactoredHash);
 
-      // Compares returned hash with signed hash
-      }).then(function(returnHash) {
-        console.log("TRIMMED HASH:" + trimmedHash);
-        console.log("RETURNED HASH:" + returnHash);
-        if (trimmedHash == returnHash) {
-          // Create Census instance
-          App.contracts.Census.deployed().then(function(instance) {
-            // Add house
-            return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
-          }).then(function(result) {
-            $("#content").hide();
-            $("#loader").show();
-          }).catch(function(err) {
-            console.error(err);
-          });
-          alert("hash MATCHES");
-        }
-        else {
-          alert("Hash mismatch");
-        }
+        // Compares returned hash with signed hash
+        }).then(function(returnHash) {
+          console.log("OG HASH:" + finalHash);
+          console.log("RET HASH:" + returnHash);
+          if (finalHash == returnHash) {
+            // Create Census instance
+            App.contracts.Census.deployed().then(function(instance) {
+              // Add house
+              return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
+            }).then(function(result) {
+              $("#content").hide();
+              $("#loader").show();
+            }).catch(function(err) {
+              console.error(err);
+            });
+            alert("hash match: TRUE");
+          }
+          else {
+            alert("hash match: FALSE");
+          }
+        });
+
       });
     });
   },
