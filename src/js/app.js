@@ -2,7 +2,6 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  hasVoted: false,
 
   init: function() {
     return App.initWeb3();
@@ -113,7 +112,6 @@ App = {
           // as other params are arrays at index 0
           if (typeof(peopleList[j][i]) === "object") {
             td.innerHTML = `${peopleList[j][i].c[0]}`
-            console.log("bool detected");
           }
           // Catch race param for bytes32 to string conversion
           // as web3 nested arrays return blank strings
@@ -142,25 +140,29 @@ App = {
     });
   },
 
-  // WIP: Generate Key
+  // Generates a new private key for user verification
+  // when starting Census survey
   generateKey: function () {
-    var hashed = document.querySelector('#generatedHash');
-    var serialPassword = $('#serialPassword').val();
 
-    // Creates a new account
+    var generatedPassword = document.querySelector('#generatedPassword');
+    var generatedHash = document.querySelector('#generatedHash');
+
+    // Creates a new random account string serving as a private key
     web3.personal.newAccount('sprinkle_of_entropy', function(err, accountString){ //web3.eth.accounts[0]
             console.log("error: " + err);
             console.log("newaccount: " + accountString);
+            generatedPassword.innerHTML = `private key: ${accountString}`;
 
-      // TODO: Clean up variable names for trimmedHash, tempInstance etc.
       // Signs and returns hashed signature whilst using
-      // previously created account as a unique random string
-      web3.personal.sign(accountString, App.account, serialPassword, function(err, outputHash){
+      // previously generated account as signed input
+      web3.personal.sign(accountString, App.account, "foobarPassword", function(err, outputHash){
               console.log("error: " + err);
-              console.log("res: " + outputHash);
+              console.log("output hash: " + outputHash);
               var trimmedHash = outputHash.substring(0, 66);
-              hashed.innerHTML = `hash: ${trimmedHash}`; // trimmed for bytes32
-              console.log(web3);
+
+              generatedHash.innerHTML = `hash: ${trimmedHash}`; // trimmed for bytes32
+
+
 
          App.contracts.Oracle.deployed().then(function(instance) {
           tempInstance = instance;
@@ -171,23 +173,19 @@ App = {
          }).then(function(returnHash) {
           if (trimmedHash == returnHash) {
             alert("We have a match!");
+            App.registered = true;
           }
           console.log("original hash:" + trimmedHash);
           console.log("returned hash:" + returnHash);
          });
+
+         
       });
 
     });
     // web3.toAscii(str); <-- turns bytes32 from contract into string
     // TODO:
-    // Generate new address.
-    // Use address as data to be signed
-    // User keeps password
-    // Signing address and generated hash are stored on chain.
-
-    // Create check function that:
-      // Gets hash from mapped address identifier
-      // Runs signing function and compares hash to signed hash output
+      // DOM events to hide elements etc.
       // Proceed to Census forms.
 
     web3.eth.getAccounts(function(err, res){
@@ -198,16 +196,21 @@ App = {
   },
 
   getKeyValidity: function() {
-    var keyAddress = $('#keyIdentity').val();
+    var keyAddress = $('#keyAddress').val();
     App.contracts.Oracle.deployed().then(function(instance) {
       return instance.getKeyValidity(keyAddress).then(function(boolResult) {
-        alert(boolResult);
+        if (boolResult === true) {
+          alert("Valid key");
+        }
+        else {
+          alert("Invalid key.");
+        }
       });
     });
   },
 
   getKeyHash: function() {
-    var keyAddress = $('#keyIdentity').val();
+    var keyAddress = $('#keyAddress').val();
     App.contracts.Oracle.deployed().then(function(instance) {
       return instance.getKeyHash(keyAddress).then(function(hashresult) {
         console.log(hashresult);
@@ -219,13 +222,41 @@ App = {
     var maxResidents = $('#maxResi').val();
     var extraResidents = $('#extraResi').val();
     var houseType = $('#houseSelect option:selected').val();
-    App.contracts.Census.deployed().then(function(instance) {
-      return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
-    }).then(function(result) {
-      $("#content").hide();
-      $("#loader").show();
-    }).catch(function(err) {
-      console.error(err);
+    var keyAddress = $('#keyAddress').val();
+
+    // Sign address string with password to generate hash
+    web3.personal.sign(keyAddress, App.account, "foobarPassword", function(err, outputHash){
+
+      // Trim hash to match bytes32
+      var trimmedHash = outputHash.substring(0, 66);
+
+      // Create Oracle instance
+      App.contracts.Oracle.deployed().then(function(instance) {
+        tempInstance = instance;
+        // Return hash of 
+        return tempInstance.getKeyHash(keyAddress);
+
+      // Compares returned hash with signed hash
+      }).then(function(returnHash) {
+        console.log("TRIMMED HASH:" + trimmedHash);
+        console.log("RETURNED HASH:" + returnHash);
+        if (trimmedHash == returnHash) {
+          // Create Census instance
+          App.contracts.Census.deployed().then(function(instance) {
+            // Add house
+            return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
+          }).then(function(result) {
+            $("#content").hide();
+            $("#loader").show();
+          }).catch(function(err) {
+            console.error(err);
+          });
+          alert("hash MATCHES");
+        }
+        else {
+          alert("Hash mismatch");
+        }
+      });
     });
   },
 
