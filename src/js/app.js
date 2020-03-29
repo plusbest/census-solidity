@@ -140,6 +140,12 @@ App = {
     });
   },
 
+  // generate address -> private key
+  // sign with addres to get hash
+  // refactor hash
+  // use refactor to sign again
+
+
   // Generates a new private key for user verification
   // when starting Census survey
   generateKey: function () {
@@ -148,38 +154,44 @@ App = {
     var generatedHash = document.querySelector('#generatedHash');
 
     // Creates a new random account string serving as a private key
-    web3.personal.newAccount('sprinkle_of_entropy', function(err, accountString){ //web3.eth.accounts[0]
+    web3.personal.newAccount('dash_of_entropy', function(err, privateKey){ //web3.eth.accounts[0]
             console.log("error: " + err);
-            console.log("newaccount: " + accountString);
-            generatedPassword.innerHTML = `private key: ${accountString}`;
+            console.log("newaccount: " + privateKey);
+            generatedPassword.innerHTML = `private key: ${privateKey}`;
 
+      // var trimmedHash = outputHash.substring(0, 66); 
       // Signs and returns hashed signature whilst using
       // previously generated account as signed input
-      web3.personal.sign(accountString, App.account, "foobarPassword", function(err, outputHash){
+      web3.personal.sign(privateKey, App.account, "fooPassword", function(err, firstHash){
               console.log("error: " + err);
-              console.log("output hash: " + outputHash);
-              var trimmedHash = outputHash.substring(0, 66);
+              console.log("first hash: " + firstHash);
+              // Format for eth address consistency
+              var refactoredHash = firstHash.substring(0, 42);
 
-              generatedHash.innerHTML = `hash: ${trimmedHash}`; // trimmed for bytes32
+        web3.personal.sign(refactoredHash, App.account, "barPassword", function(err, secondHash) {
+              console.log("error: " + err);
+              console.log("final hash: " + finalHash);
+              // Format for solidity arg bytes32
+              var finalHash = secondHash.substring(0, 66);
+              generatedHash.innerHTML = `final hash to write on chain: ${finalHash}`;
 
-
-
-         App.contracts.Oracle.deployed().then(function(instance) {
-          tempInstance = instance;
-          return tempInstance.keyGen(accountString, trimmedHash);
-         }).then(function(oldhash) {
-          console.log("accountstring: " + accountString);
-          return tempInstance.getKeyHash(accountString);
-         }).then(function(returnHash) {
-          if (trimmedHash == returnHash) {
-            alert("We have a match!");
-            App.registered = true;
-          }
-          console.log("original hash:" + trimmedHash);
-          console.log("returned hash:" + returnHash);
-         });
-
-         
+              // Create Oracle instance
+             App.contracts.Oracle.deployed().then(function(instance) {
+              tempInstance = instance;
+              // Generate key on-chain
+              return tempInstance.keyGen(refactoredHash, finalHash);
+            });
+             // }).then(function() {
+             //  return tempInstance.getKeyHash(accountString);
+             // }).then(function(returnHash) {
+             //  if (trimmedHash == returnHash) {
+             //    alert("We have a match!");
+             //    App.registered = true;
+             //  }
+             //  console.log("original hash:" + trimmedHash);
+             //  console.log("returned hash:" + returnHash);
+             // });
+        });
       });
 
     });
@@ -188,11 +200,10 @@ App = {
       // DOM events to hide elements etc.
       // Proceed to Census forms.
 
-    web3.eth.getAccounts(function(err, res){
-            console.log("er: " + err);
-            console.log("currentaccount: " + res);
-    });
-
+    // web3.eth.getAccounts(function(err, res){
+    //         console.log("er: " + err);
+    //         console.log("currentaccount: " + res);
+    // });
   },
 
   getKeyValidity: function() {
