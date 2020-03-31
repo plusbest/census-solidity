@@ -2,6 +2,8 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
+  hasHouse: false,
+  hasPeople: false,
 
   init: function() {
     return App.initWeb3();
@@ -53,6 +55,11 @@ App = {
     var CensusInstance;
     var loader = $("#loader");
     var content = $("#content");
+    var addHouseSection = $("#addHouseSection");
+    var houseInfoSection = $("#houseInfoSection");
+    var addPersonForm = $("#addPersonForm");
+    var residentSection = $("#residentSection");
+
     loader.show();
     content.hide();
 
@@ -62,12 +69,6 @@ App = {
         $("#accountAddress").html("Your Account: " + account);
       }
     });
-
-    // TODO:
-    // Use PW as private key
-    // Address is public
-    // Sign transaction with web3.eth.personal.sign()
-    // Return has is what is to be verified.
 
     // Initialize Oracle instance
     App.contracts.Oracle.deployed().then(function(instanceOracle) {
@@ -81,6 +82,10 @@ App = {
 
     // Add user House information to page
     }).then(function(myHouse) {
+      // Update global variable for DOM
+      if (myHouse[0] === true) {
+        App.hasHouse = true;
+      }
       console.log(myHouse);
 
       $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
@@ -91,17 +96,16 @@ App = {
       return CensusInstance.getPeople.call(myHouse[4]);
     }).then(function(peopleList) {
       console.log(peopleList);
-
+      if (peopleList[0].length > 0) {
+        App.hasPeople = true;
+      }
       let tbody = document.querySelector('#resiTableBody');
-
-      // TODO: Generate Boostrap Table with this
-      // Table row blah blah
 
       var paramNum = 6;
 
       // Iterate through house residents
       for (i = 0; i < peopleList[0].length; i++) {
-        document.querySelector('#residentTable');
+        // document.querySelector('#residentTable');
         const tr = document.createElement('tr');
 
         // Creates table data for each parameter of resident
@@ -129,9 +133,13 @@ App = {
       };
 
     // TODO: Clean this up to work for addHouse and addPerson forms
-    }).then(function(hasVoted) {
-      if (hasVoted) {
-        $('form').hide();
+    }).then(function() {
+      if (App.hasHouse === true) {
+        addHouseSection.hide();
+        houseInfoSection.show();
+      }
+      if (App.hasPeople === false) {
+        residentSection.hide();
       }
       loader.hide();
       content.show();
@@ -275,7 +283,6 @@ App = {
             alert("hash match: FALSE");
           }
         });
-
       });
     });
   },

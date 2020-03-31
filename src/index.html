@@ -18,9 +18,8 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container" style="width: 650px;">
-      <div class="row">
-        <div class="col-lg-12">
+    <div class="container" style="width: 680px;">
+        <div class="col-lg-16">
           <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
           <hr/>
           <br/>
@@ -32,13 +31,6 @@
 
           <div clas="container">
             <div class="row">
-              <div class="col-md-6" id="houseInfo">
-                    <h4>Your House Info</h4>
-                    <h6 id="maxResidents"></h6>
-                    <h6 id="extraResidents"></h6>
-                    <h6 id="houseType"></h6>
-                    <h6 id="resiListArray"></h6>
-              </div>
               <div class="col-md-6" id="serialInfo">
                 <h4>Serial Generator</h4>
                   <div id="serialList">
@@ -47,7 +39,6 @@
                     <h6 id="generatedPassword"></h6>
                     <h6 id="generatedHash"></h6>
               </div>
-
               <div class="col-md-6" id="verifyInfo">
                 <h4>Verify Serial</h4>
                   <div id="verifyList">
@@ -58,132 +49,137 @@
                     <h6 id="serialBool">true/false</h6>
               </div>
             </div>
-            <br>
+
+            <!-- HOUSE INFO -->
+            <div class="row" id="houseInfoSection" style="display: none;">
+              <div class="col-md-12">
+                <h4>Your House Info</h4>
+                <h6 id="maxResidents"></h6>
+                <h6 id="extraResidents"></h6>
+                <h6 id="houseType"></h6>
+                <h6 id="resiListArray"></h6>
+              </div> 
+            </div>
+            <!-- END HOUSE INFO -->           
+
+            <br/>
+
+            <!-- ADD HOUSE -->
+            <div class="row" id="addHouseSection">
+            <h3>Register your house</h3>
+            <hr/>
+            <div class="col-md-12" id="addHouseForm" style="display: display;">
+            <form onSubmit="App.addHouse(); return false">
+              <div class="form-row">
+                <div class="col-7">
+                  <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
+                </div>
+                <div class="col">
+                  <select class="form-control" id="houseSelect" placeholder="house type">
+                    <option value="House">House</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Mobile Home">Mobile</option>
+                  </select>
+                </div>                  
+              </div>
+              <button type="submit" class="btn btn-info btn-sm">Register House</button>
+            </form>
+            </div>
+            </div>
+            <!-- END ADD HOUSE -->
+
+            <br/>
+
+            <!-- RESIDENTS TABLE -->
             <div class="row">
               <div class="row" id="residentsRow">
                 <div id="residentTable">
                 </div>
               </div>  
             </div>
-          </div>
-          </div>
-                  <div class="residentSection">
-                    <table class="table table-sm">
-                      <thead>
-                        <tr>
-                          <th scope="col">registered?</th>
-                          <th scope="col">is male</th>
-                          <th scope="col">is hispanic</th>
-                          <th scope="col">age</th>
-                          <th scope="col">birthdate</th>
-                          <th scope="col">race</th>
-                        </tr>
-                      </thead>
-                      <tbody id="resiTableBody">
-                      </tbody>
-                    </table>
-                  </div>
+            <!-- END RESIDENTS TABLE -->
 
-                <br>
+            <br/>
 
-                <!-- ADD HOUSE FORM -->
-                <div id="addHouseForm">
-                <form onSubmit="App.addHouse(); return false">
-                  <div class="form-row">
-                    <div class="col-7">
-                      <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
-                    </div>
-                    <div class="col">
-                      <select class="form-control" id="houseSelect" placeholder="house type">
-                        <option value="House">House</option>
-                        <option value="Apartment">Apartment</option>
-                        <option value="Mobile Home">Mobile</option>
-                      </select>
-                    </div>                  
-                  </div>
-                  <button type="submit" class="btn btn-info btn-sm">Register House</button>
-                </form>
+            <!-- RESIDENTS TABLE -->
+            <div class="residentSection" id="residentSection" style="display: display;">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">registered?</th>
+                    <th scope="col">is male</th>
+                    <th scope="col">is hispanic</th>
+                    <th scope="col">age</th>
+                    <th scope="col">birthdate</th>
+                    <th scope="col">race</th>
+                  </tr>
+                </thead>
+                <tbody id="resiTableBody">
+                </tbody>
+              </table>
+            </div>
+            <!-- END RESIDENTS TABLE -->
+
+            <!-- ADD PERSON -->
+            <h3>Add a Person</h3>
+            <hr/>
+            <div class="col-md-12" id="addPersonSection">
+            <div class="row">
+            <div id="addPersonForm">
+              <form onSubmit="App.addPerson(); return false">
+              <div id="ismaleradio">
+                <label for="ismaleradio">are they Male?</label>
+                <!-- Group of material radios - option 1 -->
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
+                  <label class="form-check-label" for="maletrue">true</label>
                 </div>
-                <!-- END HOUSE FORM -->
-
-                <br>
-                <br>
-
-                <!-- APP PERSON FORM -->
-                <div id="addPersonForm">
-                <form onSubmit="App.addPerson(); return false">
-
-                  <div id="ismaleradio">
-                    <label for="ismaleradio">are they Male?</label>
-                    <!-- Group of material radios - option 1 -->
-                    <div class="form-check">
-                      <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
-                      <label class="form-check-label" for="maletrue">true</label>
-                    </div>
-                    <!-- Group of material radios - option 2 -->
-                    <div class="form-check">
-                      <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
-                      <label class="form-check-label" for="malefalse">false</label>
-                    </div>
-                  </div>
-
-                  <br>
-
-                  <div id="isHispanicRadio">
-                    <label for="isHispanicRadio">are they Hispanic at the Disco!!</label>
-                    <!-- Group of material radios - option 1 -->
-                    <div class="form-check">
-                      <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
-                      <label class="form-check-label" for="hispanictrue">true</label>
-                    </div>
-                    <!-- Group of material radios - option 2 -->
-                    <div class="form-check">
-                      <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
-                      <label class="form-check-label" for="hispanicfalse">false</label>
-                    </div>
-                  </div>
-
-                  <br>
-
-                  <div class="form-row">
-                    <div class="col-7">
-                      <input type="text" class="form-control" id="personAge" placeholder="Age">
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" id="personBirthDate" placeholder="Birth date">
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" id="personRace" placeholder="Race">
-                    </div>
-<!--                     <div class="col">
-                      <select class="form-control" id="houseType" placeholder="Race">
-                        <option value="House">House</option>
-                        <option value="Apartment">Apartment</option>
-                        <option value="Mobile">Mobile</option>
-                      </select>
-                    </div>  -->                 
-                  </div>
-
-                  <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
-                </form>
+                <!-- Group of material radios - option 2 -->
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
+                  <label class="form-check-label" for="malefalse">false</label>
                 </div>
+              </div>
+              <br>
+              <div id="isHispanicRadio">
+                <label for="isHispanicRadio">are they Hispanic at the Disco!!</label>
+                <!-- Group of material radios - option 1 -->
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
+                  <label class="form-check-label" for="hispanictrue">true</label>
+                </div>
+                <!-- Group of material radios - option 2 -->
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
+                  <label class="form-check-label" for="hispanicfalse">false</label>
+                </div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-7">
+                  <input type="text" class="form-control" id="personAge" placeholder="Age">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="personBirthDate" placeholder="Birth date">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="personRace" placeholder="Race">
+                </div>               
+              </div>
+              <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+            </form>
+            </div>
+            </div>
+            </div>
+            <!-- END ADD PERSON -->
 
-                <!-- END PERSON FORM -->
-
+            <br/>
+            <br/>
 
             <hr/>
-<!--             <form onSubmit="App.castVote(); return false;">
-              <div class="form-group">
-                <label for="candidatesSelect">Select Candidate</label>
-                <select class="form-control" id="candidatesSelect">
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary">Vote</button>
-              <hr />
-            </form> -->
             <p id="accountAddress" class="text-center"></p>
           </div>
         </div>
