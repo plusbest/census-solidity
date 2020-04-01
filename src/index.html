@@ -18,122 +18,112 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container" style="width: 680px;">
+    <div class="container" style="width: 720px;">
+        <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
+        <hr/>
+        <br/>
+        <div id="loader">
+          <p class="text-center">Please refresh page..</p>
+        </div>
+        <div id="content" style="display: none;">
+          <div class="row">
+            <div class="col-md-6" id="serialInfo">
+              <h4>Key Generator</h4>
+              <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
+              <h4 id="generatedPassword"></h4>
+              <h6 id="generatedHash"></h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8" id="verifyInfo">
+              <h5>Verify Private Key</h5>
+              <div class="input-group" id="verifyList">
+                <input type="text" class="form-control input-sm" id="privateKey" placeholder="private key">
+                <span class="input-group-btn">
+                <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
+                </span>
+              </div>
+            </div>
+          </div>
 
+        <br/>
+        <div id="houseContainer">
+        <!-- HOUSE INFO -->
+          <div class="row" id="houseInfoSection" style="display: none;">
+            <div class="col-md-6">
+              <h4>Your House Info</h4>
+              <h6 id="maxResidents"></h6>
+              <h6 id="extraResidents"></h6>
+              <h6 id="houseType"></h6>
+              <h6 id="resiListArray"></h6>
+            </div> 
+          </div>
+          <!-- END HOUSE INFO --> 
 
-          <div class="col-lg-16">
-          <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
+          <!-- ADD HOUSE -->
+          <div class="row" id="addHouseSection">
+          <h3>Register your house</h3>
           <hr/>
-          <br/>
-          <div id="loader">
-            <p class="text-center">Loading...</p>
-          </div>
-          <div id="content" style="display: none;">
-
-          <div clas="container">
-            <div class="row">
-              <div class="col-md-6" id="serialInfo">
-                <h4>Key Generator</h4>
-                  <div id="serialList">
-                  </div>
-                  <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
-                    <h4 id="generatedPassword"></h4>
-                    <h6 id="generatedHash"></h6>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-8 form-group" id="verifyInfo">
-                <h5>Verify Private Key</h5>
-                  <div class="input-group" id="verifyList">
-                    <input type="text" class="form-control input-sm" id="privateKey" placeholder="private key">
-                    <span class="input-group-btn">
-                    <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
-                    </span>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-            <!-- HOUSE INFO -->
-            <div class="row" id="houseInfoSection" style="display: none;">
-              <div class="col-md-12">
-                <h4>Your House Info</h4>
-                <h6 id="maxResidents"></h6>
-                <h6 id="extraResidents"></h6>
-                <h6 id="houseType"></h6>
-                <h6 id="resiListArray"></h6>
-              </div> 
-            </div>
-            <!-- END HOUSE INFO -->           
-
-
-            <!-- ADD HOUSE -->
-            <div class="row" id="addHouseSection">
-            <h3>Register your house</h3>
-            <hr/>
             <div class="col-md-12" id="addHouseForm" style="display: display;">
-            <form onSubmit="App.addHouse(); return false">
-              <div class="form-row">
-                <div class="col-7">
-                  <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
-                </div>
-                <div class="col">
-                  <select class="form-control" id="houseSelect" placeholder="house type">
+              <form onSubmit="App.addHouse(); return false">
+                <div class="form-row">
+                  <div class="col-md-3">
+                    <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
+                  </div>
+                  <div class="col-md-3">
+                    <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control" id="houseSelect" placeholder="house type">
                     <option value="House">House</option>
                     <option value="Apartment">Apartment</option>
                     <option value="Mobile Home">Mobile</option>
-                  </select>
-                </div>                  
-              </div>
-              <button type="submit" class="btn btn-info btn-sm">Register House</button>
-            </form>
-            </div>
-            </div>
-            <!-- END ADD HOUSE -->
-
-            <br/>
-
-            <!-- RESIDENTS TABLE -->
-            <div class="row">
-              <div class="row" id="residentsRow">
-                <div id="residentTable">
+                    </select>
+                  </div>                  
                 </div>
-              </div>  
+                <div class="form-row">
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-info btn-sm">Register House</button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <!-- END RESIDENTS TABLE -->
+          </div>
+          <!-- END ADD HOUSE -->
+        </div>
 
-            <br/>
-
-            <!-- RESIDENTS TABLE -->
-            <div class="residentSection" id="residentSection" style="display: display;">
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">registered?</th>
-                    <th scope="col">is male</th>
-                    <th scope="col">is hispanic</th>
-                    <th scope="col">age</th>
-                    <th scope="col">birthdate</th>
-                    <th scope="col">race</th>
-                  </tr>
-                </thead>
-                <tbody id="resiTableBody">
-                </tbody>
-              </table>
+          <br/>
+          <!-- RESIDENTS TABLE -->
+          <div class="row">
+            <div class="col-md-10">
+              <div class="residentSection" id="residentSection" style="display: display;">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">registered?</th>
+                      <th scope="col">is male</th>
+                      <th scope="col">is hispanic</th>
+                      <th scope="col">age</th>
+                      <th scope="col">birthdate</th>
+                      <th scope="col">race</th>
+                    </tr>
+                  </thead>
+                  <tbody id="resiTableBody">
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <!-- END RESIDENTS TABLE -->
+          </div>
+          <!-- END RESIDENTS TABLE -->
 
-            <!-- ADD PERSON -->
-            <div class="row" id="addPersonSection" style="display: none;">
-            <h3>Add a Person</h3>
-            <hr/>
-            <div id="addPersonForm">
-              <form onSubmit="App.addPerson(); return false">
+          <!-- ADD PERSON -->
+          <div class="row" id="addPersonSection" style="display: none;">
+          <h3>Add a Person</h3>
+          <hr/>
+          <div id="addPersonForm">
+            <form onSubmit="App.addPerson(); return false">
               <div id="ismaleradio">
-                <label for="ismaleradio">are they Male?</label>
+              <label for="ismaleradio">are they Male?</label>
                 <!-- Group of material radios - option 1 -->
                 <div class="form-check">
                   <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
@@ -161,55 +151,53 @@
               </div>
               <br>
               <div class="form-row">
-                <div class="col-7">
+                <div class="col-md-2">
                   <input type="text" class="form-control" id="personAge" placeholder="Age">
                 </div>
-                <div class="col">
-                  <input type="text" class="form-control" id="personBirthDate" placeholder="Birth date">
-
-
-
+                <div class="col-md-10">
                   <div class="btn-group input-group">
                     <span class="input-group-addon">Birthdate</span>
                     <select name="year" class="btn btn-default" id="byear">
-                      <option>Year</option>
+                    <option>Year</option>
                     </select>                
                     <select name="month" class="btn btn-default" id="bmonth">
-                      <option>Month</option>                   
+                    <option>Month</option>                   
                     </select>
                     <select name="day" class="btn btn-default" id="bday">
-                      <option>Day</option>                                
+                    <option>Day</option>                                
                     </select>                  
                   </div>
-
-
                 </div>
-                <div class="col">
+              </div>
+              <div class="form-row">
+                <div class="col-md-4">
                   <input type="text" class="form-control" id="personRace" placeholder="Race">
                 </div>               
               </div>
-              <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+                </div>
+              </div>
             </form>
-            </div>
-            </div>
-            </div>
-            <!-- END ADD PERSON -->
-
-            <br/>
-            <br/>
-
-            <hr/>
-            <p id="accountAddress" class="text-center"></p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>            
           </div>
+          </div>
+          <!-- END ADD PERSON -->
         </div>
-      </div>
-    </div>
+
+          <br/>
+          <br/>
+          <hr/>
+          <p id="accountAddress" class="text-center"></p>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>            
+
+
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

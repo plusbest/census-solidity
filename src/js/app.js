@@ -106,7 +106,6 @@ App = {
 
       // Iterate through house residents
       for (i = 0; i < peopleList[0].length; i++) {
-        // document.querySelector('#residentTable');
         const tr = document.createElement('tr');
 
         // Creates table data for each parameter of resident
