@@ -56,6 +56,7 @@ App = {
     var loader = $("#loader");
     var content = $("#content");
     var addHouseSection = $("#addHouseSection");
+    var addPersonSection = $("#addPersonSection");
     var houseInfoSection = $("#houseInfoSection");
     var addPersonForm = $("#addPersonForm");
     var residentSection = $("#residentSection");
@@ -136,6 +137,7 @@ App = {
     }).then(function() {
       if (App.hasHouse === true) {
         addHouseSection.hide();
+        addPersonSection.show();
         houseInfoSection.show();
       }
       if (App.hasPeople === false) {
@@ -148,16 +150,7 @@ App = {
     });
   },
 
-  // generate address -> private key
-  // sign with addres to get hash
-  // refactor hash
-  // use refactor to sign again
-
-
-  // Generates a new private key for user verification
-  // when starting Census survey
   generateKey: function () {
-
     var generatedPassword = document.querySelector('#generatedPassword');
     var generatedHash = document.querySelector('#generatedHash');
 
@@ -165,14 +158,13 @@ App = {
     web3.personal.newAccount('dash_of_entropy', function(err, privateKey){ //web3.eth.accounts[0]
             console.log("error: " + err);
             console.log("private key: " + privateKey);
-            generatedPassword.innerHTML = `private key: ${privateKey}`;
 
-      // var trimmedHash = outputHash.substring(0, 66); 
       // Signs and returns hashed signature whilst using
       // previously generated account as signed input
       web3.personal.sign(privateKey, App.account, "fooPassword", function(err, firstHash){
               console.log("error: " + err);
               console.log("first hash: " + firstHash);
+
               // Format for eth address consistency
               var refactoredHash = firstHash.substring(0, 42);
               console.log("refactored hash: " + refactoredHash);
@@ -183,50 +175,45 @@ App = {
               // Format for solidity arg bytes32
               var finalHash = secondHash.substring(0, 66);
               console.log("final hash: " + finalHash);
-              generatedHash.innerHTML = `final hash to write on chain: ${finalHash}`;
 
               // Create Oracle instance
-             App.contracts.Oracle.deployed().then(function(instance) {
+              App.contracts.Oracle.deployed().then(function(instance) {
               tempInstance = instance;
+
               // Generate key on-chain
               return tempInstance.keyGen(refactoredHash, finalHash);
+
+            }).then(function() {
+              // Add key info to DOM only when transaction signing
+              // has fully completed
+              generatedPassword.innerHTML = `${privateKey}`;
+              generatedHash.innerHTML = `signed hash: ${finalHash}`;
             });
-             // }).then(function() {
-             //  return tempInstance.getKeyHash(accountString);
-             // }).then(function(returnHash) {
-             //  if (trimmedHash == returnHash) {
-             //    alert("We have a match!");
-             //    App.registered = true;
-             //  }
-             //  console.log("original hash:" + trimmedHash);
-             //  console.log("returned hash:" + returnHash);
-             // });
         });
       });
-
     });
     // web3.toAscii(str); <-- turns bytes32 from contract into string
-    // TODO:
-      // DOM events to hide elements etc.
-      // Proceed to Census forms.
-
-    // web3.eth.getAccounts(function(err, res){
-    //         console.log("er: " + err);
-    //         console.log("currentaccount: " + res);
-    // });
   },
 
   getKeyValidity: function() {
     var privateKey = $('#privateKey').val();
-    App.contracts.Oracle.deployed().then(function(instance) {
-      return instance.getKeyValidity(privateKey).then(function(boolResult) {
-        if (boolResult === true) {
-          alert("Valid key");
-        }
-        else {
-          alert("Invalid key.");
-        }
-      });
+    var publicKey;
+
+    // Hash private key then refactors to public key
+    web3.personal.sign(privateKey, App.account, "fooPassword", function(err, hash) {
+      var publicKey = hash.substring(0, 42);
+
+      // Check key validity via contract
+      App.contracts.Oracle.deployed().then(function(instance) {
+        return instance.getKeyValidity(publicKey).then(function(boolResult) {
+          if (boolResult === true) {
+            alert("Valid key");
+          }
+          else {
+            alert("Invalid key.");
+            }
+          });
+        });
     });
   },
 
@@ -288,10 +275,13 @@ App = {
   },
 
   addPerson: function() {
+
     var isMale = $('#maleTrue').is(':checked');
     var isHispanic = $('#hispanicTrue').is(':checked');
     var personAge = $('#personAge').val();
-    var personBirthDate = $('#personBirthDate').val();
+    // var personBirthDate = $('#personBirthDate').val();
+    var personBirthDate = (( $('#byear').val()) + $('#bmonth').val()) + ($('#bday').val());
+
     var personRace = $('#personRace').val();
     App.contracts.Census.deployed().then(function(instance) {
       return instance.addPerson(isMale, isHispanic, personAge, personBirthDate, personRace, { from: App.account });
