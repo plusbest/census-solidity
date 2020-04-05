@@ -4,6 +4,7 @@ App = {
   account: '0x0',
   hasHouse: false,
   hasPeople: false,
+  residentIds: [],
 
   init: function() {
     return App.initWeb3();
@@ -55,6 +56,7 @@ App = {
     var CensusInstance;
     var loader = $("#loader");
     var content = $("#content");
+    var peopleDataFull = [];
     var addHouseSection = $("#addHouseSection");
     var addPersonSection = $("#addPersonSection");
     var houseInfoSection = $("#houseInfoSection");
@@ -94,15 +96,37 @@ App = {
       $("#houseType").html("House type:" + myHouse[3]);
       $("#resiListArray").html("resident IDs : " + myHouse[4]);
 
-      return CensusInstance.getPeople.call(myHouse[4]);
+      App.residentIds = myHouse[4];
+      return CensusInstance.getPeople.call(App.residentIds);
+
+      // TODO: get info from getPeopleMore()
     }).then(function(peopleList) {
+
+      peopleDataFull.push(peopleList);
+
+      return CensusInstance.getPeopleMore.call(App.residentIds)
+    // Gets additional Resident info and appends
+    }).then(function(peopleListMore) {
+
+      for (i = 0; i < peopleListMore.length; i++) {
+        peopleDataFull[0].push(peopleListMore[i]);
+      };
+
+
+      return peopleDataFull;
+    }).then(function(peopleDataFull) {
+
+      var peopleList = peopleDataFull[0];
       console.log(peopleList);
-      if (peopleList[0].length > 0) {
+
+      if (peopleList.length > 0) {
         App.hasPeople = true;
       }
+
       let tbody = document.querySelector('#resiTableBody');
 
-      var paramNum = 6;
+      // Modified. Make sure doesn't break
+      var paramNum = peopleList.length;
 
       // Iterate through house residents
       for (i = 0; i < peopleList[0].length; i++) {
@@ -112,27 +136,24 @@ App = {
         for (j = 0; j < paramNum; j++) {
           const td = document.createElement('td');
 
-          // Catches age and birthdate object type
-          // as other params are arrays at index 0
           if (typeof(peopleList[j][i]) === "object") {
-            td.innerHTML = `${peopleList[j][i].c[0]}`
+
+            td.innerHTML = `${peopleList[j][i].c[0]}`;
           }
-          // Catch race param for bytes32 to string conversion
-          // as web3 nested arrays return blank strings
-          else if (j == 5) {
-            var str = peopleList[j][i];
-            var conversion = web3.toAscii(str);
-            td.innerHTML = `${conversion}`;
+          else if (typeof(peopleList[j][i]) === "string") {
+
+            var string = web3.toAscii(peopleList[j][i]);
+            td.innerHTML = string;
           }
           else {
-            td.innerHTML = `${peopleList[j][0]}`
+            td.innerHTML = `${peopleList[j][i]}`;
           }
+
           tr.append(td);
         }
         tbody.append(tr);
       };
 
-    // TODO: Clean this up to work for addHouse and addPerson forms
     }).then(function() {
       if (App.hasHouse === true) {
         addHouseSection.hide();
@@ -278,12 +299,19 @@ App = {
     var isMale = $('#maleTrue').is(':checked');
     var isHispanic = $('#hispanicTrue').is(':checked');
     var personAge = $('#personAge').val();
-    // var personBirthDate = $('#personBirthDate').val();
     var personBirthDate = (( $('#byear').val()) + $('#bmonth').val()) + ($('#bday').val());
-
     var personRace = $('#personRace').val();
+    var personLiveReason = $('#personLiveReason').val();
+    var personRelation = $('#personRelation').val();
+
     App.contracts.Census.deployed().then(function(instance) {
-      return instance.addPerson(isMale, isHispanic, personAge, personBirthDate, personRace, { from: App.account });
+      return instance.addPerson(isMale,
+                                isHispanic,
+                                personAge,
+                                personBirthDate,
+                                personRace,
+                                personLiveReason,
+                                personRelation, { from: App.account });
     }).then(function(result) {
       $("#content").hide();
       $("#loader").show();

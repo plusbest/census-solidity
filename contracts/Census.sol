@@ -33,13 +33,15 @@ contract Census {
     // Person struct
     struct Person {
         bool registered;
-        uint id; // peopleCount
-        address home; // msg.sender NECESSARY? (home can be assumed from address of transaction)
+        uint id; // peopleCount at time of transaction
+        address home; // easy tracking on data pulls
         bool isMale;
         bool isHispanic;
         uint32 age;
-        uint32 birthDate; // MMDDYYYY
+        uint32 birthDate; // YYYYMMDD
         bytes32 race;
+        bytes32 liveReason;
+        bytes32 relation;
     }
     
 
@@ -85,18 +87,31 @@ contract Census {
         emit houseAddedEvent(_maxResidents, _extraResidents);
     }
 
-
-    function addPerson(bool _ismale, bool _ishispanic, uint32 _age, uint32 _birthdate, bytes32 _race) public {
+    function addPerson(bool _ismale,
+                       bool _ishispanic,
+                       uint32 _age,
+                       uint32 _birthdate,
+                       bytes32 _race,
+                       bytes32 _liveReason,
+                       bytes32 _relation) public {
 
         House storage currentHouse = houses[msg.sender];
-
         // Ensure house for address exists before adding
         require(currentHouse.registered == true, "There is no house registered for this address.");
-        
         // Require house of address to have resident count within range
         require(currentHouse.residentList.length < currentHouse.maxResidents, "Max registered people for this House.");
 
-        Person memory newPerson =  Person(true, personCount, msg.sender, _ismale, _ishispanic, _age, _birthdate, _race);
+        Person memory newPerson =  Person(true,
+                                          personCount,
+                                          msg.sender,
+                                          _ismale,
+                                          _ishispanic,
+                                          _age,
+                                          _birthdate,
+                                          _race,
+                                          _liveReason,
+                                          _relation);
+        // Map new person struct
         people[personCount] = newPerson;
 
         // Add person ID to house residentList
@@ -122,12 +137,12 @@ contract Census {
 
     // Return Person struct params
     function getPerson(uint index) public view returns (bool,
-                                                         address,
-                                                         bool,
-                                                         bool,
-                                                         uint32,
-                                                         uint32,
-                                                         bytes32) {
+                                                        address,
+                                                        bool,
+                                                        bool,
+                                                        uint32,
+                                                        uint32,
+                                                        bytes32) {
         Person storage thisPerson = people[index];
 
         bool registered = thisPerson.registered;
@@ -141,31 +156,65 @@ contract Census {
         return (registered, home, isMale, isHispanic, age, birthDate, race);
     }
 
-        // TEST FUNCTION
-      function getPeople(uint[] memory resiNums) public view returns (bool[] memory, bool[] memory, bool[] memory, uint[] memory, uint[] memory, bytes32[] memory){
+    // Return additional Person details to avoid
+    // stack overflow when using getPerson() getter
+    function getPersonMore(uint index) public view returns (bytes32,
+                                                            bytes32) {
+        Person storage thisPerson = people[index];
 
-          for (uint i = 0; i < resiNums.length; i++) {
+        bytes32 liveReason = thisPerson.liveReason;
+        bytes32 relation = thisPerson.relation;
+
+        return (liveReason, relation);
+    }
+
+    // TEST FUNCTION
+    function getPeople(uint[] memory resiNums) public view returns (bool[] memory,
+                                                                    bool[] memory,
+                                                                    bool[] memory,
+                                                                    uint[] memory,
+                                                                    uint[] memory,
+                                                                    bytes32[] memory){
+
+        for (uint i = 0; i < resiNums.length; i++) {
             require(people[resiNums[i]].registered == true, "Invalid person ID requested.");
-          }
-          
-          bool[] memory registered = new bool[](resiNums.length);
-          bool[] memory isMale = new bool[](resiNums.length);
-          bool[] memory isHispanic = new bool[](resiNums.length);
-          uint[] memory age = new uint[](resiNums.length);
-          uint[] memory birthDate = new uint[](resiNums.length);
-          bytes32[] memory race = new bytes32[](resiNums.length);
+        }
+      
+        bool[] memory registered = new bool[](resiNums.length);
+        bool[] memory isMale = new bool[](resiNums.length);
+        bool[] memory isHispanic = new bool[](resiNums.length);
+        uint[] memory age = new uint[](resiNums.length);
+        uint[] memory birthDate = new uint[](resiNums.length);
+        bytes32[] memory race = new bytes32[](resiNums.length);
 
-          for (uint i = 0; i < resiNums.length; i++) {
-            
+        for (uint i = 0; i < resiNums.length; i++) {
+
             registered[i] = people[resiNums[i]].registered;
             isMale[i] = people[resiNums[i]].isMale;
             isHispanic[i] = people[resiNums[i]].isHispanic;
             age[i] = people[resiNums[i]].age;
             birthDate[i] = people[resiNums[i]].birthDate;
             race[i] = people[resiNums[i]].race;
-          }
+        }
+        return (registered, isMale, isHispanic, age, birthDate, race);
+    }
 
-          return (registered, isMale, isHispanic, age, birthDate, race);
+    // TEST FUNCTION
+    function getPeopleMore(uint[] memory resiNums) public view returns (bytes32[] memory,
+                                                                        bytes32[] memory){
+        
+        for (uint i = 0; i < resiNums.length; i++) {
+            require(people[resiNums[i]].registered == true, "Invalid person ID requested.");
+        }
+      
+        bytes32[] memory liveReason = new bytes32[](resiNums.length);
+        bytes32[] memory relation = new bytes32[](resiNums.length);
 
+        for (uint i = 0; i < resiNums.length; i++) {
+
+            liveReason[i] = people[resiNums[i]].liveReason;
+            relation[i] = people[resiNums[i]].relation;
+        }
+        return (liveReason, relation);
     }
 }
