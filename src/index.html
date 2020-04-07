@@ -19,190 +19,253 @@
   </head>
   <body>
     <div class="container" style="width: 720px;">
-        <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
-        <hr/>
-        <br/>
-        <div id="loader">
-          <p class="text-center">Please refresh page..</p>
+      <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
+      <hr/>
+      <br/>
+      <div id="loader">
+        <p class="text-center">Please refresh page..</p>
+      </div>
+      <div id="content" style="display: none;">
+
+        <div class="row" id="keyGenContainer">
+          <div class="col-md-6" id="serialInfo">
+            <h4>Key Generator</h4>
+            <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
+            <h4 id="generatedPassword"></h4>
+            <h6 id="generatedHash"></h6>
+          </div>
         </div>
-        <div id="content" style="display: none;">
-          <div class="row">
-            <div class="col-md-6" id="serialInfo">
-              <h4>Key Generator</h4>
-              <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
-              <h4 id="generatedPassword"></h4>
-              <h6 id="generatedHash"></h6>
+
+        <div class="row" id="keyVerifyContainer">
+          <div class="col-md-8" id="verifyInfo">
+            <h5>Verify Private Key</h5>
+            <div class="input-group" id="verifyList">
+              <input type="text" class="form-control input-sm" id="privateKey" placeholder="private key">
+              <span class="input-group-btn">
+              <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
+              </span>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-8" id="verifyInfo">
-              <h5>Verify Private Key</h5>
-              <div class="input-group" id="verifyList">
-                <input type="text" class="form-control input-sm" id="privateKey" placeholder="private key">
-                <span class="input-group-btn">
-                <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
-                </span>
-              </div>
-            </div>
-          </div>
+        </div>
 
         <br/>
-        <div id="houseContainer">
+
         <!-- HOUSE INFO -->
-          <div class="row" id="houseInfoSection" style="display: none;">
-            <div class="col-md-6">
-              <h4>Your House Info</h4>
-              <h6 id="maxResidents"></h6>
-              <h6 id="extraResidents"></h6>
-              <h6 id="houseType"></h6>
-              <h6 id="resiListArray"></h6>
-            </div> 
-          </div>
-          <!-- END HOUSE INFO --> 
-
-          <!-- ADD HOUSE -->
-          <div class="row" id="addHouseSection">
-          <h3>Register your house</h3>
-          <hr/>
-            <div class="col-md-12" id="addHouseForm" style="display: display;">
-              <form onSubmit="App.addHouse(); return false">
-                <div class="form-row">
-                  <div class="col-md-3">
-                    <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
-                  </div>
-                  <div class="col-md-3">
-                    <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
-                  </div>
-                  <div class="col-md-6">
-                    <select class="form-control" id="houseSelect" placeholder="house type">
-                    <option value="House">House</option>
-                    <option value="Apartment">Apartment</option>
-                    <option value="Mobile Home">Mobile</option>
-                    </select>
-                  </div>                  
-                </div>
-                <div class="form-row">
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-info btn-sm">Register House</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- END ADD HOUSE -->
+        <div class="row" id="houseInfoSection" style="display: none;">
+          <div class="col-md-6">
+            <h4>Your House Info</h4>
+            <h6 id="maxResidents"></h6>
+            <h6 id="extraResidents"></h6>
+            <h6 id="houseType"></h6>
+            <h6 id="resiListArray"></h6>
+          </div> 
         </div>
+        <!-- END HOUSE INFO --> 
 
-          <br/>
-          <!-- RESIDENTS TABLE -->
-          <div class="row">
-            <div class="col-md-10">
-              <div class="residentSection" id="residentSection" style="display: display;">
-                <table class="table table-sm">
-                  <thead>
-                    <tr>
-                      <th scope="col">registered?</th>
-                      <th scope="col">is male</th>
-                      <th scope="col">is hispanic</th>
-                      <th scope="col">age</th>
-                      <th scope="col">birthdate</th>
-                      <th scope="col">race</th>
-                      <th scope="col">livereason</th>
-                      <th scope="col">relation</th>                                          
-                    </tr>
-                  </thead>
-                  <tbody id="resiTableBody">
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!-- END RESIDENTS TABLE -->
-
-          <h5 id="liveReason">live reason</h5>
-          <h5 id="relation">relation</h5>
-
-          <!-- ADD PERSON -->
-          <div class="row" id="addPersonSection" style="display: none;">
-          <h3>Add a Person</h3>
-          <hr/>
-          <div id="addPersonForm">
-            <form onSubmit="App.addPerson(); return false">
-              <div id="ismaleradio">
-              <label for="ismaleradio">are they Male?</label>
-                <!-- Group of material radios - option 1 -->
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
-                  <label class="form-check-label" for="maletrue">true</label>
-                </div>
-                <!-- Group of material radios - option 2 -->
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
-                  <label class="form-check-label" for="malefalse">false</label>
-                </div>
-              </div>
-              <br>
-              <div id="isHispanicRadio">
-                <label for="isHispanicRadio">are they Hispanic at the Disco!!</label>
-                <!-- Group of material radios - option 1 -->
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
-                  <label class="form-check-label" for="hispanictrue">true</label>
-                </div>
-                <!-- Group of material radios - option 2 -->
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
-                  <label class="form-check-label" for="hispanicfalse">false</label>
-                </div>
-              </div>
-              <br>
+        <!-- ADD HOUSE -->
+        <div class="row" id="addHouseSection">
+        <legend class="pt-0">Register your House</legend>
+          <div class="col-md-12" id="addHouseForm" style="display: display;">
+            <form onSubmit="App.addHouse(); return false">
               <div class="form-row">
-                <div class="col-md-2">
-                  <input type="text" class="form-control" id="personAge" placeholder="Age">
+                <div class="col-md-3">
+                  <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
                 </div>
-                <div class="col-md-10">
-                  <div class="btn-group input-group">
-                    <span class="input-group-addon">Birthdate</span>
-                    <select name="year" class="btn btn-default" id="byear">
-                    <option>Year</option>
-                    </select>                
-                    <select name="month" class="btn btn-default" id="bmonth">
-                    <option>Month</option>                   
-                    </select>
-                    <select name="day" class="btn btn-default" id="bday">
-                    <option>Day</option>                                
-                    </select>                  
-                  </div>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
                 </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-4">
-                  <input type="text" class="form-control" id="personRace" placeholder="Race">
-
-                  <input type="text" class="form-control" id="personLiveReason" placeholder="Live Reason">
-                  <input type="text" class="form-control" id="personRelation" placeholder="Relation">
-                </div>               
+                <div class="col-md-6">
+                  <select class="form-control" id="houseSelect" placeholder="house type">
+                  <option value="House">House</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Mobile Home">Mobile</option>
+                  </select>
+                </div>                  
               </div>
               <div class="form-row">
                 <div class="col-md-2">
-                  <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+                  <button type="submit" class="btn btn-info btn-sm">Register House</button>
                 </div>
               </div>
             </form>
           </div>
-          </div>
-          <!-- END ADD PERSON -->
         </div>
+        <!-- END ADD HOUSE -->
 
-          <br/>
-          <br/>
-          <hr/>
-          <p id="accountAddress" class="text-center"></p>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>            
+        <br/>
+
+        <!-- RESIDENTS TABLE -->
+        <div class="row" id="residentTableSection">
+          <div class="col-md-10">
+            <div class="residentSection" id="residentSection" style="display: display;">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">registered?</th>
+                    <th scope="col">is male</th>
+                    <th scope="col">is hispanic</th>
+                    <th scope="col">age</th>
+                    <th scope="col">birthdate</th>
+                    <th scope="col">race</th>
+                    <th scope="col">livereason</th>
+                    <th scope="col">relation</th>                                          
+                  </tr>
+                </thead>
+                <tbody id="resiTableBody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- END RESIDENTS TABLE -->
+
+        <br/>
+
+        <!-- ADD PERSON -->
+        <div class="row" id="addPersonSection" style="display: none;">
+        <legend class="pt-0">Add a Person</legend>
+
+<div id="addPersonForm">
+  <form onSubmit="App.addPerson(); return false">
+    <div class="form-group row">
+      <div class="col-md-2">
+        Age
+      </div>
+      <div class="col-md-2">
+        <select name="age" class="btn btn-default" id="uage">
+        <option>Age</option>
+        </select> 
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2">
+        Birthdate
+      </div>
+      <div class="col-md-10">
+        <div class="btn-group input-group">
+          <span class="input-group-addon">Birthdate</span>
+          <select name="year" class="btn btn-default" id="byear">
+          <option>Year</option>
+          </select>                
+          <select name="month" class="btn btn-default" id="bmonth">
+          <option>Month</option>                   
+          </select>
+          <select name="day" class="btn btn-default" id="bday">
+          <option>Day</option>                                
+          </select>                  
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">Gender</div>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
+          <label class="form-check-label" for="maletrue">male</label>
+        </div>
+        <!-- Group of material radios - option 2 -->
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
+          <label class="form-check-label" for="malefalse">female</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">Hispanic at the Disco!!</div>
+      <div class="col-sm-10">
+        <div class="form-check" id="isHispanicRadio">
+          <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
+          <label class="form-check-label" for="hispanictrue">true</label>
+        </div>
+        <!-- Group of material radios - option 2 -->
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
+          <label class="form-check-label" for="hispanicfalse">false</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2">
+        Race
+      </div>
+      <div class="col-md-5">
+        <label for="personRace">For example, German, Egyptian, Jamaican, etc.</label>
+        <input type="text" class="form-control" id="personRace" placeholder="Race, origin, or tribe.">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <!-- <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> -->
+      <div class="col-sm-2">Residence</div>
+      <div class="col-sm-7">
+        <label for="personLiveReason">Does this person usually live or stay somewhere else?</label>
+        <select class="form-control" id="personLiveReason" placeholder="Reason Living in House">
+          <option value="" selected disabled>Select reason.</option>                    
+          <option value="No">No.</option>
+          <option value="Y-College">Yes, for college.</option>
+          <option value="Y-Military-Assign">Yes, for a military assignment.</option>
+          <option value="Y-Job-Business">Yes, for a job or business.</option>
+          <option value="Y-Nursing">Yes, in a nursing home</option>
+          <option value="Y-Parent-Relative">Yes, with a parent or other relative.</option>
+          <option value="Y-Seasonal-Second-Res">Yes, at a seasonal or second residence.</option>
+          <option value="Y-Jail-Prison">Yes, in a jail or prison.</option>
+          <option value="Y-Another-Reason">Yes, for another reason.</option>           
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">Relation</div>
+      <div class="col-sm-7">
+        <label for="personRelation">How is this person related to Person 1?</label>
+        <select class="form-control" id="personRelation">
+          <option value="" selected disabled>Select reason.</option>                    
+          <option value="Oppsex-Husb-Wife-Spouse">Opposite-sex husband/wife/spouse.</option>
+          <option value="Opp-Sex-Unmarr-Part">Opposite-sex unmarried partner.</option>
+          <option value="SS-Husb-Wife-Spouse">Same-sex husband/wife/spouse.</option>
+          <option value="SS-Unmarr-Part">Same-sex unmarried partner.</option>
+          <option value="Bio-Son-Daughter">Biological son or daughter.</option>
+          <option value="Adopted-Son-Daughter">Adopted son or daughter.</option>
+          <option value="Stepson-Stepdaughter">Stepson or stepdaughter.</option>
+          <option value="Yes-Jail-Prison">Yes, in a jail or prison.</option>
+          <option value="Brother-Sister">Brother or sister.</option>                   
+          <option value="Father-Mother">Father or mother.</option>
+          <option value="Grandchild">Grandchild.</option>
+          <option value="Parent-In-Law">Parent-in-law.</option>
+          <option value="Son-Daught-Inlaw">Son-in-law or daughter-in-law.</option>
+          <option value="Other-Relative">Other relative.</option>
+          <option value="Room-House-mate">Roommate or housemate.</option>
+          <option value="Fosterchild">Foster child.</option>
+          <option value="Other-nonrelative">Other nonrelative.</option>                              
+        </select>
+        <div class="col-sm-2">
+        <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+        </div>
+      </div>
+    </div>
+
+  <!--       <legend class="col-form-label col-sm-2 pt-0">Radios</legend> -->
+  </form>
+</div>
+
+
+
+
+
+      <br/>
+      <br/>
+      <hr/>
+      <p id="accountAddress" class="text-center"></p>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>            
 
 
 
@@ -215,18 +278,19 @@
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
 
-<script>
-
+    <script>
     function padToTwo(number) {
       if (number<10) {
         number = ("0"+number);
       }
       return number;
     }
-
     $(document).ready(function () {
-            var month = [], day = [], year = [];
+            var age = [], month = [], day = [], year = [];
 
+            for (var i = 1; i <= 125; i++) {
+                age.push(padToTwo(i));
+            }
             for (var i = 1; i <= 12; i++) {
                 month.push(padToTwo(i));
             }
@@ -236,6 +300,9 @@
             for (var i = 1900; i <= (new Date().getFullYear()); i++) {
                 year.push(i);
             }
+            $.each(age, function (index, d) {
+                $("#uage").append("<option value = '"+d+"'>"+d+"</option>");
+            });
             $.each(day, function (index, d) {
                 $("#bday").append("<option value = '"+d+"'>"+d+"</option>");
             });

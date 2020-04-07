@@ -146,6 +146,7 @@ App = {
             td.innerHTML = string;
           }
           else {
+
             td.innerHTML = `${peopleList[j][i]}`;
           }
 
@@ -298,11 +299,19 @@ App = {
 
     var isMale = $('#maleTrue').is(':checked');
     var isHispanic = $('#hispanicTrue').is(':checked');
-    var personAge = $('#personAge').val();
+    var personAge = $('#uage').val();
     var personBirthDate = (( $('#byear').val()) + $('#bmonth').val()) + ($('#bday').val());
     var personRace = $('#personRace').val();
     var personLiveReason = $('#personLiveReason').val();
     var personRelation = $('#personRelation').val();
+
+    console.log(isMale);
+    console.log(isHispanic);
+        console.log(personAge);
+          console.log(personBirthDate);
+            console.log(personRace);
+                console.log(personLiveReason);
+                    console.log(personRelation);
 
     App.contracts.Census.deployed().then(function(instance) {
       return instance.addPerson(isMale,
