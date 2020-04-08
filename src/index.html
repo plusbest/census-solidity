@@ -9,266 +9,293 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style>
+      .legend-details {
+        font-size: 16px;
+      }
+      #house-image {
+        max-width: 75%;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
-    <div class="container" style="width: 720px;">
+    <div class="container" id="content" style="width: 720px;">
       <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
-      <hr/>
       <br/>
       <div id="loader">
         <p class="text-center">Please refresh page..</p>
       </div>
-      <div id="content" style="display: none;">
 
-        <div class="row" id="keyGenContainer">
-          <div class="col-md-6" id="serialInfo">
-            <h4>Key Generator</h4>
-            <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
-            <h4 id="generatedPassword"></h4>
-            <h6 id="generatedHash"></h6>
-          </div>
-        </div>
-
-        <div class="row" id="keyVerifyContainer">
-          <div class="col-md-8" id="verifyInfo">
-            <h5>Verify Private Key</h5>
-            <div class="input-group" id="verifyList">
-              <input type="text" class="form-control input-sm" id="privateKey" placeholder="private key">
-              <span class="input-group-btn">
-              <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
-              </span>
-            </div>
-          </div>
-        </div>
-
+      <div class="row" id="keyGenSection" style="display: block;">
         <br/>
+        <h3>Welcome!</h3>
+        <legend class="border-bottom mb-6 legend-details">Claim a Census key</legend>
+        <div class="col-md-6" id="serialInfo">
+          <h5>Key Generator</h5>
+          <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
+          <h4 id="generatedPassword"></h4>
+          <h6 id="generatedHash"></h6>
+        </div>
+      </div>
 
-        <!-- HOUSE INFO -->
-        <div class="row" id="houseInfoSection" style="display: none;">
-          <div class="col-md-6">
-            <h4>Your House Info</h4>
-            <h6 id="maxResidents"></h6>
-            <h6 id="extraResidents"></h6>
-            <h6 id="houseType"></h6>
-            <h6 id="resiListArray"></h6>
+      <br/>
+
+      <div class="row" id="keyVerifySection" style="display: block;">
+        <div class="col-md-8" id="verifyInfo">
+          <div class="input-group" id="verifyList">
+            <input type="text" class="form-control input-sm" id="verifyKey" placeholder="private key">
+            <span class="input-group-btn">
+            <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <br/>
+
+      <!-- HOUSE INFO -->
+      <div class="row" id="houseInfoSection" style="display: none;">
+        <div class="col-md-4">
+          <img src="/images/happyhouse.png" id="house-image" alt="Mountain">
+        </div>
+        <div class="col-md-8">
+          <p class="lead"><strong>
+            Your house information.
+          </strong></p>
+          <p id="maxResidents"></p>
+          <p id="extraResidents"></p>
+          <p id="houseType"></p>
+          <p id="resiListArray"></p>
+        </div> 
+        <div class="col-md-2">
+        </div>        
+      </div>
+      <!-- END HOUSE INFO --> 
+
+      <br/>
+
+      <!-- ADD HOUSE SECTION -->
+      <div class="row" id="addHouseSection" style="display: block;">
+      <legend class="border-bottom mb-4">Register your House</legend>
+        <div class="col-md-12" id="addHouseForm">
+          <form onSubmit="App.addHouse(); return false">
+            <div class="form-group row">
+              <div class="col-md-2">
+                Main
+              </div>
+              <div class="col-md-2">
+                <input type="number" class="form-control" id="maxResi" placeholder="#">
+              </div>
+              <div class="col-md-8">
+                # of residents living in house
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">
+                Additional
+              </div>
+              <div class="col-md-2">
+                <input type="number" class="form-control" id="extraResi" placeholder="#">
+              </div>
+              <div class="col-md-8">
+                # of additional residents
+              </div>              
+            </div>          
+            <div class="form-group row">
+              <!-- <label for="inputEmail3" class="col-md-2 col-form-label">Email</label> -->
+              <div class="col-md-2">Residence-type</div>
+              <div class="col-md-6">
+                <select class="form-control" id="houseSelect" placeholder="house type">
+                <option value="" selected disabled>Select house type.</option>                  
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Mobile Home">Mobile</option>
+                </select>
+              </div>            
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">Private key</div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="privateKey" placeholder="Required for registration." required>
+              </div>
+              <div class="col-md-2">
+                <button type="submit" class="btn btn-info btn-sm">Register House</button>
+              </div>              
           </div> 
+          </form>
         </div>
-        <!-- END HOUSE INFO --> 
+      </div>
 
-        <!-- ADD HOUSE -->
-        <div class="row" id="addHouseSection">
-        <legend class="pt-0">Register your House</legend>
-          <div class="col-md-12" id="addHouseForm" style="display: display;">
-            <form onSubmit="App.addHouse(); return false">
-              <div class="form-row">
-                <div class="col-md-3">
-                  <input type="text" class="form-control" id="maxResi" placeholder="# of Residents">
-                </div>
-                <div class="col-md-3">
-                  <input type="text" class="form-control" id="extraResi" placeholder="# additional Residents">
-                </div>
-                <div class="col-md-6">
-                  <select class="form-control" id="houseSelect" placeholder="house type">
-                  <option value="House">House</option>
-                  <option value="Apartment">Apartment</option>
-                  <option value="Mobile Home">Mobile</option>
-                  </select>
-                </div>                  
-              </div>
-              <div class="form-row">
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-info btn-sm">Register House</button>
-                </div>
-              </div>
-            </form>
+
+      <!-- END ADD HOUSE SECTION -->
+
+      <br/>
+
+      <!-- RESIDENTS TABLE -->
+      <div class="row">
+        <div class="col-md-12">
+          <div id="residentTableSection" style="display: none;">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">registered?</th>
+                  <th scope="col">is male</th>
+                  <th scope="col">is hispanic</th>
+                  <th scope="col">age</th>
+                  <th scope="col">birthdate</th>
+                  <th scope="col">race</th>
+                  <th scope="col">livereason</th>
+                  <th scope="col">relation</th>                                          
+                </tr>
+              </thead>
+              <tbody id="resiTableBody">
+              </tbody>
+            </table>
           </div>
         </div>
-        <!-- END ADD HOUSE -->
+      </div>
+      <!-- END RESIDENTS TABLE -->
 
-        <br/>
+      <br/>
 
-        <!-- RESIDENTS TABLE -->
-        <div class="row" id="residentTableSection">
-          <div class="col-md-10">
-            <div class="residentSection" id="residentSection" style="display: display;">
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">registered?</th>
-                    <th scope="col">is male</th>
-                    <th scope="col">is hispanic</th>
-                    <th scope="col">age</th>
-                    <th scope="col">birthdate</th>
-                    <th scope="col">race</th>
-                    <th scope="col">livereason</th>
-                    <th scope="col">relation</th>                                          
-                  </tr>
-                </thead>
-                <tbody id="resiTableBody">
-                </tbody>
-              </table>
+      <!-- ADD PERSON SECTION -->
+      <div class="row" id="addPersonSection" style="display: none;">
+        <h3>Add a Person</h3>
+      <legend class="border-bottom mb-6 legend-details"></legend>
+        <div id="addPersonForm">
+          <form onSubmit="App.addPerson(); return false">
+            <div class="form-group row">
+              <div class="col-md-2">
+                Age
+              </div>
+              <div class="col-md-2">
+                <select name="age" class="btn btn-default" id="uage">
+                <option>Age</option>
+                </select> 
+              </div>
             </div>
-          </div>
-        </div>
-        <!-- END RESIDENTS TABLE -->
-
-        <br/>
-
-        <!-- ADD PERSON -->
-        <div class="row" id="addPersonSection" style="display: none;">
-        <legend class="pt-0">Add a Person</legend>
-
-<div id="addPersonForm">
-  <form onSubmit="App.addPerson(); return false">
-    <div class="form-group row">
-      <div class="col-md-2">
-        Age
-      </div>
-      <div class="col-md-2">
-        <select name="age" class="btn btn-default" id="uage">
-        <option>Age</option>
-        </select> 
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-2">
-        Birthdate
-      </div>
-      <div class="col-md-10">
-        <div class="btn-group input-group">
-          <span class="input-group-addon">Birthdate</span>
-          <select name="year" class="btn btn-default" id="byear">
-          <option>Year</option>
-          </select>                
-          <select name="month" class="btn btn-default" id="bmonth">
-          <option>Month</option>                   
-          </select>
-          <select name="day" class="btn btn-default" id="bday">
-          <option>Day</option>                                
-          </select>                  
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-2">Gender</div>
-      <div class="col-sm-10">
-        <div class="form-check">
-          <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
-          <label class="form-check-label" for="maletrue">male</label>
-        </div>
-        <!-- Group of material radios - option 2 -->
-        <div class="form-check">
-          <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
-          <label class="form-check-label" for="malefalse">female</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-2">Hispanic at the Disco!!</div>
-      <div class="col-sm-10">
-        <div class="form-check" id="isHispanicRadio">
-          <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
-          <label class="form-check-label" for="hispanictrue">true</label>
-        </div>
-        <!-- Group of material radios - option 2 -->
-        <div class="form-check">
-          <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
-          <label class="form-check-label" for="hispanicfalse">false</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-2">
-        Race
-      </div>
-      <div class="col-md-5">
-        <label for="personRace">For example, German, Egyptian, Jamaican, etc.</label>
-        <input type="text" class="form-control" id="personRace" placeholder="Race, origin, or tribe.">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <!-- <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> -->
-      <div class="col-sm-2">Residence</div>
-      <div class="col-sm-7">
-        <label for="personLiveReason">Does this person usually live or stay somewhere else?</label>
-        <select class="form-control" id="personLiveReason" placeholder="Reason Living in House">
-          <option value="" selected disabled>Select reason.</option>                    
-          <option value="No">No.</option>
-          <option value="Y-College">Yes, for college.</option>
-          <option value="Y-Military-Assign">Yes, for a military assignment.</option>
-          <option value="Y-Job-Business">Yes, for a job or business.</option>
-          <option value="Y-Nursing">Yes, in a nursing home</option>
-          <option value="Y-Parent-Relative">Yes, with a parent or other relative.</option>
-          <option value="Y-Seasonal-Second-Res">Yes, at a seasonal or second residence.</option>
-          <option value="Y-Jail-Prison">Yes, in a jail or prison.</option>
-          <option value="Y-Another-Reason">Yes, for another reason.</option>           
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-2">Relation</div>
-      <div class="col-sm-7">
-        <label for="personRelation">How is this person related to Person 1?</label>
-        <select class="form-control" id="personRelation">
-          <option value="" selected disabled>Select reason.</option>                    
-          <option value="Oppsex-Husb-Wife-Spouse">Opposite-sex husband/wife/spouse.</option>
-          <option value="Opp-Sex-Unmarr-Part">Opposite-sex unmarried partner.</option>
-          <option value="SS-Husb-Wife-Spouse">Same-sex husband/wife/spouse.</option>
-          <option value="SS-Unmarr-Part">Same-sex unmarried partner.</option>
-          <option value="Bio-Son-Daughter">Biological son or daughter.</option>
-          <option value="Adopted-Son-Daughter">Adopted son or daughter.</option>
-          <option value="Stepson-Stepdaughter">Stepson or stepdaughter.</option>
-          <option value="Yes-Jail-Prison">Yes, in a jail or prison.</option>
-          <option value="Brother-Sister">Brother or sister.</option>                   
-          <option value="Father-Mother">Father or mother.</option>
-          <option value="Grandchild">Grandchild.</option>
-          <option value="Parent-In-Law">Parent-in-law.</option>
-          <option value="Son-Daught-Inlaw">Son-in-law or daughter-in-law.</option>
-          <option value="Other-Relative">Other relative.</option>
-          <option value="Room-House-mate">Roommate or housemate.</option>
-          <option value="Fosterchild">Foster child.</option>
-          <option value="Other-nonrelative">Other nonrelative.</option>                              
-        </select>
-        <div class="col-sm-2">
-        <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+            <div class="form-group row">
+              <div class="col-md-2">
+                Birthdate
+              </div>
+              <div class="col-md-10">
+                <div class="btn-group input-group">
+                  <span class="input-group-addon">Birthdate</span>
+                  <select name="year" class="btn btn-default" id="byear">
+                  <option>Year</option>
+                  </select>                
+                  <select name="month" class="btn btn-default" id="bmonth">
+                  <option>Month</option>                   
+                  </select>
+                  <select name="day" class="btn btn-default" id="bday">
+                  <option>Day</option>                                
+                  </select>                  
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">Gender</div>
+              <div class="col-md-10">
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="maleTrue" name="isMale" value="true" checked>
+                  <label class="form-check-label" for="maletrue">male</label>
+                </div>
+                <!-- Group of material radios - option 2 -->
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="maleFalse" name="isMale" value="false">
+                  <label class="form-check-label" for="malefalse">female</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">Hispanic at the Disco!!</div>
+              <div class="col-md-10">
+                <div class="form-check" id="isHispanicRadio">
+                  <input type="radio" class="form-check-input" id="hispanicTrue" name="isHispanic" value="true" checked>
+                  <label class="form-check-label" for="hispanictrue">true</label>
+                </div>
+                <!-- Group of material radios - option 2 -->
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="hispanicFalse" name="isHispanic" value="false">
+                  <label class="form-check-label" for="hispanicfalse">false</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">
+                Race
+              </div>
+              <div class="col-md-5">
+                <label for="personRace">For example, German, Egyptian, Jamaican, etc.</label>
+                <input type="text" class="form-control" id="personRace" placeholder="Race, origin, or tribe.">
+              </div>
+            </div>
+            <div class="form-group row">
+              <!-- <label for="inputEmail3" class="col-md-2 col-form-label">Email</label> -->
+              <div class="col-md-2">Residence</div>
+              <div class="col-md-7">
+                <label for="personLiveReason">Does this person usually live or stay somewhere else?</label>
+                <select class="form-control" id="personLiveReason" placeholder="Reason Living in House">
+                  <option value="" selected disabled>Select reason.</option>                    
+                  <option value="No">No.</option>
+                  <option value="Y-College">Yes, for college.</option>
+                  <option value="Y-Military-Assign">Yes, for a military assignment.</option>
+                  <option value="Y-Job-Business">Yes, for a job or business.</option>
+                  <option value="Y-Nursing">Yes, in a nursing home</option>
+                  <option value="Y-Parent-Relative">Yes, with a parent or other relative.</option>
+                  <option value="Y-Seasonal-Second-Res">Yes, at a seasonal or second residence.</option>
+                  <option value="Y-Jail-Prison">Yes, in a jail or prison.</option>
+                  <option value="Y-Another-Reason">Yes, for another reason.</option>           
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">Relation</div>
+              <div class="col-md-7">
+                <label for="personRelation">How is this person related to Person 1?</label>
+                <select class="form-control" id="personRelation">
+                  <option value="" selected disabled>Select reason.</option>                    
+                  <option value="Oppsex-Husb-Wife-Spouse">Opposite-sex husband/wife/spouse.</option>
+                  <option value="Opp-Sex-Unmarr-Part">Opposite-sex unmarried partner.</option>
+                  <option value="SS-Husb-Wife-Spouse">Same-sex husband/wife/spouse.</option>
+                  <option value="SS-Unmarr-Part">Same-sex unmarried partner.</option>
+                  <option value="Bio-Son-Daughter">Biological son or daughter.</option>
+                  <option value="Adopted-Son-Daughter">Adopted son or daughter.</option>
+                  <option value="Stepson-Stepdaughter">Stepson or stepdaughter.</option>
+                  <option value="Yes-Jail-Prison">Yes, in a jail or prison.</option>
+                  <option value="Brother-Sister">Brother or sister.</option>                   
+                  <option value="Father-Mother">Father or mother.</option>
+                  <option value="Grandchild">Grandchild.</option>
+                  <option value="Parent-In-Law">Parent-in-law.</option>
+                  <option value="Son-Daught-Inlaw">Son-in-law or daughter-in-law.</option>
+                  <option value="Other-Relative">Other relative.</option>
+                  <option value="Room-House-mate">Roommate or housemate.</option>
+                  <option value="Fosterchild">Foster child.</option>
+                  <option value="Other-nonrelative">Other nonrelative.</option>                              
+                </select>              
+              </div>             
+            </div>
+            <div class="form-group row">
+              <div class="col-md-7">
+              </div>
+              <div class="col-md-2">
+                <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
+      <!-- END ADD PERSON SECTION -->
+
     </div>
 
-  <!--       <legend class="col-form-label col-sm-2 pt-0">Radios</legend> -->
-  </form>
-</div>
-
-
-
-
-
-      <br/>
-      <br/>
-      <hr/>
-      <p id="accountAddress" class="text-center"></p>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>            
-
-
-
+    <br/>
+    <hr/>
+    <p id="accountAddress" class="text-center"></p>
+    <br/>
+    <br/>
+    <br/>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -322,8 +349,8 @@
 
 
 <!--         <div class="form-group">
-        <label for="happy" class="col-sm-4 col-md-4 control-label text-right">Are you happy ?</label>
-        <div class="col-sm-7 col-md-7">
+        <label for="happy" class="col-md-4 col-md-4 control-label text-right">Are you happy ?</label>
+        <div class="col-md-7 col-md-7">
           <div class="input-group">
             <div id="radioBtn" class="btn-group">
               <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>

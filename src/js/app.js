@@ -57,11 +57,13 @@ App = {
     var loader = $("#loader");
     var content = $("#content");
     var peopleDataFull = [];
+    var keyGenSection = $("#keyGenSection");
+    var keyVerifySection = $("#keyVerifySection");
     var addHouseSection = $("#addHouseSection");
     var addPersonSection = $("#addPersonSection");
     var houseInfoSection = $("#houseInfoSection");
     var addPersonForm = $("#addPersonForm");
-    var residentSection = $("#residentSection");
+    var residentTableSection = $("#residentTableSection");
 
     loader.show();
     content.hide();
@@ -91,10 +93,10 @@ App = {
       }
       console.log(myHouse);
 
-      $("#maxResidents").html("Max residents " + myHouse[1].c[0]);
-      $("#extraResidents").html("Additional residents:" + myHouse[2].c[0]); 
-      $("#houseType").html("House type:" + myHouse[3]);
-      $("#resiListArray").html("resident IDs : " + myHouse[4]);
+      $("#maxResidents").html("Max residents: " + "<b>" + myHouse[1].c[0] + "</b>");
+      $("#extraResidents").html("Additional residents: " + "<b>" + myHouse[2].c[0] + "</b>"); 
+      $("#houseType").html("House type: " + "<b>" + myHouse[3] + "</b>");
+      $("#resiListArray").html("resident IDs : " + "<b>" + myHouse[4] + "</b>");
 
       App.residentIds = myHouse[4];
       return CensusInstance.getPeople.call(App.residentIds);
@@ -119,7 +121,7 @@ App = {
       var peopleList = peopleDataFull[0];
       console.log(peopleList);
 
-      if (peopleList.length > 0) {
+      if (peopleList[0].length > 0) {
         App.hasPeople = true;
       }
 
@@ -157,12 +159,14 @@ App = {
 
     }).then(function() {
       if (App.hasHouse === true) {
+        keyGenSection.hide();
+        keyVerifySection.hide();
         addHouseSection.hide();
+        houseInfoSection.show();        
         addPersonSection.show();
-        houseInfoSection.show();
       }
-      if (App.hasPeople === false) {
-        residentSection.hide();
+      if (App.hasPeople === true) {
+        residentTableSection.show();
       }
       loader.hide();
       content.show();
@@ -217,7 +221,7 @@ App = {
   },
 
   getKeyValidity: function() {
-    var privateKey = $('#privateKey').val();
+    var privateKey = $('#verifyKey').val();
     var publicKey;
 
     // Hash private key then refactors to public key
@@ -229,6 +233,7 @@ App = {
         return instance.getKeyValidity(publicKey).then(function(boolResult) {
           if (boolResult === true) {
             alert("Valid key");
+            App.isVerified = true;
           }
           else {
             alert("Invalid key.");
@@ -280,15 +285,15 @@ App = {
               // Add house
               return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
             }).then(function(result) {
-              $("#content").hide();
-              $("#loader").show();
+              // $("#content").hide();
+              // $("#loader").show();
             }).catch(function(err) {
               console.error(err);
             });
-            alert("hash match: TRUE");
+            alert("Valid key.");
           }
           else {
-            alert("hash match: FALSE");
+            alert("Invalid key.");
           }
         });
       });
