@@ -33,7 +33,7 @@
         <legend class="border-bottom mb-6 legend-details">Claim a Census key</legend>
         <div class="col-md-6" id="serialInfo">
           <h5>Key Generator</h5>
-          <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-warning btn-sm">generate</button>
+          <button type="button" onclick="App.generateKey(); return false" id="generateSerial" class="btn btn-secondary btn-sm">generate</button>
           <h4 id="generatedPassword"></h4>
           <h6 id="generatedHash"></h6>
         </div>
@@ -46,7 +46,7 @@
           <div class="input-group" id="verifyList">
             <input type="text" class="form-control input-sm" id="verifyKey" placeholder="private key">
             <span class="input-group-btn">
-            <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-warning btn-sm">verify</button>
+            <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-secondary btn-sm">verify</button>
             </span>
           </div>
         </div>
@@ -60,12 +60,11 @@
           <img src="/images/happyhouse.png" id="house-image" alt="Mountain">
         </div>
         <div class="col-md-8">
-          <p class="lead"><strong>
-            Your house information.
-          </strong></p>
+          <p class="lead"><strong>Your house information.</strong></p>
           <p id="maxResidents"></p>
           <p id="extraResidents"></p>
           <p id="houseType"></p>
+          <p id="houseStateCode"></p>          
           <p id="resiListArray"></p>
         </div> 
         <div class="col-md-2">
@@ -80,6 +79,16 @@
       <legend class="border-bottom mb-4">Register your House</legend>
         <div class="col-md-12" id="addHouseForm">
           <form onSubmit="App.addHouse(); return false">
+            <div class="form-group row">
+              <div class="col-md-2">
+                State
+              </div>
+              <div class="col-md-2">
+                <select class="form-control" id="stateSelect" placeholder="State">
+                  <option value="" selected disabled>Select state.</option>                          
+                </select>
+              </div>
+            </div>            
             <div class="form-group row">
               <div class="col-md-2">
                 Main
@@ -118,16 +127,18 @@
               <div class="col-md-2">Private key</div>
               <div class="col-md-6">
                 <input type="text" class="form-control" id="privateKey" placeholder="Required for registration." required>
+              </div>           
+            </div>
+            <div class="form-group row">
+              <div class="col-md-2">
               </div>
               <div class="col-md-2">
-                <button type="submit" class="btn btn-info btn-sm">Register House</button>
-              </div>              
-          </div> 
-          </form>
+              <button type="submit" class="btn btn-warning btn-sm">Register House</button>          
+              </div>           
+            </div>
+            </form>
+          </div>
         </div>
-      </div>
-
-
       <!-- END ADD HOUSE SECTION -->
 
       <br/>
@@ -139,7 +150,7 @@
             <table class="table table-sm">
               <thead>
                 <tr>
-                  <th scope="col">registered?</th>
+                  <th scope="col">ID #</th>
                   <th scope="col">is male</th>
                   <th scope="col">is hispanic</th>
                   <th scope="col">age</th>
@@ -277,8 +288,8 @@
               </div>             
             </div>
             <div class="form-group row">
-              <div class="col-md-7">
-              </div>
+              <div class="col-md-2">
+              </div>              
               <div class="col-md-2">
                 <button type="submit" class="btn btn-warning btn-sm">Add Person</button>
               </div>
@@ -312,34 +323,45 @@
       }
       return number;
     }
-    $(document).ready(function () {
-            var age = [], month = [], day = [], year = [];
 
-            for (var i = 1; i <= 125; i++) {
-                age.push(padToTwo(i));
-            }
-            for (var i = 1; i <= 12; i++) {
-                month.push(padToTwo(i));
-            }
-            for (var i = 1; i <= 31; i++) {
-                day.push(padToTwo(i));
-            }
-            for (var i = 1900; i <= (new Date().getFullYear()); i++) {
-                year.push(i);
-            }
-            $.each(age, function (index, d) {
-                $("#uage").append("<option value = '"+d+"'>"+d+"</option>");
-            });
-            $.each(day, function (index, d) {
-                $("#bday").append("<option value = '"+d+"'>"+d+"</option>");
-            });
-            $.each(month, function (index, m) {
-                $("#bmonth").append("<option value = '"+m+"'>"+m+"</option>");
-            });
-            $.each(year, function (index, y) {
-                $("#byear").append("<option value = '"+y+"'>"+y+"</option>");
-            });
-});
+    $(document).ready(function () {
+      var statesList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'DistrictofColumbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+      var states = [], age = [], month = [], day = [], year = [];
+
+      for (var i = 1; i <= statesList.length; i++) {
+          states.push(padToTwo(i));
+      }
+
+      for (var i = 1; i <= 125; i++) {
+          age.push(padToTwo(i));
+      }
+      for (var i = 1; i <= 12; i++) {
+          month.push(padToTwo(i));
+      }
+      for (var i = 1; i <= 31; i++) {
+          day.push(padToTwo(i));
+      }
+      for (var i = 1900; i <= (new Date().getFullYear()); i++) {
+          year.push(i);
+      }
+      $.each(states, function (index, s) {
+          $("#stateSelect").append("<option value = '"+s+"'>"+statesList[s-1]+"</option>");
+      });      
+      $.each(age, function (index, a) {
+          $("#uage").append("<option value = '"+a+"'>"+a+"</option>");
+      });
+      $.each(day, function (index, d) {
+          $("#bday").append("<option value = '"+d+"'>"+d+"</option>");
+      });
+      $.each(month, function (index, m) {
+          $("#bmonth").append("<option value = '"+m+"'>"+m+"</option>");
+      });
+      $.each(year, function (index, y) {
+          $("#byear").append("<option value = '"+y+"'>"+y+"</option>");
+      });
+    });
+
   </script>
   </body>
 </html>

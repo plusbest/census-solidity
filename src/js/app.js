@@ -44,10 +44,11 @@ App = {
   listenForEvents: function() {
     App.contracts.Census.deployed().then(function(instance) {
       instance.houseAddedEvent({}, {
-        fromBlock: 0,
+        fromBlock: 'latest',
         toBlock: 'latest'
       }).watch(function(error, event) {
         console.log("event triggered", event);
+        return App.render();
       });
     });
   },
@@ -96,9 +97,9 @@ App = {
       $("#maxResidents").html("Max residents: " + "<b>" + myHouse[1].c[0] + "</b>");
       $("#extraResidents").html("Additional residents: " + "<b>" + myHouse[2].c[0] + "</b>"); 
       $("#houseType").html("House type: " + "<b>" + myHouse[3] + "</b>");
-      $("#resiListArray").html("resident IDs : " + "<b>" + myHouse[4] + "</b>");
+      $("#houseStateCode").html("State code: " + "<b>" + myHouse[4] + "</b>");      
 
-      App.residentIds = myHouse[4];
+      App.residentIds = myHouse[5];
       return CensusInstance.getPeople.call(App.residentIds);
 
       // TODO: get info from getPeopleMore()
@@ -255,6 +256,7 @@ App = {
   addHouse: function() {
     var maxResidents = $('#maxResi').val();
     var extraResidents = $('#extraResi').val();
+    var houseStateCode = $('#stateSelect option:selected').val();    
     var houseType = $('#houseSelect option:selected').val();
     var privateKey = $('#privateKey').val();
 
@@ -283,7 +285,7 @@ App = {
             // Create Census instance
             App.contracts.Census.deployed().then(function(instance) {
               // Add house
-              return instance.addHouse(maxResidents, extraResidents, houseType, { from: App.account });
+              return instance.addHouse(maxResidents, extraResidents, houseStateCode, houseType, { from: App.account });
             }).then(function(result) {
               // $("#content").hide();
               // $("#loader").show();

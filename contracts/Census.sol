@@ -3,16 +3,8 @@ pragma experimental ABIEncoderV2;
 
 contract Census {
     
-    // ORACLE: MASTER ADDRESS FILE
-    // a token is created for every address on file
-    // this token is used as a one-time verification
-    // verifyToken function will verify token is valid
-    // once verified, will grant address permission to
-    // complete Census.
-    // Number of tokens generated will coincide with total
-    // verified address and token cannot be traced to address
-    
-    
+    // ORACLE VERIFICATION: etc etc.
+
     // Initialize contract owner
     address public owner;
 
@@ -27,10 +19,14 @@ contract Census {
         uint maxResidents;
         uint extraResidents;
         string houseType; // House, Apartment, Mobile Home
+        uint8 stateCode;
         uint[] residentList;
     }
 
     // Person struct
+    // NOTE: Params race, liveReason, and relation stored as bytes32
+    // because arrays of strings are not supported in web3 and return
+    // blank/empty. Array of bytes are used then converted in web3.
     struct Person {
         bool registered;
         uint id; // peopleCount at time of transaction
@@ -44,7 +40,6 @@ contract Census {
         bytes32 relation;
     }
     
-
     // stores index of 'Houses' struct by address
     mapping(address => House) public houses;
 
@@ -53,7 +48,8 @@ contract Census {
 
     event houseAddedEvent (
     uint indexed _maxResidents,
-    uint indexed _extraResidents
+    uint indexed _extraResidents,
+    uint8 indexed _stateCode
     );
 
     // Initialized at contract creation
@@ -64,11 +60,10 @@ contract Census {
         houseCount = 0;
     }
 
-    // function verifyTokenOracle(bytes32 _key) private returns (bool) {
-        
-    // }
-
-    function addHouse(uint _maxResidents, uint _extraResidents, string memory _housetype) public {
+    function addHouse(uint _maxResidents,
+                      uint _extraResidents,
+                      uint8 _stateCode,
+                      string memory _housetype) public {
         
         // Ensure house is not already registered for address
         require(houses[msg.sender].registered == false, "This address has already registered a house.");
@@ -77,14 +72,19 @@ contract Census {
         uint[] memory emptyList = new uint[](0);
         
         // Create new house struct
-        House memory newhouse = House(true, _maxResidents, _extraResidents, _housetype, emptyList);
+        House memory newhouse = House(true,
+                                      _maxResidents,
+                                      _extraResidents,
+                                      _housetype,
+                                      _stateCode,
+                                      emptyList);
 
         houses[msg.sender] = newhouse;
 
         // Increase global house count
         houseCount++;
 
-        emit houseAddedEvent(_maxResidents, _extraResidents);
+        emit houseAddedEvent(_maxResidents, _extraResidents, _stateCode);
     }
 
     function addPerson(bool _ismale,
@@ -122,7 +122,12 @@ contract Census {
     }
 
     // Return House struct params
-    function getHouse() public view returns (bool, uint, uint, string memory, uint[] memory) {
+    function getHouse() public view returns (bool,
+                                             uint,
+                                             uint,
+                                             string memory,
+                                             uint8,
+                                             uint[] memory) {
         
         House storage thisHouse = houses[msg.sender];
 
@@ -130,9 +135,10 @@ contract Census {
         uint resiNum = thisHouse.maxResidents;
         uint resiAdd = thisHouse.extraResidents;
         string storage houseType = thisHouse.houseType;
+        uint8 stateCode = thisHouse.stateCode;
         uint[] memory resiList = thisHouse.residentList;
 
-        return (resiValid, resiNum, resiAdd, houseType, resiList);
+        return (resiValid, resiNum, resiAdd, houseType, stateCode, resiList);
     }
 
     // Return Person struct params
@@ -169,7 +175,7 @@ contract Census {
     }
 
     // TEST FUNCTION
-    function getPeople(uint[] memory resiNums) public view returns (bool[] memory,
+    function getPeople(uint[] memory resiNums) public view returns (uint[] memory,
                                                                     bool[] memory,
                                                                     bool[] memory,
                                                                     uint[] memory,
@@ -180,7 +186,7 @@ contract Census {
             require(people[resiNums[i]].registered == true, "Invalid person ID requested.");
         }
       
-        bool[] memory registered = new bool[](resiNums.length);
+        uint[] memory id = new uint[](resiNums.length);
         bool[] memory isMale = new bool[](resiNums.length);
         bool[] memory isHispanic = new bool[](resiNums.length);
         uint[] memory age = new uint[](resiNums.length);
@@ -189,14 +195,14 @@ contract Census {
 
         for (uint i = 0; i < resiNums.length; i++) {
 
-            registered[i] = people[resiNums[i]].registered;
+            id[i] = people[resiNums[i]].id;
             isMale[i] = people[resiNums[i]].isMale;
             isHispanic[i] = people[resiNums[i]].isHispanic;
             age[i] = people[resiNums[i]].age;
             birthDate[i] = people[resiNums[i]].birthDate;
             race[i] = people[resiNums[i]].race;
         }
-        return (registered, isMale, isHispanic, age, birthDate, race);
+        return (id, isMale, isHispanic, age, birthDate, race);
     }
 
     // TEST FUNCTION
