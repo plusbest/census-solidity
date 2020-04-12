@@ -126,14 +126,14 @@
     "absolutePath": "/C/Users/Jerrbear/Desktop/solidity/census/contracts/Oracle.sol",
     "exportedSymbols": {
       "Oracle": [
-        999
+        1000
       ]
     },
-    "id": 1000,
+    "id": 1001,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 860,
+        "id": 861,
         "literals": [
           "solidity",
           "^",
@@ -149,19 +149,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 999,
+        "id": 1000,
         "linearizedBaseContracts": [
-          999
+          1000
         ],
         "name": "Oracle",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 862,
+            "id": 863,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "289:13:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -170,7 +170,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 861,
+              "id": 862,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "289:7:2",
@@ -185,10 +185,10 @@
           },
           {
             "constant": false,
-            "id": 864,
+            "id": 865,
             "name": "totalKeys",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "311:21:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -197,7 +197,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 863,
+              "id": 864,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "311:4:2",
@@ -211,10 +211,10 @@
           },
           {
             "constant": false,
-            "id": 866,
+            "id": 867,
             "name": "maxKeys",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "339:19:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -223,7 +223,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 865,
+              "id": 866,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "339:4:2",
@@ -237,14 +237,14 @@
           },
           {
             "canonicalName": "Oracle.Key",
-            "id": 875,
+            "id": 876,
             "members": [
               {
                 "constant": false,
-                "id": 868,
+                "id": 869,
                 "name": "valid",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "389:10:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -253,7 +253,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 867,
+                  "id": 868,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "389:4:2",
@@ -267,10 +267,10 @@
               },
               {
                 "constant": false,
-                "id": 870,
+                "id": 871,
                 "name": "claimed",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "410:12:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -279,7 +279,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 869,
+                  "id": 870,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "410:4:2",
@@ -293,10 +293,10 @@
               },
               {
                 "constant": false,
-                "id": 872,
+                "id": 873,
                 "name": "id",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "433:7:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -305,7 +305,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 871,
+                  "id": 872,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "433:4:2",
@@ -319,10 +319,10 @@
               },
               {
                 "constant": false,
-                "id": 874,
+                "id": 875,
                 "name": "signedHash",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "451:18:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -331,7 +331,7 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 873,
+                  "id": 874,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
                   "src": "451:7:2",
@@ -346,27 +346,27 @@
             ],
             "name": "Key",
             "nodeType": "StructDefinition",
-            "scope": 999,
+            "scope": 1000,
             "src": "367:110:2",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 879,
+            "id": 880,
             "name": "keys",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "641:28:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
               "typeString": "mapping(address => struct Oracle.Key)"
             },
             "typeName": {
-              "id": 878,
+              "id": 879,
               "keyType": {
-                "id": 876,
+                "id": 877,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "649:7:2",
@@ -378,18 +378,18 @@
               "nodeType": "Mapping",
               "src": "641:23:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                 "typeString": "mapping(address => struct Oracle.Key)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 877,
+                "id": 878,
                 "name": "Key",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 875,
+                "referencedDeclaration": 876,
                 "src": "660:3:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                  "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                   "typeString": "struct Oracle.Key"
                 }
               }
@@ -399,25 +399,25 @@
           },
           {
             "body": {
-              "id": 895,
+              "id": 896,
               "nodeType": "Block",
               "src": "699:103:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 885,
+                    "id": 886,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 882,
+                      "id": 883,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 862,
+                      "referencedDeclaration": 863,
                       "src": "710:5:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -430,18 +430,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 883,
+                        "id": 884,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1014,
+                        "referencedDeclaration": 1015,
                         "src": "718:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 884,
+                      "id": 885,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -461,25 +461,25 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 886,
+                  "id": 887,
                   "nodeType": "ExpressionStatement",
                   "src": "710:18:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 889,
+                    "id": 890,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 887,
+                      "id": 888,
                       "name": "totalKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 864,
+                      "referencedDeclaration": 865,
                       "src": "739:9:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -491,7 +491,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 888,
+                      "id": 889,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -512,25 +512,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 890,
+                  "id": 891,
                   "nodeType": "ExpressionStatement",
                   "src": "739:13:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 893,
+                    "id": 894,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 891,
+                      "id": 892,
                       "name": "maxKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 866,
+                      "referencedDeclaration": 867,
                       "src": "763:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -542,7 +542,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "313030",
-                      "id": 892,
+                      "id": 893,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -563,32 +563,32 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 894,
+                  "id": 895,
                   "nodeType": "ExpressionStatement",
                   "src": "763:13:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 896,
+            "id": 897,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 880,
+              "id": 881,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "689:2:2"
             },
             "returnParameters": {
-              "id": 881,
+              "id": 882,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "699:0:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "678:124:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -596,7 +596,7 @@
           },
           {
             "body": {
-              "id": 920,
+              "id": 921,
               "nodeType": "Block",
               "src": "879:296:2",
               "statements": [
@@ -610,7 +610,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 905,
+                        "id": 906,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -619,18 +619,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 902,
+                            "id": 903,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1014,
+                            "referencedDeclaration": 1015,
                             "src": "934:3:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 903,
+                          "id": 904,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -648,11 +648,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 904,
+                          "id": 905,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 862,
+                          "referencedDeclaration": 863,
                           "src": "948:5:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -668,7 +668,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4f6e6c792074686520636f6e74726163742063726561746f722063616e2073657420746869732e",
-                        "id": 906,
+                        "id": 907,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -695,21 +695,21 @@
                           "typeString": "literal_string \"Only the contract creator can set this.\""
                         }
                       ],
-                      "id": 901,
+                      "id": 902,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "926:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 907,
+                    "id": 908,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -723,7 +723,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 908,
+                  "id": 909,
                   "nodeType": "ExpressionStatement",
                   "src": "926:71:2"
                 },
@@ -737,18 +737,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 912,
+                        "id": 913,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 910,
+                          "id": 911,
                           "name": "_limit",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 898,
+                          "referencedDeclaration": 899,
                           "src": "1054:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -759,11 +759,11 @@
                         "operator": ">",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 911,
+                          "id": 912,
                           "name": "maxKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 866,
+                          "referencedDeclaration": 867,
                           "src": "1063:7:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -779,7 +779,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "596f752063616e206f6e6c7920696e637265617365206d61784b657973206c696d69742e",
-                        "id": 913,
+                        "id": 914,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -806,21 +806,21 @@
                           "typeString": "literal_string \"You can only increase maxKeys limit.\""
                         }
                       ],
-                      "id": 909,
+                      "id": 910,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "1046:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 914,
+                    "id": 915,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -834,25 +834,25 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 915,
+                  "id": 916,
                   "nodeType": "ExpressionStatement",
                   "src": "1046:65:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 918,
+                    "id": 919,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 916,
+                      "id": 917,
                       "name": "maxKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 866,
+                      "referencedDeclaration": 867,
                       "src": "1151:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -863,11 +863,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 917,
+                      "id": 918,
                       "name": "_limit",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 898,
+                      "referencedDeclaration": 899,
                       "src": "1161:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -880,29 +880,29 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 919,
+                  "id": 920,
                   "nodeType": "ExpressionStatement",
                   "src": "1151:16:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 921,
+            "id": 922,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setKeyLimit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 899,
+              "id": 900,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 898,
+                  "id": 899,
                   "name": "_limit",
                   "nodeType": "VariableDeclaration",
-                  "scope": 921,
+                  "scope": 922,
                   "src": "859:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -911,7 +911,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 897,
+                    "id": 898,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "859:4:2",
@@ -927,12 +927,12 @@
               "src": "858:13:2"
             },
             "returnParameters": {
-              "id": 900,
+              "id": 901,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "879:0:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "838:337:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -940,7 +940,7 @@
           },
           {
             "body": {
-              "id": 963,
+              "id": 964,
               "nodeType": "Block",
               "src": "1457:389:2",
               "statements": [
@@ -954,18 +954,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 931,
+                        "id": 932,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 929,
+                          "id": 930,
                           "name": "maxKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 866,
+                          "referencedDeclaration": 867,
                           "src": "1571:7:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -977,7 +977,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "30",
-                          "id": 930,
+                          "id": 931,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1001,7 +1001,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "43616e6e6f7420637265617465206b65792e204e6f206b6579206c696d697420736574206279206f776e65722e",
-                        "id": 932,
+                        "id": 933,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1028,21 +1028,21 @@
                           "typeString": "literal_string \"Cannot create key. No key limit set by owner.\""
                         }
                       ],
-                      "id": 928,
+                      "id": 929,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "1563:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 933,
+                    "id": 934,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1056,7 +1056,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 934,
+                  "id": 935,
                   "nodeType": "ExpressionStatement",
                   "src": "1563:69:2"
                 },
@@ -1070,18 +1070,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 938,
+                        "id": 939,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 936,
+                          "id": 937,
                           "name": "totalKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 864,
+                          "referencedDeclaration": 865,
                           "src": "1651:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1092,11 +1092,11 @@
                         "operator": "<=",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 937,
+                          "id": 938,
                           "name": "maxKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 866,
+                          "referencedDeclaration": 867,
                           "src": "1664:7:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1112,7 +1112,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4d6178696d756d206b65797320726561636865642e",
-                        "id": 939,
+                        "id": 940,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1139,21 +1139,21 @@
                           "typeString": "literal_string \"Maximum keys reached.\""
                         }
                       ],
-                      "id": 935,
+                      "id": 936,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "1643:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 940,
+                    "id": 941,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1167,37 +1167,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 941,
+                  "id": 942,
                   "nodeType": "ExpressionStatement",
                   "src": "1643:54:2"
                 },
                 {
                   "assignments": [
-                    943
+                    944
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 943,
+                      "id": 944,
                       "name": "newKey",
                       "nodeType": "VariableDeclaration",
-                      "scope": 963,
+                      "scope": 964,
                       "src": "1710:18:2",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                         "typeString": "struct Oracle.Key"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 942,
+                        "id": 943,
                         "name": "Key",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 875,
+                        "referencedDeclaration": 876,
                         "src": "1710:3:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key"
                         }
                       },
@@ -1205,30 +1205,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 947,
+                  "id": 948,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 944,
+                      "id": 945,
                       "name": "keys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 879,
+                      "referencedDeclaration": 880,
                       "src": "1731:4:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                         "typeString": "mapping(address => struct Oracle.Key storage ref)"
                       }
                     },
-                    "id": 946,
+                    "id": 947,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 945,
+                      "id": 946,
                       "name": "_address",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 923,
+                      "referencedDeclaration": 924,
                       "src": "1736:8:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1242,7 +1242,7 @@
                     "nodeType": "IndexAccess",
                     "src": "1731:14:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Key_$875_storage",
+                      "typeIdentifier": "t_struct$_Key_$876_storage",
                       "typeString": "struct Oracle.Key storage ref"
                     }
                   },
@@ -1252,7 +1252,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 952,
+                    "id": 953,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1261,25 +1261,25 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 948,
+                        "id": 949,
                         "name": "newKey",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 943,
+                        "referencedDeclaration": 944,
                         "src": "1756:6:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key storage pointer"
                         }
                       },
-                      "id": 950,
+                      "id": 951,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "signedHash",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 874,
+                      "referencedDeclaration": 875,
                       "src": "1756:17:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -1290,11 +1290,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 951,
+                      "id": 952,
                       "name": "signedHash",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 925,
+                      "referencedDeclaration": 926,
                       "src": "1776:10:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -1307,14 +1307,14 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "id": 953,
+                  "id": 954,
                   "nodeType": "ExpressionStatement",
                   "src": "1756:30:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 958,
+                    "id": 959,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1323,25 +1323,25 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 954,
+                        "id": 955,
                         "name": "newKey",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 943,
+                        "referencedDeclaration": 944,
                         "src": "1797:6:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key storage pointer"
                         }
                       },
-                      "id": 956,
+                      "id": 957,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "valid",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 868,
+                      "referencedDeclaration": 869,
                       "src": "1797:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1353,7 +1353,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 957,
+                      "id": 958,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1374,14 +1374,14 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 959,
+                  "id": 960,
                   "nodeType": "ExpressionStatement",
                   "src": "1797:19:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 961,
+                    "id": 962,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1392,11 +1392,11 @@
                     "src": "1827:11:2",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 960,
+                      "id": 961,
                       "name": "totalKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 864,
+                      "referencedDeclaration": 865,
                       "src": "1827:9:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1408,29 +1408,29 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 962,
+                  "id": 963,
                   "nodeType": "ExpressionStatement",
                   "src": "1827:11:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 964,
+            "id": 965,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "keyGen",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 926,
+              "id": 927,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 923,
+                  "id": 924,
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
-                  "scope": 964,
+                  "scope": 965,
                   "src": "1412:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1439,7 +1439,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 922,
+                    "id": 923,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1412:7:2",
@@ -1454,10 +1454,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 925,
+                  "id": 926,
                   "name": "signedHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 964,
+                  "scope": 965,
                   "src": "1430:18:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1466,7 +1466,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 924,
+                    "id": 925,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1430:7:2",
@@ -1482,12 +1482,12 @@
               "src": "1411:38:2"
             },
             "returnParameters": {
-              "id": 927,
+              "id": 928,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1457:0:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "1396:450:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1495,37 +1495,37 @@
           },
           {
             "body": {
-              "id": 980,
+              "id": 981,
               "nodeType": "Block",
               "src": "1963:87:2",
               "statements": [
                 {
                   "assignments": [
-                    972
+                    973
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 972,
+                      "id": 973,
                       "name": "targetKey",
                       "nodeType": "VariableDeclaration",
-                      "scope": 980,
+                      "scope": 981,
                       "src": "1974:20:2",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 971,
+                        "id": 972,
                         "name": "Key",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 875,
+                        "referencedDeclaration": 876,
                         "src": "1974:3:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key"
                         }
                       },
@@ -1533,30 +1533,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 976,
+                  "id": 977,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 973,
+                      "id": 974,
                       "name": "keys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 879,
+                      "referencedDeclaration": 880,
                       "src": "1997:4:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                         "typeString": "mapping(address => struct Oracle.Key storage ref)"
                       }
                     },
-                    "id": 975,
+                    "id": 976,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 974,
+                      "id": 975,
                       "name": "_keyID",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 966,
+                      "referencedDeclaration": 967,
                       "src": "2002:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1570,7 +1570,7 @@
                     "nodeType": "IndexAccess",
                     "src": "1997:12:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Key_$875_storage",
+                      "typeIdentifier": "t_struct$_Key_$876_storage",
                       "typeString": "struct Oracle.Key storage ref"
                     }
                   },
@@ -1582,55 +1582,55 @@
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 977,
+                      "id": 978,
                       "name": "targetKey",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 972,
+                      "referencedDeclaration": 973,
                       "src": "2027:9:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key memory"
                       }
                     },
-                    "id": 978,
+                    "id": 979,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "valid",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 868,
+                    "referencedDeclaration": 869,
                     "src": "2027:15:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 970,
-                  "id": 979,
+                  "functionReturnParameters": 971,
+                  "id": 980,
                   "nodeType": "Return",
                   "src": "2020:22:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 981,
+            "id": 982,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "keyVerify",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 967,
+              "id": 968,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 966,
+                  "id": 967,
                   "name": "_keyID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 981,
+                  "scope": 982,
                   "src": "1908:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1639,7 +1639,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 965,
+                    "id": 966,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1908:7:2",
@@ -1656,15 +1656,15 @@
               "src": "1907:16:2"
             },
             "returnParameters": {
-              "id": 970,
+              "id": 971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 969,
+                  "id": 970,
                   "name": "_keyValidity",
                   "nodeType": "VariableDeclaration",
-                  "scope": 981,
+                  "scope": 982,
                   "src": "1944:17:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1673,7 +1673,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 968,
+                    "id": 969,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1944:4:2",
@@ -1688,7 +1688,7 @@
               ],
               "src": "1943:19:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "1889:161:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -1696,37 +1696,37 @@
           },
           {
             "body": {
-              "id": 997,
+              "id": 998,
               "nodeType": "Block",
               "src": "2223:88:2",
               "statements": [
                 {
                   "assignments": [
-                    989
+                    990
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 989,
+                      "id": 990,
                       "name": "newKey",
                       "nodeType": "VariableDeclaration",
-                      "scope": 997,
+                      "scope": 998,
                       "src": "2234:17:2",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 988,
+                        "id": 989,
                         "name": "Key",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 875,
+                        "referencedDeclaration": 876,
                         "src": "2234:3:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key"
                         }
                       },
@@ -1734,30 +1734,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 993,
+                  "id": 994,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 990,
+                      "id": 991,
                       "name": "keys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 879,
+                      "referencedDeclaration": 880,
                       "src": "2254:4:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                         "typeString": "mapping(address => struct Oracle.Key storage ref)"
                       }
                     },
-                    "id": 992,
+                    "id": 993,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 991,
+                      "id": 992,
                       "name": "_address",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 983,
+                      "referencedDeclaration": 984,
                       "src": "2259:8:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1771,7 +1771,7 @@
                     "nodeType": "IndexAccess",
                     "src": "2254:14:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Key_$875_storage",
+                      "typeIdentifier": "t_struct$_Key_$876_storage",
                       "typeString": "struct Oracle.Key storage ref"
                     }
                   },
@@ -1783,55 +1783,55 @@
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 994,
+                      "id": 995,
                       "name": "newKey",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 989,
+                      "referencedDeclaration": 990,
                       "src": "2286:6:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key memory"
                       }
                     },
-                    "id": 995,
+                    "id": 996,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "signedHash",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 874,
+                    "referencedDeclaration": 875,
                     "src": "2286:17:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 987,
-                  "id": 996,
+                  "functionReturnParameters": 988,
+                  "id": 997,
                   "nodeType": "Return",
                   "src": "2279:24:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 998,
+            "id": 999,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getKeyHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 984,
+              "id": 985,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 983,
+                  "id": 984,
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
+                  "scope": 999,
                   "src": "2164:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1840,7 +1840,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 982,
+                    "id": 983,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2164:7:2",
@@ -1857,15 +1857,15 @@
               "src": "2163:18:2"
             },
             "returnParameters": {
-              "id": 987,
+              "id": 988,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 986,
+                  "id": 987,
                   "name": "_signedHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
+                  "scope": 999,
                   "src": "2202:19:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1874,7 +1874,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 985,
+                    "id": 986,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2202:7:2",
@@ -1889,14 +1889,14 @@
               ],
               "src": "2201:21:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "2144:167:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1000,
+        "scope": 1001,
         "src": "57:2257:2"
       }
     ],
@@ -1906,14 +1906,14 @@
     "absolutePath": "/C/Users/Jerrbear/Desktop/solidity/census/contracts/Oracle.sol",
     "exportedSymbols": {
       "Oracle": [
-        999
+        1000
       ]
     },
-    "id": 1000,
+    "id": 1001,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 860,
+        "id": 861,
         "literals": [
           "solidity",
           "^",
@@ -1929,19 +1929,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 999,
+        "id": 1000,
         "linearizedBaseContracts": [
-          999
+          1000
         ],
         "name": "Oracle",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 862,
+            "id": 863,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "289:13:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1950,7 +1950,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 861,
+              "id": 862,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "289:7:2",
@@ -1965,10 +1965,10 @@
           },
           {
             "constant": false,
-            "id": 864,
+            "id": 865,
             "name": "totalKeys",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "311:21:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1977,7 +1977,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 863,
+              "id": 864,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "311:4:2",
@@ -1991,10 +1991,10 @@
           },
           {
             "constant": false,
-            "id": 866,
+            "id": 867,
             "name": "maxKeys",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "339:19:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2003,7 +2003,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 865,
+              "id": 866,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "339:4:2",
@@ -2017,14 +2017,14 @@
           },
           {
             "canonicalName": "Oracle.Key",
-            "id": 875,
+            "id": 876,
             "members": [
               {
                 "constant": false,
-                "id": 868,
+                "id": 869,
                 "name": "valid",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "389:10:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2033,7 +2033,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 867,
+                  "id": 868,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "389:4:2",
@@ -2047,10 +2047,10 @@
               },
               {
                 "constant": false,
-                "id": 870,
+                "id": 871,
                 "name": "claimed",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "410:12:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2059,7 +2059,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 869,
+                  "id": 870,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "410:4:2",
@@ -2073,10 +2073,10 @@
               },
               {
                 "constant": false,
-                "id": 872,
+                "id": 873,
                 "name": "id",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "433:7:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2085,7 +2085,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 871,
+                  "id": 872,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "433:4:2",
@@ -2099,10 +2099,10 @@
               },
               {
                 "constant": false,
-                "id": 874,
+                "id": 875,
                 "name": "signedHash",
                 "nodeType": "VariableDeclaration",
-                "scope": 875,
+                "scope": 876,
                 "src": "451:18:2",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2111,7 +2111,7 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 873,
+                  "id": 874,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
                   "src": "451:7:2",
@@ -2126,27 +2126,27 @@
             ],
             "name": "Key",
             "nodeType": "StructDefinition",
-            "scope": 999,
+            "scope": 1000,
             "src": "367:110:2",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 879,
+            "id": 880,
             "name": "keys",
             "nodeType": "VariableDeclaration",
-            "scope": 999,
+            "scope": 1000,
             "src": "641:28:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
               "typeString": "mapping(address => struct Oracle.Key)"
             },
             "typeName": {
-              "id": 878,
+              "id": 879,
               "keyType": {
-                "id": 876,
+                "id": 877,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "649:7:2",
@@ -2158,18 +2158,18 @@
               "nodeType": "Mapping",
               "src": "641:23:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                 "typeString": "mapping(address => struct Oracle.Key)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 877,
+                "id": 878,
                 "name": "Key",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 875,
+                "referencedDeclaration": 876,
                 "src": "660:3:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                  "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                   "typeString": "struct Oracle.Key"
                 }
               }
@@ -2179,25 +2179,25 @@
           },
           {
             "body": {
-              "id": 895,
+              "id": 896,
               "nodeType": "Block",
               "src": "699:103:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 885,
+                    "id": 886,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 882,
+                      "id": 883,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 862,
+                      "referencedDeclaration": 863,
                       "src": "710:5:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -2210,18 +2210,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 883,
+                        "id": 884,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1014,
+                        "referencedDeclaration": 1015,
                         "src": "718:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 884,
+                      "id": 885,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2241,25 +2241,25 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 886,
+                  "id": 887,
                   "nodeType": "ExpressionStatement",
                   "src": "710:18:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 889,
+                    "id": 890,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 887,
+                      "id": 888,
                       "name": "totalKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 864,
+                      "referencedDeclaration": 865,
                       "src": "739:9:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2271,7 +2271,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 888,
+                      "id": 889,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2292,25 +2292,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 890,
+                  "id": 891,
                   "nodeType": "ExpressionStatement",
                   "src": "739:13:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 893,
+                    "id": 894,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 891,
+                      "id": 892,
                       "name": "maxKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 866,
+                      "referencedDeclaration": 867,
                       "src": "763:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2322,7 +2322,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "313030",
-                      "id": 892,
+                      "id": 893,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2343,32 +2343,32 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 894,
+                  "id": 895,
                   "nodeType": "ExpressionStatement",
                   "src": "763:13:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 896,
+            "id": 897,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 880,
+              "id": 881,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "689:2:2"
             },
             "returnParameters": {
-              "id": 881,
+              "id": 882,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "699:0:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "678:124:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2376,7 +2376,7 @@
           },
           {
             "body": {
-              "id": 920,
+              "id": 921,
               "nodeType": "Block",
               "src": "879:296:2",
               "statements": [
@@ -2390,7 +2390,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 905,
+                        "id": 906,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2399,18 +2399,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 902,
+                            "id": 903,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1014,
+                            "referencedDeclaration": 1015,
                             "src": "934:3:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 903,
+                          "id": 904,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2428,11 +2428,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 904,
+                          "id": 905,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 862,
+                          "referencedDeclaration": 863,
                           "src": "948:5:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2448,7 +2448,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4f6e6c792074686520636f6e74726163742063726561746f722063616e2073657420746869732e",
-                        "id": 906,
+                        "id": 907,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2475,21 +2475,21 @@
                           "typeString": "literal_string \"Only the contract creator can set this.\""
                         }
                       ],
-                      "id": 901,
+                      "id": 902,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "926:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 907,
+                    "id": 908,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2503,7 +2503,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 908,
+                  "id": 909,
                   "nodeType": "ExpressionStatement",
                   "src": "926:71:2"
                 },
@@ -2517,18 +2517,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 912,
+                        "id": 913,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 910,
+                          "id": 911,
                           "name": "_limit",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 898,
+                          "referencedDeclaration": 899,
                           "src": "1054:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2539,11 +2539,11 @@
                         "operator": ">",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 911,
+                          "id": 912,
                           "name": "maxKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 866,
+                          "referencedDeclaration": 867,
                           "src": "1063:7:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2559,7 +2559,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "596f752063616e206f6e6c7920696e637265617365206d61784b657973206c696d69742e",
-                        "id": 913,
+                        "id": 914,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2586,21 +2586,21 @@
                           "typeString": "literal_string \"You can only increase maxKeys limit.\""
                         }
                       ],
-                      "id": 909,
+                      "id": 910,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "1046:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 914,
+                    "id": 915,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2614,25 +2614,25 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 915,
+                  "id": 916,
                   "nodeType": "ExpressionStatement",
                   "src": "1046:65:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 918,
+                    "id": 919,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 916,
+                      "id": 917,
                       "name": "maxKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 866,
+                      "referencedDeclaration": 867,
                       "src": "1151:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2643,11 +2643,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 917,
+                      "id": 918,
                       "name": "_limit",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 898,
+                      "referencedDeclaration": 899,
                       "src": "1161:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2660,29 +2660,29 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 919,
+                  "id": 920,
                   "nodeType": "ExpressionStatement",
                   "src": "1151:16:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 921,
+            "id": 922,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setKeyLimit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 899,
+              "id": 900,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 898,
+                  "id": 899,
                   "name": "_limit",
                   "nodeType": "VariableDeclaration",
-                  "scope": 921,
+                  "scope": 922,
                   "src": "859:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2691,7 +2691,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 897,
+                    "id": 898,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "859:4:2",
@@ -2707,12 +2707,12 @@
               "src": "858:13:2"
             },
             "returnParameters": {
-              "id": 900,
+              "id": 901,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "879:0:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "838:337:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2720,7 +2720,7 @@
           },
           {
             "body": {
-              "id": 963,
+              "id": 964,
               "nodeType": "Block",
               "src": "1457:389:2",
               "statements": [
@@ -2734,18 +2734,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 931,
+                        "id": 932,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 929,
+                          "id": 930,
                           "name": "maxKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 866,
+                          "referencedDeclaration": 867,
                           "src": "1571:7:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2757,7 +2757,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "30",
-                          "id": 930,
+                          "id": 931,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2781,7 +2781,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "43616e6e6f7420637265617465206b65792e204e6f206b6579206c696d697420736574206279206f776e65722e",
-                        "id": 932,
+                        "id": 933,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2808,21 +2808,21 @@
                           "typeString": "literal_string \"Cannot create key. No key limit set by owner.\""
                         }
                       ],
-                      "id": 928,
+                      "id": 929,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "1563:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 933,
+                    "id": 934,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2836,7 +2836,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 934,
+                  "id": 935,
                   "nodeType": "ExpressionStatement",
                   "src": "1563:69:2"
                 },
@@ -2850,18 +2850,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 938,
+                        "id": 939,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 936,
+                          "id": 937,
                           "name": "totalKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 864,
+                          "referencedDeclaration": 865,
                           "src": "1651:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2872,11 +2872,11 @@
                         "operator": "<=",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 937,
+                          "id": 938,
                           "name": "maxKeys",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 866,
+                          "referencedDeclaration": 867,
                           "src": "1664:7:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2892,7 +2892,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4d6178696d756d206b65797320726561636865642e",
-                        "id": 939,
+                        "id": 940,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2919,21 +2919,21 @@
                           "typeString": "literal_string \"Maximum keys reached.\""
                         }
                       ],
-                      "id": 935,
+                      "id": 936,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1017,
-                        1018
+                        1018,
+                        1019
                       ],
-                      "referencedDeclaration": 1018,
+                      "referencedDeclaration": 1019,
                       "src": "1643:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 940,
+                    "id": 941,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2947,37 +2947,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 941,
+                  "id": 942,
                   "nodeType": "ExpressionStatement",
                   "src": "1643:54:2"
                 },
                 {
                   "assignments": [
-                    943
+                    944
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 943,
+                      "id": 944,
                       "name": "newKey",
                       "nodeType": "VariableDeclaration",
-                      "scope": 963,
+                      "scope": 964,
                       "src": "1710:18:2",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                         "typeString": "struct Oracle.Key"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 942,
+                        "id": 943,
                         "name": "Key",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 875,
+                        "referencedDeclaration": 876,
                         "src": "1710:3:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key"
                         }
                       },
@@ -2985,30 +2985,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 947,
+                  "id": 948,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 944,
+                      "id": 945,
                       "name": "keys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 879,
+                      "referencedDeclaration": 880,
                       "src": "1731:4:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                         "typeString": "mapping(address => struct Oracle.Key storage ref)"
                       }
                     },
-                    "id": 946,
+                    "id": 947,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 945,
+                      "id": 946,
                       "name": "_address",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 923,
+                      "referencedDeclaration": 924,
                       "src": "1736:8:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3022,7 +3022,7 @@
                     "nodeType": "IndexAccess",
                     "src": "1731:14:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Key_$875_storage",
+                      "typeIdentifier": "t_struct$_Key_$876_storage",
                       "typeString": "struct Oracle.Key storage ref"
                     }
                   },
@@ -3032,7 +3032,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 952,
+                    "id": 953,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3041,25 +3041,25 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 948,
+                        "id": 949,
                         "name": "newKey",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 943,
+                        "referencedDeclaration": 944,
                         "src": "1756:6:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key storage pointer"
                         }
                       },
-                      "id": 950,
+                      "id": 951,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "signedHash",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 874,
+                      "referencedDeclaration": 875,
                       "src": "1756:17:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -3070,11 +3070,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 951,
+                      "id": 952,
                       "name": "signedHash",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 925,
+                      "referencedDeclaration": 926,
                       "src": "1776:10:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -3087,14 +3087,14 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "id": 953,
+                  "id": 954,
                   "nodeType": "ExpressionStatement",
                   "src": "1756:30:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 958,
+                    "id": 959,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3103,25 +3103,25 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 954,
+                        "id": 955,
                         "name": "newKey",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 943,
+                        "referencedDeclaration": 944,
                         "src": "1797:6:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key storage pointer"
                         }
                       },
-                      "id": 956,
+                      "id": 957,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "valid",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 868,
+                      "referencedDeclaration": 869,
                       "src": "1797:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -3133,7 +3133,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 957,
+                      "id": 958,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3154,14 +3154,14 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 959,
+                  "id": 960,
                   "nodeType": "ExpressionStatement",
                   "src": "1797:19:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 961,
+                    "id": 962,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3172,11 +3172,11 @@
                     "src": "1827:11:2",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 960,
+                      "id": 961,
                       "name": "totalKeys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 864,
+                      "referencedDeclaration": 865,
                       "src": "1827:9:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -3188,29 +3188,29 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 962,
+                  "id": 963,
                   "nodeType": "ExpressionStatement",
                   "src": "1827:11:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 964,
+            "id": 965,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "keyGen",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 926,
+              "id": 927,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 923,
+                  "id": 924,
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
-                  "scope": 964,
+                  "scope": 965,
                   "src": "1412:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3219,7 +3219,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 922,
+                    "id": 923,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1412:7:2",
@@ -3234,10 +3234,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 925,
+                  "id": 926,
                   "name": "signedHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 964,
+                  "scope": 965,
                   "src": "1430:18:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3246,7 +3246,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 924,
+                    "id": 925,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1430:7:2",
@@ -3262,12 +3262,12 @@
               "src": "1411:38:2"
             },
             "returnParameters": {
-              "id": 927,
+              "id": 928,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1457:0:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "1396:450:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3275,37 +3275,37 @@
           },
           {
             "body": {
-              "id": 980,
+              "id": 981,
               "nodeType": "Block",
               "src": "1963:87:2",
               "statements": [
                 {
                   "assignments": [
-                    972
+                    973
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 972,
+                      "id": 973,
                       "name": "targetKey",
                       "nodeType": "VariableDeclaration",
-                      "scope": 980,
+                      "scope": 981,
                       "src": "1974:20:2",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 971,
+                        "id": 972,
                         "name": "Key",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 875,
+                        "referencedDeclaration": 876,
                         "src": "1974:3:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key"
                         }
                       },
@@ -3313,30 +3313,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 976,
+                  "id": 977,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 973,
+                      "id": 974,
                       "name": "keys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 879,
+                      "referencedDeclaration": 880,
                       "src": "1997:4:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                         "typeString": "mapping(address => struct Oracle.Key storage ref)"
                       }
                     },
-                    "id": 975,
+                    "id": 976,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 974,
+                      "id": 975,
                       "name": "_keyID",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 966,
+                      "referencedDeclaration": 967,
                       "src": "2002:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3350,7 +3350,7 @@
                     "nodeType": "IndexAccess",
                     "src": "1997:12:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Key_$875_storage",
+                      "typeIdentifier": "t_struct$_Key_$876_storage",
                       "typeString": "struct Oracle.Key storage ref"
                     }
                   },
@@ -3362,55 +3362,55 @@
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 977,
+                      "id": 978,
                       "name": "targetKey",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 972,
+                      "referencedDeclaration": 973,
                       "src": "2027:9:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key memory"
                       }
                     },
-                    "id": 978,
+                    "id": 979,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "valid",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 868,
+                    "referencedDeclaration": 869,
                     "src": "2027:15:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 970,
-                  "id": 979,
+                  "functionReturnParameters": 971,
+                  "id": 980,
                   "nodeType": "Return",
                   "src": "2020:22:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 981,
+            "id": 982,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "keyVerify",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 967,
+              "id": 968,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 966,
+                  "id": 967,
                   "name": "_keyID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 981,
+                  "scope": 982,
                   "src": "1908:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3419,7 +3419,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 965,
+                    "id": 966,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1908:7:2",
@@ -3436,15 +3436,15 @@
               "src": "1907:16:2"
             },
             "returnParameters": {
-              "id": 970,
+              "id": 971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 969,
+                  "id": 970,
                   "name": "_keyValidity",
                   "nodeType": "VariableDeclaration",
-                  "scope": 981,
+                  "scope": 982,
                   "src": "1944:17:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3453,7 +3453,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 968,
+                    "id": 969,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1944:4:2",
@@ -3468,7 +3468,7 @@
               ],
               "src": "1943:19:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "1889:161:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -3476,37 +3476,37 @@
           },
           {
             "body": {
-              "id": 997,
+              "id": 998,
               "nodeType": "Block",
               "src": "2223:88:2",
               "statements": [
                 {
                   "assignments": [
-                    989
+                    990
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 989,
+                      "id": 990,
                       "name": "newKey",
                       "nodeType": "VariableDeclaration",
-                      "scope": 997,
+                      "scope": 998,
                       "src": "2234:17:2",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 988,
+                        "id": 989,
                         "name": "Key",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 875,
+                        "referencedDeclaration": 876,
                         "src": "2234:3:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Key_$875_storage_ptr",
+                          "typeIdentifier": "t_struct$_Key_$876_storage_ptr",
                           "typeString": "struct Oracle.Key"
                         }
                       },
@@ -3514,30 +3514,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 993,
+                  "id": 994,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 990,
+                      "id": 991,
                       "name": "keys",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 879,
+                      "referencedDeclaration": 880,
                       "src": "2254:4:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$875_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Key_$876_storage_$",
                         "typeString": "mapping(address => struct Oracle.Key storage ref)"
                       }
                     },
-                    "id": 992,
+                    "id": 993,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 991,
+                      "id": 992,
                       "name": "_address",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 983,
+                      "referencedDeclaration": 984,
                       "src": "2259:8:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3551,7 +3551,7 @@
                     "nodeType": "IndexAccess",
                     "src": "2254:14:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Key_$875_storage",
+                      "typeIdentifier": "t_struct$_Key_$876_storage",
                       "typeString": "struct Oracle.Key storage ref"
                     }
                   },
@@ -3563,55 +3563,55 @@
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 994,
+                      "id": 995,
                       "name": "newKey",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 989,
+                      "referencedDeclaration": 990,
                       "src": "2286:6:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Key_$875_memory_ptr",
+                        "typeIdentifier": "t_struct$_Key_$876_memory_ptr",
                         "typeString": "struct Oracle.Key memory"
                       }
                     },
-                    "id": 995,
+                    "id": 996,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "signedHash",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 874,
+                    "referencedDeclaration": 875,
                     "src": "2286:17:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 987,
-                  "id": 996,
+                  "functionReturnParameters": 988,
+                  "id": 997,
                   "nodeType": "Return",
                   "src": "2279:24:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 998,
+            "id": 999,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getKeyHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 984,
+              "id": 985,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 983,
+                  "id": 984,
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
+                  "scope": 999,
                   "src": "2164:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3620,7 +3620,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 982,
+                    "id": 983,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2164:7:2",
@@ -3637,15 +3637,15 @@
               "src": "2163:18:2"
             },
             "returnParameters": {
-              "id": 987,
+              "id": 988,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 986,
+                  "id": 987,
                   "name": "_signedHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 998,
+                  "scope": 999,
                   "src": "2202:19:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3654,7 +3654,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 985,
+                    "id": 986,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2202:7:2",
@@ -3669,14 +3669,14 @@
               ],
               "src": "2201:21:2"
             },
-            "scope": 999,
+            "scope": 1000,
             "src": "2144:167:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1000,
+        "scope": 1001,
         "src": "57:2257:2"
       }
     ],
@@ -3690,12 +3690,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x312d86bb78401beFB275810Ac99D298B72C9a569",
-      "transactionHash": "0x56721f8a7a764ad76dede39495f92ad25ed8d22fa0918244b81e107d0f02ecf4"
+      "address": "0x0D49AB7270440Fa532c572C81FE60a3199d7BE51",
+      "transactionHash": "0xe71467535a23b285a20e059f67759061f7dc3ad67840f019f2c3763e20271f3c"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-04-12T01:18:17.685Z",
+  "updatedAt": "2020-04-12T17:41:00.012Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

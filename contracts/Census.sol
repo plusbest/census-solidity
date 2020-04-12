@@ -128,7 +128,7 @@ contract Census {
     }
 
     // Return House struct params
-    function getHouse() public view returns (bool,
+    function getHouse(address _addr) public view returns (bool,
                                              uint,
                                              uint,
                                              uint,
@@ -136,7 +136,7 @@ contract Census {
                                              uint8,
                                              uint[] memory) {
         
-        House storage thisHouse = houses[msg.sender];
+        House storage thisHouse = houses[_addr];
 
         bool resiValid = thisHouse.registered;
         uint resiId = thisHouse.id;        

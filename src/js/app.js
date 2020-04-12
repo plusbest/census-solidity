@@ -26,9 +26,7 @@ App = {
       console.log(Oracle);
       App.contracts.Oracle = TruffleContract(Oracle);
       App.contracts.Oracle.setProvider(App.web3Provider);
-      // App.listenForEvents();
 
-      // return App.render();
     }).then (function() {
       $.getJSON("Census.json", function(Census) {
         console.log(Census);
@@ -84,7 +82,7 @@ App = {
     // Initialize Census instance
     }).then(function(instance) {
       CensusInstance = instance;
-      return CensusInstance.getHouse.call();
+      return CensusInstance.getHouse.call(App.account);
 
     // Add user House information to page
     }).then(function(myHouse) {
@@ -232,11 +230,11 @@ App = {
       App.contracts.Oracle.deployed().then(function(instance) {
         return instance.keyVerify(publicKey).then(function(boolResult) {
           if (boolResult === true) {
-            alert("Valid key");
+            alert("Valid key :).");
             App.isVerified = true;
           }
           else {
-            alert("Invalid key.");
+            alert("Invalid key :(.");
             }
           });
         });
@@ -291,10 +289,10 @@ App = {
             }).catch(function(err) {
               console.error(err);
             });
-            alert("Valid key.");
+            alert("Valid key: Confirm transaction to complete registration.");
           }
           else {
-            alert("Invalid key.");
+            alert("Invalid key: Cannot proceed with registration.");
           }
         });
       });
@@ -335,11 +333,31 @@ App = {
   },
 
   getStateHouses: function() {
-    var testStateCode = $('#testState option:selected').val();      
+    var testStateCode = $('#testState option:selected').val();  
     // var privateKey = $('#privateKey').val();
     App.contracts.Census.deployed().then(function(instance) {
       return instance.getStateHouses(testStateCode).then(function(result) {
         alert(result);
+      });
+    });
+  },
+
+  getHouseByAddr: function() {
+    var testHouseAddr = $('#testHouseAddr').val();  
+    // var privateKey = $('#privateKey').val();
+    App.contracts.Census.deployed().then(function(instance) {
+      return instance.getHouse(testHouseAddr).then(function(result) {
+      if (result[0] === true) {
+      }
+      var returnObj = {
+        'House ID': result[2].c[0],
+        'Max residents': result[1].c[0],
+        'Additional residents': result[3].c[0],
+        'House type': result[4],
+        'State code': result[5],
+      }
+      alert(JSON.stringify(returnObj));
+      console.log(JSON.stringify(returnObj));        
       });
     });
   },
