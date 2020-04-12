@@ -2,8 +2,6 @@ pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 contract Census {
-    
-    // ORACLE VERIFICATION: etc etc.
 
     // Initialize contract owner
     address public owner;
@@ -16,6 +14,7 @@ contract Census {
     // House struct
     struct House {
         bool registered;
+        uint id;
         uint maxResidents;
         uint extraResidents;
         string houseType; // House, Apartment, Mobile Home
@@ -68,11 +67,15 @@ contract Census {
         // Ensure house is not already registered for address
         require(houses[msg.sender].registered == false, "This address has already registered a house.");
 
+        // Increase global house count
+        houseCount++;
+
         // Initialize empty residentList array
         uint[] memory emptyList = new uint[](0);
         
         // Create new house struct
         House memory newhouse = House(true,
+                                      houseCount,
                                       _maxResidents,
                                       _extraResidents,
                                       _housetype,
@@ -80,9 +83,6 @@ contract Census {
                                       emptyList);
 
         houses[msg.sender] = newhouse;
-
-        // Increase global house count
-        houseCount++;
 
         emit houseAddedEvent(_maxResidents, _extraResidents, _stateCode);
     }
@@ -125,6 +125,7 @@ contract Census {
     function getHouse() public view returns (bool,
                                              uint,
                                              uint,
+                                             uint,
                                              string memory,
                                              uint8,
                                              uint[] memory) {
@@ -132,13 +133,14 @@ contract Census {
         House storage thisHouse = houses[msg.sender];
 
         bool resiValid = thisHouse.registered;
+        uint resiId = thisHouse.id;        
         uint resiNum = thisHouse.maxResidents;
         uint resiAdd = thisHouse.extraResidents;
         string storage houseType = thisHouse.houseType;
         uint8 stateCode = thisHouse.stateCode;
         uint[] memory resiList = thisHouse.residentList;
 
-        return (resiValid, resiNum, resiAdd, houseType, stateCode, resiList);
+        return (resiValid, resiId, resiNum, resiAdd, houseType, stateCode, resiList);
     }
 
     // Return Person struct params

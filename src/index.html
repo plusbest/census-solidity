@@ -46,7 +46,7 @@
           <div class="input-group" id="verifyList">
             <input type="text" class="form-control input-sm" id="verifyKey" placeholder="private key">
             <span class="input-group-btn">
-            <button type="button" onclick="App.getKeyValidity(); return false" id="verifySerial" class="btn btn-secondary btn-sm">verify</button>
+            <button type="button" onclick="App.keyVerify(); return false" id="verifySerial" class="btn btn-secondary btn-sm">verify</button>
             </span>
           </div>
         </div>
@@ -61,6 +61,7 @@
         </div>
         <div class="col-md-8">
           <p class="lead"><strong>Your house information.</strong></p>
+          <p id="houseId"></p>
           <p id="maxResidents"></p>
           <p id="extraResidents"></p>
           <p id="houseType"></p>

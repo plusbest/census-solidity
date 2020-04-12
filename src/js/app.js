@@ -93,13 +93,13 @@ App = {
         App.hasHouse = true;
       }
       console.log(myHouse);
-
+      $("#houseId").html("House ID: " + "<b>" + myHouse[2].c[0] + "</b>");
       $("#maxResidents").html("Max residents: " + "<b>" + myHouse[1].c[0] + "</b>");
-      $("#extraResidents").html("Additional residents: " + "<b>" + myHouse[2].c[0] + "</b>"); 
-      $("#houseType").html("House type: " + "<b>" + myHouse[3] + "</b>");
-      $("#houseStateCode").html("State code: " + "<b>" + myHouse[4] + "</b>");      
+      $("#extraResidents").html("Additional residents: " + "<b>" + myHouse[3].c[0] + "</b>"); 
+      $("#houseType").html("House type: " + "<b>" + myHouse[4] + "</b>");
+      $("#houseStateCode").html("State code: " + "<b>" + myHouse[5] + "</b>");      
 
-      App.residentIds = myHouse[5];
+      App.residentIds = myHouse[6];
       return CensusInstance.getPeople.call(App.residentIds);
 
       // TODO: get info from getPeopleMore()
@@ -185,8 +185,7 @@ App = {
             console.log("error: " + err);
             console.log("private key: " + privateKey);
 
-      // Signs and returns hashed signature whilst using
-      // previously generated account as signed input
+      // Signs with private key and returns hashed signature
       web3.personal.sign(privateKey, App.account, "fooPassword", function(err, firstHash){
               console.log("error: " + err);
               console.log("first hash: " + firstHash);
@@ -221,7 +220,7 @@ App = {
     // web3.toAscii(str); <-- turns bytes32 from contract into string
   },
 
-  getKeyValidity: function() {
+  keyVerify: function() {
     var privateKey = $('#verifyKey').val();
     var publicKey;
 
@@ -231,7 +230,7 @@ App = {
 
       // Check key validity via contract
       App.contracts.Oracle.deployed().then(function(instance) {
-        return instance.getKeyValidity(publicKey).then(function(boolResult) {
+        return instance.keyVerify(publicKey).then(function(boolResult) {
           if (boolResult === true) {
             alert("Valid key");
             App.isVerified = true;
