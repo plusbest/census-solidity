@@ -299,6 +299,24 @@
         </div>
       </div>
       <!-- END ADD PERSON SECTION -->
+      <hr/>
+      <div class="row">
+        <div class="form-group row">
+          <div class="col-md-2">
+            <button type="button" onclick="App.getStateHouses(); return false" id="stateHouses" class="btn btn-outline-secondary btn-sm">Test feature</button>          
+          </div>
+        <div class="col-md-6">
+        <label for=""><i>Logs in console all of the House addresses for the selected state.</i></label>
+        <select class="form-control" id="testState" placeholder="State">
+          <option value="" selected disabled>Select state.</option>                          
+        </select>    
+        </div>
+
+        <div class="col-md-4">
+        </div>
+      </div>
+      </div>        
+
 
     </div>
 
@@ -348,6 +366,7 @@
       }
       $.each(states, function (index, s) {
           $("#stateSelect").append("<option value = '"+s+"'>"+statesList[s-1]+"</option>");
+          $("#testState").append("<option value = '"+s+"'>"+statesList[s-1]+"</option>");
       });      
       $.each(age, function (index, a) {
           $("#uage").append("<option value = '"+a+"'>"+a+"</option>");

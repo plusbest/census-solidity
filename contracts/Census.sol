@@ -38,9 +38,11 @@ contract Census {
         bytes32 liveReason;
         bytes32 relation;
     }
-    
+
     // stores index of 'Houses' struct by address
     mapping(address => House) public houses;
+
+    mapping(uint256 => address) public houseById;
 
     // stores a 'Person' struct as index id
     mapping(uint => Person) public people;
@@ -51,7 +53,6 @@ contract Census {
     uint8 indexed _stateCode
     );
 
-    // Initialized at contract creation
     constructor() public {
         // Contract owner
         owner = msg.sender;
@@ -59,6 +60,7 @@ contract Census {
         houseCount = 0;
     }
 
+    // Add user's House information
     function addHouse(uint _maxResidents,
                       uint _extraResidents,
                       uint8 _stateCode,
@@ -67,8 +69,8 @@ contract Census {
         // Ensure house is not already registered for address
         require(houses[msg.sender].registered == false, "This address has already registered a house.");
 
-        // Increase global house count
-        houseCount++;
+        // Map new House ID
+        houseById[houseCount] = msg.sender;
 
         // Initialize empty residentList array
         uint[] memory emptyList = new uint[](0);
@@ -84,9 +86,13 @@ contract Census {
 
         houses[msg.sender] = newhouse;
 
+        // Increase global house count
+        houseCount++;        
+
         emit houseAddedEvent(_maxResidents, _extraResidents, _stateCode);
     }
 
+    // Add a new Person(resident) to user House
     function addPerson(bool _ismale,
                        bool _ishispanic,
                        uint32 _age,
@@ -176,7 +182,7 @@ contract Census {
         return (liveReason, relation);
     }
 
-    // TEST FUNCTION
+    // Return a list of Person struct params
     function getPeople(uint[] memory resiNums) public view returns (uint[] memory,
                                                                     bool[] memory,
                                                                     bool[] memory,
@@ -207,7 +213,8 @@ contract Census {
         return (id, isMale, isHispanic, age, birthDate, race);
     }
 
-    // TEST FUNCTION
+    // Return additional People list details to avoid
+    // stack overflow when using getPeople() getter
     function getPeopleMore(uint[] memory resiNums) public view returns (bytes32[] memory,
                                                                         bytes32[] memory){
         
@@ -224,5 +231,32 @@ contract Census {
             relation[i] = people[resiNums[i]].relation;
         }
         return (liveReason, relation);
+    }
+
+    function getStateHouses(uint stateId) public view returns(address[] memory) {
+        // Permit states within valid state code range
+        require(stateId > 0 && stateId < 52, "Invalid state code.");
+
+        uint validCount = 0;  // State match counter
+
+        // Counts all addresses with matching state code
+        for (uint i = 0; i < houseCount; i++) {
+            address houseAddr = houseById[i];
+            if (houses[houseAddr].stateCode == stateId) {
+                validCount++;
+            }
+        }
+        // Initialize with validCount as dynamic arrays are not
+        // allowed using memory
+        address[] memory addressList = new address[](validCount);        
+        
+        // Populate list of valid addresses
+        for (uint i = 0; i < validCount; i++) {
+            address houseAddr = houseById[i];
+            if (houses[houseAddr].stateCode == stateId) {
+                addressList[i] = houseById[i];
+            }
+        }
+        return addressList;
     }
 }

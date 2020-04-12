@@ -302,7 +302,6 @@ App = {
   },
 
   addPerson: function() {
-
     var isMale = $('#maleTrue').is(':checked');
     var isHispanic = $('#hispanicTrue').is(':checked');
     var personAge = $('#uage').val();
@@ -332,6 +331,16 @@ App = {
       $("#loader").show();
     }).catch(function(err) {
       console.error(err);
+    });
+  },
+
+  getStateHouses: function() {
+    var testStateCode = $('#testState option:selected').val();      
+    // var privateKey = $('#privateKey').val();
+    App.contracts.Census.deployed().then(function(instance) {
+      return instance.getStateHouses(testStateCode).then(function(result) {
+        alert(result);
+      });
     });
   },
 
