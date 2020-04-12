@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Election Results</title>
+    <title>Census-Chain</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="container" id="content" style="width: 720px;">
-      <h1 class="text-center">2020CENSUS on the mfking BLOCKCHAIN</h1>
+      <h1 class="text-center">CENSUS 2020 on CHAIN</h1>
       <br/>
       <div id="loader">
         <p class="text-center">Please refresh page..</p>
@@ -29,7 +29,7 @@
 
       <div class="row" id="keyGenSection" style="display: block;">
         <br/>
-        <h3>Welcome!</h3>
+        <h3>Get started</h3>
         <legend class="border-bottom mb-6 legend-details">Claim a Census key</legend>
         <div class="col-md-6" id="serialInfo">
           <h5>Key Generator</h5>
@@ -95,7 +95,7 @@
                 Main
               </div>
               <div class="col-md-2">
-                <input type="number" class="form-control" id="maxResi" placeholder="#">
+                <input type="number" class="form-control" id="maxResi" placeholder="#" required>
               </div>
               <div class="col-md-8">
                 # of residents living in house
@@ -106,7 +106,7 @@
                 Additional
               </div>
               <div class="col-md-2">
-                <input type="number" class="form-control" id="extraResi" placeholder="#">
+                <input type="number" class="form-control" id="extraResi" placeholder="#" required>
               </div>
               <div class="col-md-8">
                 # of additional residents
@@ -116,7 +116,7 @@
               <!-- <label for="inputEmail3" class="col-md-2 col-form-label">Email</label> -->
               <div class="col-md-2">Residence-type</div>
               <div class="col-md-6">
-                <select class="form-control" id="houseSelect" placeholder="house type">
+                <select class="form-control" id="houseSelect" placeholder="house type" required>
                 <option value="" selected disabled>Select house type.</option>                  
                 <option value="House">House</option>
                 <option value="Apartment">Apartment</option>
