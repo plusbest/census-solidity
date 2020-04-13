@@ -1,5 +1,4 @@
 # CENSUS-CHAIN &nbsp;
------
 A block-chain web application created as a more transparent and accessible means for both submitting and recording US Census data. Powered by **Solidity** using **web3** via **Truffle** framework.
 
 ##### Table of contents
