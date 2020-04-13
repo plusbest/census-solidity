@@ -53,6 +53,12 @@ contract Census {
     uint8 indexed _stateCode
     );
 
+    event personAddedEvent (
+    uint indexed _id,
+    bytes32 indexed _race,
+    bytes32 indexed _relation
+    );
+
     constructor() public {
         // Contract owner
         owner = msg.sender;
@@ -125,6 +131,8 @@ contract Census {
         
         // Increase global person count (iD)
         personCount++;
+
+        emit personAddedEvent(personCount, _race, _relation);
     }
 
     // Return House struct params

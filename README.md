@@ -120,35 +120,5 @@ A struct which contains information of a registered resident.
     *Future compounding of functions can be expanded to tailor to desired research.*
 
 ##### Final notes:
+[Official 2020 US Census questionnaire](https://www2.census.gov/programs-surveys/decennial/2020/technical-documentation/questionnaires-and-instructions/questionnaires/2020-informational-questionnaire.pdf)
 Thanks to the staff of CSCI E-118!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

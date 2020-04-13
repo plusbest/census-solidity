@@ -2,14 +2,15 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  hasHouse: false,
-  hasPeople: false,
+  hasHouse: false,  // Tag for DOM hide and show
+  hasPeople: false, // Tag for DOM hide and show
   residentIds: [],
 
   init: function() {
     return App.initWeb3();
   },
 
+  // Initialize web3 and web3 provider
   initWeb3: function() {
     if (typeof web3 !== 'undefined') {
       App.web3Provider = web3.currentProvider;
@@ -21,24 +22,24 @@ App = {
     return App.initContract();
   },
 
+  // Initialize Oracle contract
   initContract: function() {
     $.getJSON("Oracle.json", function(Oracle) {
-      console.log(Oracle);
       App.contracts.Oracle = TruffleContract(Oracle);
       App.contracts.Oracle.setProvider(App.web3Provider);
 
+    // Initialize Census contract
     }).then (function() {
       $.getJSON("Census.json", function(Census) {
-        console.log(Census);
         App.contracts.Census = TruffleContract(Census);
         App.contracts.Census.setProvider(App.web3Provider);
         App.listenForEvents();
-
         return App.render();
       })
     });
   },
 
+  // Refresh page on House added event
   listenForEvents: function() {
     App.contracts.Census.deployed().then(function(instance) {
       instance.houseAddedEvent({}, {
@@ -64,8 +65,8 @@ App = {
     var addPersonForm = $("#addPersonForm");
     var residentTableSection = $("#residentTableSection");
 
-    loader.show();
-    content.hide();
+    loader.hide();
+    content.show();
 
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
@@ -86,50 +87,51 @@ App = {
 
     // Add user House information to page
     }).then(function(myHouse) {
-      // Update global variable for DOM
+      // Update global variable for DOM actions
       if (myHouse[0] === true) {
         App.hasHouse = true;
       }
-      console.log(myHouse);
-      $("#houseId").html("House ID: " + "<b>" + myHouse[2].c[0] + "</b>");
-      $("#maxResidents").html("Max residents: " + "<b>" + myHouse[1].c[0] + "</b>");
+      // Appends House object information to overview
+      $("#houseId").html("House ID: " + "<b>" + myHouse[1].c[0] + "</b>");
+      $("#maxResidents").html("Max residents: " + "<b>" + myHouse[2].c[0] + "</b>");
       $("#extraResidents").html("Additional residents: " + "<b>" + myHouse[3].c[0] + "</b>"); 
       $("#houseType").html("House type: " + "<b>" + myHouse[4] + "</b>");
       $("#houseStateCode").html("State code: " + "<b>" + myHouse[5] + "</b>");      
 
+      // Store list of House resident ID numbers
       App.residentIds = myHouse[6];
+
+      // Obtains object info for all resident IDs
       return CensusInstance.getPeople.call(App.residentIds);
 
-      // TODO: get info from getPeopleMore()
-    }).then(function(peopleList) {
-
+      // Appends Person info to combined list
+      // then obtains additional Person info
+    }).then(function(peopleList) {    
       peopleDataFull.push(peopleList);
-
       return CensusInstance.getPeopleMore.call(App.residentIds)
-    // Gets additional Resident info and appends
-    }).then(function(peopleListMore) {
 
+      // Appends additional Person info to combined list
+      // then returns completed info
+    }).then(function(peopleListMore) {
       for (i = 0; i < peopleListMore.length; i++) {
         peopleDataFull[0].push(peopleListMore[i]);
       };
-
-
       return peopleDataFull;
+
+      // Places all Person data onto resident table info
+      // overview in browser
     }).then(function(peopleDataFull) {
 
       var peopleList = peopleDataFull[0];
-      console.log(peopleList);
 
       if (peopleList[0].length > 0) {
+        // Update global variable for DOM actions
         App.hasPeople = true;
       }
-
       let tbody = document.querySelector('#resiTableBody');
-
-      // Modified. Make sure doesn't break
       var paramNum = peopleList.length;
 
-      // Iterate through house residents
+      // Iterate through House residents
       for (i = 0; i < peopleList[0].length; i++) {
         const tr = document.createElement('tr');
 
@@ -137,25 +139,24 @@ App = {
         for (j = 0; j < paramNum; j++) {
           const td = document.createElement('td');
 
+          // Handles pulling correct object data element
           if (typeof(peopleList[j][i]) === "object") {
-
             td.innerHTML = `${peopleList[j][i].c[0]}`;
           }
+          // Handles converting string type
           else if (typeof(peopleList[j][i]) === "string") {
-
             var string = web3.toAscii(peopleList[j][i]);
             td.innerHTML = string;
           }
           else {
-
             td.innerHTML = `${peopleList[j][i]}`;
           }
-
           tr.append(td);
         }
         tbody.append(tr);
       };
 
+    // Hide or show front-end forms respectively
     }).then(function() {
       if (App.hasHouse === true) {
         keyGenSection.hide();
@@ -167,7 +168,6 @@ App = {
       if (App.hasPeople === true) {
         residentTableSection.show();
       }
-      loader.hide();
       content.show();
     }).catch(function(error) {
       console.warn(error);
@@ -180,53 +180,46 @@ App = {
 
     // Creates a new random account string serving as a private key
     web3.personal.newAccount('dash_of_entropy', function(err, privateKey){ //web3.eth.accounts[0]
-            console.log("error: " + err);
-            console.log("private key: " + privateKey);
 
       // Signs with private key and returns hashed signature
       web3.personal.sign(privateKey, App.account, "fooPassword", function(err, firstHash){
-              console.log("error: " + err);
-              console.log("first hash: " + firstHash);
 
-              // Format for eth address consistency
-              var refactoredHash = firstHash.substring(0, 42);
-              console.log("refactored hash: " + refactoredHash);
+        // Format for ETH address consistency
+        var refactoredHash = firstHash.substring(0, 42);
 
+        // Signs with secondary key string
         web3.personal.sign(refactoredHash, App.account, "barPassword", function(err, secondHash) {
-              console.log("error: " + err);
-              console.log("second hash: " + secondHash);
-              // Format for solidity arg bytes32
-              var finalHash = secondHash.substring(0, 66);
-              console.log("final hash: " + finalHash);
 
-              // Create Oracle instance
-              App.contracts.Oracle.deployed().then(function(instance) {
-              tempInstance = instance;
+          // Format for solidity arg bytes32
+          var finalHash = secondHash.substring(0, 66);
 
-              // Generate key on-chain
-              return tempInstance.keyGen(refactoredHash, finalHash);
+          // Create Oracle instance
+          App.contracts.Oracle.deployed().then(function(instance) {
+          tempInstance = instance;
+
+            // Register key onto chain
+            return tempInstance.keyGen(refactoredHash, finalHash);
 
             }).then(function() {
-              // Add key info to DOM only when transaction signing
-              // has fully completed
-              generatedPassword.innerHTML = `${privateKey}`;
-              generatedHash.innerHTML = `signed hash: ${finalHash}`;
-            });
+            // Add key info to DOM only when transaction signing
+            // has fully completed
+            generatedPassword.innerHTML = `${privateKey}`;
+            generatedHash.innerHTML = `signed hash: ${finalHash}`;
+          });
         });
       });
     });
-    // web3.toAscii(str); <-- turns bytes32 from contract into string
   },
 
   keyVerify: function() {
     var privateKey = $('#verifyKey').val();
     var publicKey;
 
-    // Hash private key then refactors to public key
+    // Hashes private key then refactors to 'public key'
     web3.personal.sign(privateKey, App.account, "fooPassword", function(err, hash) {
       var publicKey = hash.substring(0, 42);
 
-      // Check key validity via contract
+      // Check key validity
       App.contracts.Oracle.deployed().then(function(instance) {
         return instance.keyVerify(publicKey).then(function(boolResult) {
           if (boolResult === true) {
@@ -235,9 +228,9 @@ App = {
           }
           else {
             alert("Invalid key :(.");
-            }
-          });
+          }
         });
+      });
     });
   },
 
@@ -245,7 +238,6 @@ App = {
     var privateKey = $('#privateKey').val();
     App.contracts.Oracle.deployed().then(function(instance) {
       return instance.getKeyHash(privateKey).then(function(hashresult) {
-        console.log(hashresult);
       });
     });
   },
@@ -261,12 +253,10 @@ App = {
     web3.personal.sign(privateKey, App.account, "fooPassword", function(err, firstHash){
       // Format for eth address consistency
       var refactoredHash = firstHash.substring(0, 42);
-      console.log(refactoredHash);
 
     web3.personal.sign(refactoredHash, App.account, "barPassword", function(err, secondHash) {
       // Format for solidity arg bytes32
       var finalHash = secondHash.substring(0, 66);
-      console.log(finalHash);
 
         // Create Oracle instance
         App.contracts.Oracle.deployed().then(function(instance) {
@@ -276,13 +266,15 @@ App = {
 
         // Compares returned hash with signed hash
         }).then(function(returnHash) {
-          console.log("OG HASH:" + finalHash);
-          console.log("RET HASH:" + returnHash);
+
           if (finalHash == returnHash) {
             // Create Census instance
             App.contracts.Census.deployed().then(function(instance) {
               // Add house
-              return instance.addHouse(maxResidents, extraResidents, houseStateCode, houseType, { from: App.account });
+              return instance.addHouse(maxResidents,
+                                       extraResidents,
+                                       houseStateCode,
+                                       houseType, { from: App.account });
             }).then(function(result) {
               // $("#content").hide();
               // $("#loader").show();
@@ -300,6 +292,7 @@ App = {
   },
 
   addPerson: function() {
+    // Obtain form elements
     var isMale = $('#maleTrue').is(':checked');
     var isHispanic = $('#hispanicTrue').is(':checked');
     var personAge = $('#uage').val();
@@ -308,14 +301,7 @@ App = {
     var personLiveReason = $('#personLiveReason').val();
     var personRelation = $('#personRelation').val();
 
-    console.log(isMale);
-    console.log(isHispanic);
-        console.log(personAge);
-          console.log(personBirthDate);
-            console.log(personRace);
-                console.log(personLiveReason);
-                    console.log(personRelation);
-
+    // Add person contract call
     App.contracts.Census.deployed().then(function(instance) {
       return instance.addPerson(isMale,
                                 isHispanic,
@@ -334,9 +320,9 @@ App = {
 
   getStateHouses: function() {
     var testStateCode = $('#testState option:selected').val();  
-    // var privateKey = $('#privateKey').val();
     App.contracts.Census.deployed().then(function(instance) {
       return instance.getStateHouses(testStateCode).then(function(result) {
+        console.log(result);
         alert(result);
       });
     });
@@ -350,12 +336,13 @@ App = {
       if (result[0] === true) {
       }
       var returnObj = {
-        'House ID': result[2].c[0],
-        'Max residents': result[1].c[0],
+        'House ID': result[1].c[0],
+        'Max residents': result[2].c[0],
         'Additional residents': result[3].c[0],
         'House type': result[4],
         'State code': result[5],
       }
+      // Make it pretty
       alert(JSON.stringify(returnObj));
       console.log(JSON.stringify(returnObj));        
       });
