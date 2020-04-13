@@ -29,7 +29,7 @@ contract Oracle {
     constructor() public {
         owner = msg.sender;
         totalKeys = 0;
-        maxKeys = 100; // 100 for DEBUG.
+        maxKeys = 333546000; // Initialized for DEMO/DEBUG.
     }
 
     // Set (new) key limit

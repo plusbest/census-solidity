@@ -75,6 +75,9 @@ contract Census {
         // Ensure house is not already registered for address
         require(houses[msg.sender].registered == false, "This address has already registered a house.");
 
+        // Ensure minimum resident count
+        require(_maxResidents > 0, "Must have a minimum of 1 Person registered to a House.");
+        
         // Map new House ID
         houseById[houseCount] = msg.sender;
 
