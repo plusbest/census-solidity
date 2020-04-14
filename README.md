@@ -1,4 +1,5 @@
 # CENSUS-CHAIN &nbsp;
+-----
 A block-chain web application created as a more transparent and accessible means for both submitting and recording US Census data. Powered by **Solidity** using **web3** via **Truffle** framework.
 
 ##### Table of contents
@@ -91,10 +92,10 @@ Limit is set to prevent excessive submissions in attack or private key generatio
 ###### Knowing your `House{}`
 A struct which serves as a unique identifier mapped to the interacting user's ETH address. Contains official US Census parameters.
 
-###### *Notable params*
-- `id` as a unique identifier more digestable than a mapped address
-- `stateCode` for Census-related geo-mapping of data.
-- `residentList[]` to add accountability and trend parsing for residents' living situation.
+*Notable params:*
+    - `id` as a unique identifier more digestable than a mapped address
+    - `stateCode` for Census-related geo-mapping of data.
+    - `residentList[]` to add accountability and trend parsing for residents' living situation.
 
 ###### Functions
 * `addHouse()` -- Registers House on-chain with Census information. **Requires valid registered *private key*.**
@@ -103,9 +104,9 @@ A struct which serves as a unique identifier mapped to the interacting user's ET
 ###### Introducing a `Person{}`
 A struct which contains information of a registered resident.
 
-###### *Notable params*
-- `id` to identify resident uniqueness and stored in House `residentList[]`.
-- `home` for easier calling of all residents' details in a single House
+*Notable params:*
+    - `id` to identify resident uniqueness and stored in House `residentList[]`.
+    - `home` for easier calling of all residents' details in a single House
 
 ###### Functions
 * `addPerson()` -- Adds a new Person struct on-chain. **Requires interacting address to have a registered House.**
@@ -120,5 +121,5 @@ A struct which contains information of a registered resident.
     *Future compounding of functions can be expanded to tailor to desired research.*
 
 ##### Final notes:
-* [Official 2020 US Census questionnaire](https://www2.census.gov/programs-surveys/decennial/2020/technical-documentation/questionnaires-and-instructions/questionnaires/2020-informational-questionnaire.pdf)
-* Thanks to the staff of CSCI E-118!
+[Official 2020 US Census questionnaire](https://www2.census.gov/programs-surveys/decennial/2020/technical-documentation/questionnaires-and-instructions/questionnaires/2020-informational-questionnaire.pdf)
+Thanks to the staff of CSCI E-118!
