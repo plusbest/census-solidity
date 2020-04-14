@@ -48,7 +48,8 @@ Enter private key and press [verify]
 ##### House Registration ![#f0ad4e](https://placehold.it/15/f0ad4e/000000?text=+)
 Complete form details and submit with [register house]
 * Form only shows if user has not yet registered a House.
-* Transaction will revert and alert user if private key fails verification
+* Transaction will revert and alert user if private key fails verification.
+* Adding house will require an initial **signing twice** for key verification.
 * User's House details will display when successful.
 
 ##### Adding a Person ![#337ab7](https://placehold.it/15/337ab7/000000?text=+)

@@ -27,14 +27,12 @@ App = {
     $.getJSON("Oracle.json", function(Oracle) {
       App.contracts.Oracle = TruffleContract(Oracle);
       App.contracts.Oracle.setProvider(App.web3Provider);
-
     // Initialize Census contract
     }).then (function() {
       $.getJSON("Census.json", function(Census) {
         App.contracts.Census = TruffleContract(Census);
         App.contracts.Census.setProvider(App.web3Provider);
         App.listenForEvents();
-        return App.render();
       })
     });
   },
@@ -42,7 +40,7 @@ App = {
   // Refresh page on House added event
   listenForEvents: function() {
     App.contracts.Census.deployed().then(function(instance) {
-      instance.houseAddedEvent({}, {
+      instance.allEvents({}, {
         fromBlock: 'latest',
         toBlock: 'latest'
       }).watch(function(error, event) {
