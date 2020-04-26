@@ -345,7 +345,7 @@
           </div>
           <div class="col-md-8">
           <label for=""><i>Get House info by its address.</i></label>
-            <input type="text" class="form-control input-sm" id="testHouseAddr" placeholder="private key"> 
+            <input type="text" class="form-control input-sm" id="testHouseAddr" placeholder="House ETH address"> 
         </div>
         <div class="col-md-4">
         </div>
@@ -369,6 +369,7 @@
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
 
+    <!-- Dropdown list option populate functions -->
     <script>
     function padToTwo(number) {
       if (number<10) {
@@ -419,30 +420,3 @@
   </script>
   </body>
 </html>
-
-
-
-
-
-<!--         <div class="form-group">
-        <label for="happy" class="col-md-4 col-md-4 control-label text-right">Are you happy ?</label>
-        <div class="col-md-7 col-md-7">
-          <div class="input-group">
-            <div id="radioBtn" class="btn-group">
-              <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
-              <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
-            </div>
-            <input type="hidden" name="happy" id="happy">
-          </div>
-        </div>
-      </div>
-<script>
-  $('#radioBtn a').on('click', function(){
-    var sel = $(this).data('title');
-    var tog = $(this).data('toggle');
-    $('#'+tog).prop('value', sel);
-    
-    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
-    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
-})
-</script> -->

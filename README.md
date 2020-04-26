@@ -17,7 +17,7 @@ Install:
 
 Use the package manager `npm` to install lite-server and truffle suite.
 ```
-npm install lite-server
+npm install lite-server@2.5.4
 npm install -g truffle
 ```
 

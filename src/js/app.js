@@ -53,7 +53,6 @@ App = {
   },
 
   render: function() {
-    alert(web3.eth.accounts[0]);
     var CensusInstance;
     var loader = $("#loader");
     var content = $("#content");
