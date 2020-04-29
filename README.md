@@ -1,8 +1,14 @@
 # CENSUS-CHAIN &nbsp;
------
 A block-chain web application created as a more transparent and accessible means for both submitting and recording US Census data. Powered by **Solidity** using **web3** via **Truffle** framework.
 
-##### Table of contents
+##### Foreword
+Census-Chain is designed to serve as an alternative way to obtain US Census data. By using blockchain technology to record user data in a more anonymous fashion, users will be better encouraged to provide personal details which otherwise some would shy against due to possible fear and uncertainty of their shared information. Greater participation will ultimately create better population metrics and research opportunities.
+
+A critical tool for connecting blockchain with users is a modern day interface, which is why Census-Chain has an interactive web app to make the experience of writing on-chain seamless and encouraging. Additional features for researchpurposes are (and can be) further implemented such as an API.
+
+There is an increasing demand for both data and privacy as well as an equal amountof threat alongside. By utilizing the cryptography and the blockchain to remedy the fear and uncertainty holding people back from providing useful information, Census-Chain can better leverage the acquisition and accuracy of data.
+
+#### Table of contents
 1. Getting Started
 2. Usage
 3. Files
@@ -122,4 +128,5 @@ A struct which contains information of a registered resident.
 
 ##### Final notes:
 [Official 2020 US Census questionnaire](https://www2.census.gov/programs-surveys/decennial/2020/technical-documentation/questionnaires-and-instructions/questionnaires/2020-informational-questionnaire.pdf)
+
 Thanks to the staff of CSCI E-118!
